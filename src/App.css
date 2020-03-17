@@ -1,1 +1,45 @@
 @import '~antd/dist/antd.css';
+
+body {
+    font-family: 'Comfortaa', cursive;
+    /* background-color: rgb(241, 212, 172) !important; */
+    
+}
+.header {
+    height: 80px; 
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px solid rgba(8, 8, 8, 0.575);
+}
+.header__logo--container {
+      margin-left: 60px;
+}
+.header__logo--icon {
+      color: #31DE28;
+}
+.nav__container {
+      margin-right: 60px;
+}
+.nav__container > ul > li {
+      list-style: none;
+      margin: 12px;
+}
+
+.nav__container > ul  {
+      margin-bottom: 0px;
+      display: flex; 
+      justify-content: space-between;   
+}
+.header__signup--button {           
+      background-color: #31DE28;
+      padding: 12px;
+      color: #fff !important;
+} 
+.nav__container--link {
+    color: #31DE28;     
+}
