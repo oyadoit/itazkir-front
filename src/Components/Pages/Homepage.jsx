@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import Style from 'style-it';
 
 import MainContent from '../../Components/Containers/MainContent';
+import Features from '../../Components/Containers/Features';
 
 const Homepage = props => {
     return Style.it(`
     
     `,
     <div>
-         <MainContent />   
+         <MainContent /> 
+         <Features />  
     </div>
 )
        

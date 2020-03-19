@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Style from 'style-it';
-import {  Link  } from 'react-router-dom'
+import {  Link  } from 'react-router-dom';
+
+import GetStartedButton from './GetStartedButton';
 
 
 const Header = props => {
     return Style.it(
         `
-   
-
 
         `,
         
@@ -20,7 +20,8 @@ const Header = props => {
             <ul>                
                 <li><Link to='/about' className="nav__container--link">About</Link></li>
                 <li><Link to='/login' className="nav__container--link">Login</Link></li>
-                <li><Link className='header__signup--button' to='/signup'>Get Started</Link></li>
+                <li><GetStartedButton className='header__signup--button'>Get Started</GetStartedButton></li>
+                
             </ul>
         </div>
     </div>
