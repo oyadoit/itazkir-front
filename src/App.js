@@ -7,6 +7,7 @@ import Header from "./Components/Custom/Header";
 import HomePage from "./Components/Pages/Homepage";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
+import Footer from './Components/Custom/Footer';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />    
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,9 +1,18 @@
 @import '~antd/dist/antd.css';
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+
+}
+
 body {
     font-family: 'Comfortaa', cursive;
-    /* background-color: rgb(241, 212, 172) !important; */
-    
+    color: rgb(63, 61, 86);
 }
 .header {
     height: 80px; 
@@ -21,6 +30,7 @@ body {
 }
 .header__logo--icon {
       color: #31DE28;
+      color: #2f679c;
 }
 .nav__container {
       margin-right: 60px;
@@ -35,11 +45,27 @@ body {
       display: flex; 
       justify-content: space-between;   
 }
-.header__signup--button {           
+.button__green {           
       background-color: #31DE28;
+      /* background-color:  */
       padding: 12px;
       color: #fff !important;
 } 
+.first-button {
+    color: #31DE28;
+    background-color: #fff;
+    padding: 10px;
+}
+.second-button {
+    color: orange;
+    background-color: #fff;
+    padding: 10px;
+}
+.third-button {
+    color: #2f679c;
+    background-color: #fff;
+    padding: 10px;
+}
 .nav__container--link {
     color: #31DE28;     
 }
@@ -69,8 +95,9 @@ body {
   }
   .main__content--large-text {
       font-size: 33px;
-      color: #31DE28;
-      color: rgba(78, 78, 78, 0.658);
+      /* color: #31DE28; */
+      /* color: rgba(78, 78, 78, 0.658); */
+      color: rgb(63, 61, 86);
         /* color: rgba(122, 120, 120, 0.062); */
       margin-top: 50px;
   }
@@ -78,3 +105,78 @@ body {
       color: gray;
       margin-bottom: 40px;
   }
+  .white {
+      color: #fff;
+  }
+
+  /* main content style */
+.get__started {
+    margin-top: 20px;
+ }
+.download__container {
+    margin-top: 60px;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+/* features container style */
+.features__container {
+    background-color: rgba(226, 219, 219, 0.062)   !important;
+    padding-right: 120px;
+    padding-left: 120px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    position: relative;
+}
+.features__heading {
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+}
+.features__card--container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* recent reminder  component styles */
+.recent__reminder--container {
+    padding-right: 120px;
+    padding-left: 120px;
+    padding-bottom: 200px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    color: rgb(63, 61, 86);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.recent__reminder--cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+    align-item: center;
+}
+.recent__reminder--heading {
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    color: rgb(63, 61, 86);
+    margin-bottom: 50px;
+}
+.recent__reminder--text {
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+.recent__reminder--button {
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    margin-top: 15px;
+
+}
+
+
+
+

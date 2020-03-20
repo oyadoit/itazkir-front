@@ -4,10 +4,9 @@ import Style from 'style-it';
 
 import GetStartedButton from './GetStartedButton';
 
-const Card = props => {
+const FeatureCard = props => {
     return Style.it(`
         .card__container {
-            // background-color: #3e3;
             background-color: #fff;
             width: 290px;
             height: 320px;
@@ -28,6 +27,7 @@ const Card = props => {
         .fa {
             font-size: 30px;
             // color: gray;
+            color: rgb(63, 61, 86);
         }
         .card__icon--container {
             background-color: ${props.color};
@@ -37,9 +37,6 @@ const Card = props => {
 
 
         }
-        // .card__text--container {
-        
-        // }
         .card__text--header {
             font-weight: bold;
             font-size: 17px;
@@ -60,7 +57,7 @@ const Card = props => {
         <div>
             {
                 props.withButton ? (
-                    <GetStartedButton className='header__signup--button'>Get Started</GetStartedButton>
+                    <GetStartedButton className='button__green'>Get Started</GetStartedButton>
                 ) : ('')
             }
             
@@ -72,8 +69,8 @@ const Card = props => {
     ) 
 }
 
-Card.propTypes = {
+FeatureCard.propTypes = {
 
 }
 
-export default Card
+export default FeatureCard
