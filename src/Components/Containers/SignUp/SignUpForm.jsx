@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Style from 'style-it';
 
 import Input from '../../Custom/Input';
 import SubmitButton from '../../Custom/SubmitButton';
@@ -12,35 +11,8 @@ import Hexagon from '../../Custom/Particles/Hexagon';
 
 
 const SignUpForm = props => {
-    return Style.it(`
-    .signup__container {
-        margin-right: 100px;
-        margin-left: 100px;
-        padding-top: 10px;
-        height: 80vh;
-        display: flex;
-        // justify-content: space-evenly;
-    }
-    .signup__form-right {
-        padding-top: 50px;
-        padding-left: 100px;
-    }
-    .signup__form {
-        display: flex;
-        flex-direction: column;
-    }
-    .signup__form-heading {
-        font-weight: bold;
-        font-size: 36px;
-        color: rgb(63, 61, 86);
-        margin-bottom: 30px;
-    }
-    .signup__green-text {
-        color: #31DE28;
-        font-size: 40px;
-    }
-    `,
-    <div className='signup__container'>
+    return (
+        <div className='signup__container'>
         <div className='signup__image-left'>
             <img 
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584798045/iTazkir/signup_yxdljr.png" 
@@ -90,8 +62,10 @@ const SignUpForm = props => {
         </div>
     </div>
 
-    
     )
+    
+    
+    
 }
 
 SignUpForm.propTypes = {

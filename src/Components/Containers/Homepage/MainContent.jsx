@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Style from 'style-it';
 
 
 
@@ -9,14 +8,11 @@ import GetStartedButton from '../../Custom/GetStartedButton';
 import Circle from '../../Custom/Particles/Circle';
 import Triangle from '../../Custom/Particles/Triangle';
 import Hexagon from '../../Custom/Particles/Hexagon';
-import Shapes from '../../Custom/Particles/Shapes';
 
 
 const MainContent = props => {
-    return Style.it(`
-       
-    `,
-    <div className="main__content--container">
+    return (
+        <div className="main__content--container">
         <div className="main__content--left">
             <h1 className='main__content--large-text'>And remind, for indeed,  the reminder benefits the believers.</h1>
             <h5 className='main__content--small-text'>Quran 51:55</h5>
@@ -46,8 +42,8 @@ const MainContent = props => {
         </div>     
         
     </div>
-)
-       
+
+    )  
     
 }
 

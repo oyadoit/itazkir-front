@@ -13,7 +13,6 @@ html {
 body {
     font-family: 'Comfortaa', cursive;
     color: rgb(63, 61, 86);
-    /* letter-spacing: .8px; */
 }
 .header {
     height: 80px; 
@@ -46,9 +45,10 @@ body {
       display: flex; 
       justify-content: space-between;   
 }
+
+
 .button__green {           
       background-color: #31DE28;
-      /* background-color:  */
       padding: 12px;
       color: #fff !important;
       border-radius: 2px;
@@ -74,6 +74,10 @@ body {
 .nav__container--link {
     color: #31DE28;     
 }
+
+
+
+
     
 /* //main content or call to action for home page */
 .main__content--container {
@@ -114,6 +118,9 @@ body {
       color: #fff;
   }
 
+
+
+
   /* main content style */
 .get__started {
     margin-top: 20px;
@@ -124,6 +131,9 @@ body {
     width: 300px;
     justify-content: space-between;
 }
+
+
+
 
 /* features container style */
 .features__container {
@@ -144,6 +154,9 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+
+
 
 /* recent reminder  component styles */
 .recent__reminder--container {
@@ -183,13 +196,55 @@ body {
 
 }
 
+
+
+
+
 /* sign up section */
-/* .signup__image-left {
-    width: 100%;
-    background-image: url('https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584798045/iTazkir/signup_yxdljr.png');
-    background-repeat: no-repeat;
-    background-size: contain;
+.signup__container {
+    margin-right: 100px;
+    margin-left: 100px;
+    padding-top: 10px;
     height: 80vh;
-} */
+    display: flex;
+}
+.signup__form-right {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+.signup__form {
+    display: flex;
+    flex-direction: column;
+}
+.signup__form-heading {
+    font-weight: bold;
+    font-size: 36px;
+    color: rgb(63, 61, 86);
+    margin-bottom: 30px;
+}
+.signup__green-text {
+    color: #31DE28;
+    font-size: 40px;
+}
 
 
+
+/* already have an account section */
+.already__container {
+    display: flex;
+    margin-top: 40px;
+    color: rgb(63, 61, 86);
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+.already__text {
+    margin-left: 0px;
+    align-content: center;
+    margin-bottom: 0px;
+    padding-right: 10px;
+}
+.already__link {
+    color: #31DE28;
+    letter-spacing: 1px;
+}
