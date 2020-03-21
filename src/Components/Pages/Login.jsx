@@ -1,11 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+
+import LoginForm from '../Containers/Login/LoginForm';
 
 const Login = props => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <LoginForm />
+        </>
     )
 }
 
@@ -13,4 +15,4 @@ Login.propTypes = {
 
 }
 
-export default Login;
+export default Login

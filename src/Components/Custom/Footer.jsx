@@ -22,28 +22,25 @@ import Style from 'style-it';
 const Footer = () => {
     return Style.it(`
     .footer__container{
-        background-color: rgb(109, 224, 103);
-        color: #fff;
-        font-size: 16px;
+        // background-color: rgb(109, 224, 103);
+        background-color: #F0F0F0;
+        // color: #fff;
+        color: rgb(63, 61, 86);
+        font-size: 14px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         height: 8vh;
         align-items: center;
-        padding-right: 120px;
-        padding-left: 120px;
+        padding-right: 300px;
+        padding-left: 300px;
 
     }
-    
-
-  
-
     `,
 
         <div className="footer__container">
-          <div>© 2019-2020 iTazkir.</div>
-          <div>Terms Privacy Legal</div>
-          <div>About Us</div>
-          <div>Contact</div>
+          <div>Email</div>
+          <div>Github</div>
+          <div>2020 iTazkir.</div>
         </div>
     );
 }
