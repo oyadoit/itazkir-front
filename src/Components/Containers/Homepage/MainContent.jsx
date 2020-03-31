@@ -29,14 +29,12 @@ const MainContent = props => {
                     className='download-from-store'
                     alt='Download from apple store'
                 />
-
-                <Triangle color='#31DE28' width='15' height='15' top='390' left='400'/>
-                <Circle color='#31DE28' width='20' height='20' top='170' left='305'/>
-                <Triangle color='pink' width='5' height='5' top='195' left='300'/>
-                <Hexagon color='orange' width='5' height='5' top='150' left='252'/>
-                <img style={{'top':'100',}} src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584830336/iTazkir/Path_172_qh8n8o.png" alt=""/>
-                
             </div>
+            <Triangle color='#31DE28' width='15' height='15' top='390' left='400'/>
+            <Circle color='#31DE28' width='20' height='20' top='170' left='305'/>
+            <Triangle color='pink' width='5' height='5' top='195' left='300'/>
+            <Hexagon color='orange' width='5' height='5' top='150' left='252'/>
+            <img  src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584830336/iTazkir/Path_172_qh8n8o.png" alt=""/>
         </div>  
         <div className="main__content--right">
         </div>     
