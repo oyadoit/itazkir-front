@@ -17,6 +17,7 @@ const Reminders = props => {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 30px;
+            margin-bottom: 40px;
         }
         .user__reminder--heading {
             font-size: 33px;
@@ -57,7 +58,9 @@ const Reminders = props => {
            
         </div>
 
-        <Button />
+        <Button className='button__green'>
+            View All
+        </Button>
 
     </div>
     )

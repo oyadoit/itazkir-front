@@ -31,7 +31,7 @@ const SmallSubscriptionCard = ({imageUrl, title, content, }) => {
             border-radius: 3px;
             border-width: 1px;
             border-style: solid;
-            border-radius: 50px 50px 50px 50px;
+            // border-radius: 50px 50px 50px 50px;
             border-color: rgba(0, 0, 0, 0.05);
         }
         .title__content--container {

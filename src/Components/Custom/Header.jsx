@@ -44,7 +44,11 @@ const Header = props => {
             margin-right: 4.2rem !important;
             right: 10;
             display: none;
-            background-color:  rgba(63, 61, 86, 0.055);
+            background-color:  #fff;
+            border-radius: 3px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.05);
             padding: 15px 50px 15px 15px;
         }
         ul li:hover > ul,
