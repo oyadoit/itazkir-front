@@ -65,7 +65,7 @@ const SignUpForm = props => {
 
     if (error) {
         console.log(error.message);
-        console.log(error.name);
+        console.log(error.networkError.message);
         console.log(error.networkError);
         console.log(error.stack);
         return <p>{error.message}</p>
@@ -82,6 +82,7 @@ const SignUpForm = props => {
             <img 
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584798045/iTazkir/signup_yxdljr.png" 
                 alt=""
+                className='sign__up--image'
             />
         </div>
         
@@ -146,8 +147,7 @@ const SignUpForm = props => {
         </div>
     </div>
 
-    )
-    
+    )  
     
     
 }

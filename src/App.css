@@ -14,6 +14,15 @@ body {
     font-family: 'Comfortaa', cursive;
     color: rgb(63, 61, 86);
 }
+h1, h2, h3, h4, h5, h6, p, div {
+    color: rgb(63, 61, 86);
+}
+a {
+    color: #31DE28;
+}
+a:hover {
+    color: rgb(30, 173, 23) !important  ;
+}
 .header {
     height: 80px; 
     position: sticky;
@@ -39,7 +48,6 @@ body {
       list-style: none;
       margin: 12px;
 }
-
 .nav__container > ul  {
       margin-bottom: 0px;
       display: flex; 
@@ -52,27 +60,37 @@ body {
       padding: 12px;
       color: #fff !important;
       border-radius: 2px;
+      transition: ease-in-out .3s;
+} 
+.button__green:hover {           
+    color: #fff !important;
+    background-color: rgb(43, 204, 34);
+    transition: ease-in-out .2s;
 } 
 .first-button {
-    color: #31DE28;
+    color: rgb(63, 61, 86);
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
+    /* font-weight: bold; */
 }
 .second-button {
-    color: orange;
+    color: rgb(63, 61, 86);
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
+    /* font-weight: bold; */
 }
 .third-button {
-    color: #2f679c;
+    color: rgb(63, 61, 86);
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
+    
 }
 .nav__container--link {
     color: #31DE28;     
+    font-size: 14px;
 }
 
 
@@ -81,11 +99,14 @@ body {
     
 /* //main content or call to action for home page */
 .main__content--container {
-      margin-right: 60px;
-      margin-left: 60px;
+      background: linear-gradient(to right, bottom, #fff rgba(63, 61, 86, 0.055));
+      padding-right: 120px;
+      padding-left: 120px;
       padding-top: 70px;
-      display: flex;
-      justify-content: space-between;
+      margin-bottom: 100px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
       
   }
   .main__content--left {
@@ -94,21 +115,16 @@ body {
       flex-direction: column;
       align-items: flex-start;
       /* align-self: center; */
+      /* margin-left: 60px; */
   }
-  .main__content--right {
-      width: 100%;
-      background-image: url('https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584478426/undraw_season_change_f99v_jpme6e.svg');
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 80vh;
+  .main__content--image {
+    width: 100%;
+    margin-top: 15px;
   }
   .main__content--large-text {
       font-size: 33px;
-      /* color: #31DE28; */
-      /* color: rgba(78, 78, 78, 0.658); */
       color: rgb(63, 61, 86);
-        /* color: rgba(122, 120, 120, 0.062); */
-      margin-top: 50px;
+      margin-top: 40px;
   }
   .main__content--small-text {
       color: gray;
@@ -137,22 +153,27 @@ body {
 
 /* features container style */
 .features__container {
-    /* background-color: rgba(226, 219, 219, 0.062)  !important; */
-    background-color: rgba(63, 61, 86, 0.055);
-    padding-right: 120px;
-    padding-left: 120px;
+    background: linear-gradient(to right bottom, #fff, rgba(63, 61, 86, 0.055));
     padding-top: 80px;
     padding-bottom: 100px;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 .features__heading {
     font-size: 33px;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 }
 .features__card--container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 100px;
+    margin: auto;
 }
 
 
@@ -160,21 +181,22 @@ body {
 
 /* recent reminder  component styles */
 .recent__reminder--container {
-    padding-right: 120px;
-    padding-left: 120px;
+    background: linear-gradient(to right bottom,  rgba(63, 61, 86, 0.055), #fff);
+    /* padding-right: 120px; */
+    /* padding-left: 120px; */
     padding-bottom: 200px;
     padding-top: 80px;
     padding-bottom: 100px;
     color: rgb(63, 61, 86);
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 .recent__reminder--cards {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 60px;
+    margin: auto;
     margin-bottom: 70px;
-    align-item: center;
 }
 .recent__reminder--heading {
     font-size: 33px;
@@ -200,21 +222,32 @@ body {
 
 
 
+
 /* sign up section */
 .signup__container {
-    margin-right: 100px;
-    margin-left: 100px;
-    padding-top: 10px;
-    height: 80vh;
-    display: flex;
+    margin: auto;
+    margin-right: 120px;
+    margin-left: 120px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* height: 80vh; */
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
+    
 }
 .signup__form-right {
     padding-top: 50px;
-    padding-left: 100px;
+    /* padding-left: 100px; */
+    padding-right: 100px;
 }
 .signup__form {
     display: flex;
     flex-direction: column;
+}
+.sign__up--image {
+    width: 99%;
 }
 .signup__form-heading {
     font-weight: bold;

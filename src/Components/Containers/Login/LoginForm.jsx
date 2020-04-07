@@ -11,32 +11,7 @@ import DownloadFromStore from '../../Custom/DownloadFromStore';
 
 const SignUpForm = props => {
     return Style.it(`
-    // .signup__container {
-    //     margin-right: 100px;
-    //     margin-left: 100px;
-    //     padding-top: 20px;
-    //     height: 80vh;
-    //     display: flex;
-    //     // justify-content: space-evenly;
-    // }
-    // .signup__form-right {
-    //     padding-top: 50px;
-    //     padding-left: 100px;
-    // }
-    // .signup__form {
-    //     display: flex;
-    //     flex-direction: column;
-    // }
-    // .signup__form-heading {
-    //     font-weight: bold;
-    //     font-size: 36px;
-    //     color: rgb(63, 61, 86);
-    //     margin-bottom: 30px;
-    // }
-    // .signup__green-text {
-    //     color: #31DE28;
-    //     font-size: 40px;
-    // }
+
     .login__forget__password-row {
         display: flex;
         justify-content: space-between;
@@ -45,12 +20,16 @@ const SignUpForm = props => {
     .reset__password-link {
         color: #31DE28;
     }
+    .login__image {
+        width: 99%;
+    }
     `,
     <div className='signup__container'>
         <div className='signup__image-left'>
             <img 
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584811416/iTazkir/login_ipiiei.png" 
                 alt=""
+                className='login__image'
             />
         </div>
         <div className='signup__form-right'>

@@ -2,14 +2,13 @@ import React from 'react';
 import Style from 'style-it';
 
 
-function SubmitButton(props) {
+function SubscribeButton(props) {
     return Style.it(`
         .submit__button {
             border: none;
-            padding: 10px;
-            border-radius: 2px;
-            background-color: #31DE28;
-            
+            padding: 8px 12px 8px 12px;
+            border-radius: 50px;
+            background-color: #31DE28; 
             color: #fff;
             margin-top: 5px;
         }
@@ -23,4 +22,4 @@ function SubmitButton(props) {
     )
 }
 
-export default SubmitButton;
+export default SubscribeButton;

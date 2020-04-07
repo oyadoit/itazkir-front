@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import ReminderCard from '../../Custom/ReminderCard';
 import GetStartedButton from '../../Custom/GetStartedButton';
 
-const Reminder = props => {
+const RecentReminder = props => {
     return (
     <div className='recent__reminder--container'>
-        <h1 className='recent__reminder--heading'> Latest Reminder</h1>
+        <h1 className='recent__reminder--heading'> Recent Reminder</h1>
         <div className='recent__reminder--cards'>
             <ReminderCard 
                 title='Islamic Reminder' 
@@ -34,13 +34,13 @@ const Reminder = props => {
         <h3 className='recent__reminder--text'>
             Create an account to start receiving instant reminders you subscribe to
         </h3>
-        <GetStartedButton className='button__green recent__reminder--button'>Create Account now</GetStartedButton>
+        <GetStartedButton to='signup' className='button__green recent__reminder--button'>Create Account now</GetStartedButton>
     </div>
     )
 }
 
-Reminder.propTypes = {
+RecentReminder.propTypes = {
 
 }
 
-export default Reminder
+export default RecentReminder;

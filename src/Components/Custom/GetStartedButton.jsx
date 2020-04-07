@@ -7,7 +7,7 @@ const Button = (props) => {
     
     return(
     <>
-         <Link className={props.className} to='/signup'>{props.children}</Link>
+         <Link className={props.className} to={props.to}>{props.children}</Link>
     </>
 )
 }

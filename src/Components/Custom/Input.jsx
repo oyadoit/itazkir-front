@@ -16,7 +16,7 @@ function Input({placeholder, onChange, name, value,  inputType}) {
             border: none;
             border-bottom: 1px solid rgba(49, 222, 40, 0.664);
             padding: 8px;
-            padding-left: 0px;
+            padding-left: 2px;
             width: 100%;
             color: rgb(63, 61, 86);
             // font-weight: bold;

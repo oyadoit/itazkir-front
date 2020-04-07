@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Style from 'style-it';
 
+import Header from '../Custom/Header';
 import MainContent from '../Containers/Homepage/MainContent';
 import Features from '../Containers/Homepage/Features';
-import Reminder from '../Containers/Homepage/Reminder';
+import RecentReminder from '../Containers/Homepage/RecentReminder';
+import ContactUs from '../Containers/Homepage/ContactUs';
 
 
 
@@ -13,10 +15,11 @@ const Homepage = props => {
     
     `,
     <div>
+         <Header />
          <MainContent /> 
          <Features /> 
-         <Reminder /> 
-         
+         <RecentReminder /> 
+         <ContactUs />
 
     </div>
 )

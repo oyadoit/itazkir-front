@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import Style from 'style-it';
 
-import GetStartedButton from '../Custom/GetStartedButton'
+import SubscribeButton from '../Custom/SubmitButton';
 
 
-const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondButton, thirdButton }) => {
+const SubscriptionCard = ({bgColor, title, imageUrl, content, firstButton, secondButton, thirdButton }) => {
     return Style.it(`
         .card__container {
             background-color: ${bgColor};
@@ -47,20 +47,15 @@ const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondBut
                 <h2 className='card__title'>{title}</h2>
                 <p className='card__text'>{content}</p>
                 <div>
-                    <GetStartedButton 
-                    className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
-                    
-                    >
-                        View All
-                    </GetStartedButton>
+                    <SubscribeButton text='Subscribe'/>
                 </div>
             </div>
         </div>
     )
 }
 
-ReminderCard.propTypes = {
+SubscriptionCard.propTypes = {
 
 }
 
-export default ReminderCard;
+export default SubscriptionCard;
