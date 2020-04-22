@@ -11,7 +11,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
 const link =  new HttpLink({
-    uri: 'http://itazkir.herokuapp.com/graphql'
+    uri: 'http://itazkir.herokuapp.com/graphql/'
 });
 
 const client = new ApolloClient({

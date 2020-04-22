@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Style from 'style-it';
 
-import SubscribeButton from '../Custom/SubscribeButton';
+import SubscribeButton from './SubscribeButton';
 
-const SmallSubscriptionCard = ({imageUrl, title, content, }) => {
+const UserCurrentSubscription = ({imageUrl, title, content, }) => {
     return Style.it(`
         .card__image {
             border-radius: 50%;
@@ -26,9 +26,8 @@ const SmallSubscriptionCard = ({imageUrl, title, content, }) => {
             padding: 20px;
             justify-content: space-evenly;
             align-items: center;
-            // box-shadow: rgba(3, 27, 78, 0.06) 0px 2px 4px;
             box-shadow: 10px 10px 42px -35px rgba(0, 0, 0, 0.31);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-radius: 3px;
             background-color: #fff;
 
@@ -41,18 +40,18 @@ const SmallSubscriptionCard = ({imageUrl, title, content, }) => {
             <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
             <div className='title__content--container'>
                 <h4 className='card__title'>{title}</h4>
-                {/* <p className='card__text'>{content}</p> */}
+                
             </div>
-            <SubscribeButton text='Subscribe'/>
+            <SubscribeButton text='Unsubscribe'/>
             
         </div>
              
     )
 }
 
-SmallSubscriptionCard.propTypes = {
+UserCurrentSubscription.propTypes = {
 
 }
 
-export default SmallSubscriptionCard
+export default UserCurrentSubscription
 

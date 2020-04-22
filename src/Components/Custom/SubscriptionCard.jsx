@@ -30,12 +30,12 @@ const SubscriptionCard = ({bgColor, title, imageUrl, content, firstButton, secon
             margin-top:11px;
         }
         .card__text {
-            color: #fff;
+            color: #fff !important;
         }
         .card__title {
             font-size: 16px;
             font-weight: bold;
-            color: #fff;
+            color: #fff !important;
             
         }
     `,

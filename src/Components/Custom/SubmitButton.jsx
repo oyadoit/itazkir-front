@@ -2,7 +2,7 @@ import React from 'react';
 import Style from 'style-it';
 
 
-function SubmitButton(props) {
+function SubmitButton({text}) {
     return Style.it(`
         .submit__button {
             border: none;
@@ -18,7 +18,7 @@ function SubmitButton(props) {
         }
     `,
     <div>
-        <button className='submit__button' type='submit'>{props.text}</button>
+        <button className='submit__button' type='submit'>{text}</button>
     </div>
     )
 }

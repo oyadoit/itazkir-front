@@ -17,4 +17,4 @@ Login.propTypes = {
 
 }
 
-export default Login
+export default Login;   

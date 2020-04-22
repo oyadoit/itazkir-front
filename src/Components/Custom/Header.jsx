@@ -9,9 +9,15 @@ import Triangle from '../Custom/Particles/Triangle';
 import Hexagon from '../Custom/Particles/Hexagon';
 
 import Button from '../Custom/SubmitButton'
+import { AUTH_TOKEN } from '../../constants';
+
+
 
 
 const Header = props => {
+
+    const authToken = localStorage.getItem(AUTH_TOKEN)
+    
     return Style.it(
         `
         .profile__image {
@@ -74,10 +80,7 @@ const Header = props => {
                 {
                     props.isLoggedIn? (
                         <>
-                            <li><Link to='/dashboard' className="nav__container--link">Dashboard</Link></li>
-                            <li><Link to='/reminders' className="nav__container--link">Reminders</Link></li>
-                            <li><Link to='/subscriptions' className="nav__container--link">Subscriptions</Link></li>
-                            
+                           
                             <li className='profile__image--container'>
                                 <Link to='/profile' className="">
                                     <img className='profile__image' src='https://avatars0.githubusercontent.com/u/8108337?s=460&v=4' alt="Reminder Owner"/>
@@ -94,8 +97,22 @@ const Header = props => {
                     ):(
                         <>
                             <li><Link to='/about' className="nav__container--link">About</Link></li>
-                            <li><Link to='/login' className="nav__container--link">Login</Link></li>
-                            <li><GetStartedButton to='/signup' className='button__green'>Get Started</GetStartedButton></li>
+                            {
+                                authToken ? (
+                                <li><Link onClick={()=> {
+                                        localStorage.removeItem(AUTH_TOKEN)
+                                        // props.history.push('/')
+                                    }
+                                    } 
+                                    className="nav__container--link">Logout</Link></li>
+                                ) : (
+                                    <>
+                                        <li><Link to='/login' className="nav__container--link">Login</Link></li>
+                                        <li><GetStartedButton to='/signup' className='button__green'>Get Started</GetStartedButton></li>
+                                    </>                    
+                                )
+                            }
+                           
                         </>
                         
                     )

@@ -3,40 +3,40 @@ import PropTypes from 'prop-types';
 import Style from 'style-it';
 
 import GetStartedButton from '../Custom/GetStartedButton'
+import { Link } from 'react-router-dom';
 
 
-const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondButton, thirdButton }) => {
+const SmallReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondButton, thirdButton }) => {
     return Style.it(`
         .card__container {
             background-color: ${bgColor};
-            width: 340px;
-            height: 210px;
-            border-radius: 2px;
+            width: 230px;
+            height: 155px;
+            margin-bottom: 10px;
             display: flex;
             padding: 20px;
+            border-radius: 20px;
             
         }
         .card__content--right {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-            color: #fff !important;
+            // color: rgb(63, 61, 86); !important;
         }
         .card__image {
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            margin-right: 30px;
-            margin-top:11px;
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            margin-top: 5px;
         }
         .card__text {
-            color: #fff;
+            font-size: 12px;
         }
         .card__title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            color: #fff !important;
-            
         }
     `,
         <div className='card__container'>
@@ -47,20 +47,15 @@ const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondBut
                 <h2 className='card__title'>{title}</h2>
                 <p className='card__text'>{content}</p>
                 <div>
-                    <GetStartedButton 
-                    className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
-                    
-                    >
-                        View All
-                    </GetStartedButton>
+                   <Link to=''> View All</Link>
                 </div>
             </div>
         </div>
     )
 }
 
-ReminderCard.propTypes = {
+SmallReminderCard.propTypes = {
 
 }
 
-export default ReminderCard;
+export default SmallReminderCard;

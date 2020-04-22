@@ -34,7 +34,9 @@ const RecentReminder = props => {
         <h3 className='recent__reminder--text'>
             Create an account to start receiving instant reminders you subscribe to
         </h3>
-        <GetStartedButton to='signup' className='button__green recent__reminder--button'>Create Account now</GetStartedButton>
+        <h3 className='recent__reminder--button'>            
+            <GetStartedButton to='signup' className='button__green recent__reminder--button'>Create Account now</GetStartedButton>  
+        </h3>
     </div>
     )
 }

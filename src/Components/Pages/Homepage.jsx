@@ -7,7 +7,7 @@ import MainContent from '../Containers/Homepage/MainContent';
 import Features from '../Containers/Homepage/Features';
 import RecentReminder from '../Containers/Homepage/RecentReminder';
 import ContactUs from '../Containers/Homepage/ContactUs';
-
+import Footer from '../Custom/Footer';
 
 
 const Homepage = props => {
@@ -20,6 +20,7 @@ const Homepage = props => {
          <Features /> 
          <RecentReminder /> 
          <ContactUs />
+         <Footer />
 
     </div>
 )

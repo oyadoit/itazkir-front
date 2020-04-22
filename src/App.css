@@ -10,15 +10,12 @@ html {
 
 }
 
-body {
-    font-family: 'Comfortaa', cursive;
-    color: rgb(63, 61, 86);
-}
-h1, h2, h3, h4, h5, h6, p, div {
-    color: rgb(63, 61, 86);
+body, h1, h2, h3, h4, h5, h6, div {
+    font-family: 'Comfortaa', cursive !important;
+    color: rgb(63, 61, 86) !important;
 }
 a {
-    color: #31DE28;
+    color: #31DE28 !important;
 }
 a:hover {
     color: rgb(30, 173, 23) !important  ;
@@ -39,7 +36,7 @@ a:hover {
 }
 .header__logo--icon {
       color: #31DE28;
-      color: #2f679c;
+      /* color: #2f679c; */
 }
 .nav__container {
       margin-right: 60px;
@@ -68,21 +65,21 @@ a:hover {
     transition: ease-in-out .2s;
 } 
 .first-button {
-    color: rgb(63, 61, 86);
+    background-color: #31DE28;
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
     /* font-weight: bold; */
 }
 .second-button {
-    color: rgb(63, 61, 86);
+    background-color: #31DE28;
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
     /* font-weight: bold; */
 }
 .third-button {
-    color: rgb(63, 61, 86);
+    background-color: #31DE28;
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
@@ -156,7 +153,7 @@ a:hover {
     background: linear-gradient(to right bottom, #fff, rgba(63, 61, 86, 0.055));
     padding-top: 80px;
     padding-bottom: 100px;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -171,8 +168,9 @@ a:hover {
 }
 .features__card--container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 100px;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
+    grid-gap: 30px;
     margin: auto;
 }
 
@@ -188,13 +186,14 @@ a:hover {
     padding-top: 80px;
     padding-bottom: 100px;
     color: rgb(63, 61, 86);
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
 }
 .recent__reminder--cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 60px;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr) );
+    grid-gap: 40px;
     margin: auto;
     margin-bottom: 70px;
 }
@@ -214,7 +213,7 @@ a:hover {
     text-align: center;
     width: 200px;
     margin: auto;
-    margin-top: 15px;
+    margin-top: 45px;
 
 }
 
@@ -286,3 +285,116 @@ a:hover {
     display: flex;
     justify-content: space-between  ;
 }
+
+/* submit button with loader container */
+.same__line {
+    display: flex;
+}
+.loader__container {
+    margin-top: 100px;
+}
+
+
+
+/* get started section after signup  i.e subscription flow */
+.subscription__flow--container {
+    background-color: rgba(63, 61, 86, 0.055);
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 2px;
+    padding: 90px;  
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reminder__subscription--container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
+    grid-gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 80px;
+}
+.subscription__heading {
+    font-size: 33px;
+}
+.subscription__text {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+.unsubscribe__span {
+    color: #31DE28;
+}
+
+
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e8f2;
+    padding: 40px 25px 27px 20px;
+}
+
+.profile-preview-info-photo {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+
+.profile-preview-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .profile-header-actions {
+    display: flex;
+    align-items: center;
+} */
+
+.profile-preview-text {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    /* font-weight: bold; */
+    /* color: #40455c; */
+}
+
+
+/* dashboard searchbar */
+.search-input {
+    width: 100%;
+    border: none;
+    height: 38px;
+    margin-left: 12px;
+}
+
+.search-bar {
+    width: 100%;
+    background-color: white;
+    padding: 10px 12px 10px 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+
+/* //subscription preview fro dashboard where user can subscribe to new reminders */
+  
+.subscription-container {
+    padding: 24px 25px 0 25px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subscription-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }

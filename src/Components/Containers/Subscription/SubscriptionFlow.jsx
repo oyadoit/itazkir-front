@@ -9,37 +9,7 @@ import SubmitButton from '../../Custom/SubmitButton';
 
 const SubscriptionFlow = () => {
     return Style.it(`
-    .subscription__flow--container {
-        background-color: rgba(63, 61, 86, 0.055);
-        margin-right: 150px;
-        margin-left: 150px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        border-radius: 2px;
-        padding: 90px;  
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .reminder__subscription--container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 30px;
-        padding-top: 30px;
-        padding-bottom: 80px;
-    }
-    .subscription__heading {
-        font-size: 33px;
-    }
-    .subscription__text {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-size: 18px;
-    }
-    .unsubscribe__span {
-        color: #31DE28;
-    }
+    
     `,
         <div className='subscription__flow--container'>
             <h1 className='subscription__heading'>Stay updated with topics you care about the most</h1>

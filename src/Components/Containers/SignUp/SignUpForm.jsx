@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router'
 
 import Input from '../../Custom/Input';
 import SubmitButton from '../../Custom/SubmitButton';
 import AlreadyHave from '../../Custom/AlreadyHave';
 
+import { Spin } from 'antd';
+import { message } from 'antd';
+
+
 
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'
+import { onError } from "apollo-link-error";
 
 // import Circle from '../../Custom/Particles/Circle';
 // import Triangle from '../../Custom/Particles/Triangle';
@@ -15,18 +21,9 @@ import { useMutation } from '@apollo/react-hooks'
 
 
 
-const CREATE_USER = gql`
-  mutation SignUp($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    createUser(firstName: $firstName, lastName: $lastName,email: $email, password: $password) {
-     user {
-         id  
-     }
-    }
-  }
-`
-
 
 const SignUpForm = props => {
+    const [errors, setErrors] = useState({});
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -34,12 +31,18 @@ const SignUpForm = props => {
         password: '',
     });
 
-    const [SignUp, {data, loading, error}] = useMutation(CREATE_USER, {
-        update(proxy, result){
-            console.log(result)
+
+    const [SignUp, {loading, error, data}] = useMutation(CREATE_USER, {
+
+        onError(err) {
+            // console.log(err.graphQLErrors.extensions.exception.errors)
+            // setErrors(err.graphQLErrors[0].extensions.exception.errors);
         },
-        variables: values
+        
+        variables: values,
+        
     });
+
 
     
     
@@ -50,9 +53,12 @@ const SignUpForm = props => {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '',
+           
         })
     }
+
+   
 
     const handleChange = (e) => {
         setValues({
@@ -61,20 +67,37 @@ const SignUpForm = props => {
         });
     }
 
-    if (loading) return <p>Loading...</p>;
-
-    if (error) {
-        console.log(error.message);
-        console.log(error.networkError.message);
-        console.log(error.networkError);
-        console.log(error.stack);
-        return <p>{error.message}</p>
+    if (error) { 
+        return  (
+            <div>
+                {error.graphQLErrors.map(({ message }, i) => (
+                    <h1 key={i}>{message}</h1>
+                ))}
+            </div>
+        )
     }
+
+    // const link = onError(({ graphQLErrors, networkError }) => {
+    //     if (graphQLErrors)
+    //       graphQLErrors.map(({ message, locations, path }) =>
+    //         console.log(
+    //           `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+    //         ),
+    //       );
+      
+    //     if (networkError) console.log(`[Network error]: ${networkError}`);
+    //   });
+
+      
+
 
     if (data) {
-        console.log(data);
-        alert('Successfully Logged In');
+
+        // Redirect to dashboard page
+        // alert('sign up successful')
+        return <Redirect to='/get-started' />
     }
+
 
     return (
         <div className='signup__container'>
@@ -90,6 +113,7 @@ const SignUpForm = props => {
             <h1 className='signup__form-heading'>Create <span className='signup__green-text'> iTazkir </span>Account</h1>
             <form className='signup__form' noValidate onSubmit={handleSubmit}>
                 <div className="firstname__lastname-input-container">
+                
                     <Input 
                         htmlFor='firstName'
                         labelValue='firstName'
@@ -100,7 +124,7 @@ const SignUpForm = props => {
                         width='300'
                         onChange={handleChange}
                     />
-                    <Input 
+                     <Input 
                         htmlFor='lastName'
                         labelValue='lastName'
                         name='lastName'
@@ -109,7 +133,8 @@ const SignUpForm = props => {
                         placeholder='Enter Last Name'
                         width='300'
                         onChange={handleChange}
-                    />
+                    /> 
+        
                 </div>
                 <Input 
                     htmlFor='Email'
@@ -129,10 +154,17 @@ const SignUpForm = props => {
                     placeholder='Enter Password'
                     onChange={handleChange}
                 />
-                
-                <SubmitButton 
-                    text='Create Account'                 
-                />
+              
+                <div className='same__line'>
+                    <SubmitButton 
+                        text='Create Account'                 
+                    />
+                    <div loader__container>
+                        {loading ? <Spin size="large" /> : ('')}
+                    </div>
+                </div>
+               
+               
 
                 <AlreadyHave 
                     text='Already have an Account?'
@@ -143,14 +175,56 @@ const SignUpForm = props => {
                 <Circle color='#31DE28' width='20' height='20' top='370' left='305'/>
                 <Triangle color='pink' width='5' height='5' top='595' left='800'/>
                 <Hexagon color='orange' width='5' height='5' top='550' left='160'/> */}
+
             </form> 
         </div>
+        {/* {
+            Object.keys(errors).length > 0 && (
+                <div className="error__mesage">
+                    <ul>
+                    {error.graphQLErrors.map(({ message }, i) => (
+                        <h1 key={i}>{message}</h1>
+                    ))}
+                    </ul>
+                </div>
+
+            )
+        } */}
+        
+
+            
+
+        
     </div>
 
-    )  
-    
-    
+    )      
 }
+
+
+const CREATE_USER = gql`
+  mutation createUser(
+      $firstName: String!, 
+      $email: String!, 
+      $password: String!, 
+      $lastName: String!
+    ) {
+    createUser(
+        firstName: $firstName,
+        email: $email, 
+        password: $password, 
+        lastName:$lastName
+    ) {
+        user
+            {
+                id
+                firstName
+                lastName
+                email
+            }
+    }
+   
+  }
+`
 
 
 
