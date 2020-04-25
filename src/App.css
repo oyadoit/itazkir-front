@@ -20,6 +20,12 @@ a {
 a:hover {
     color: rgb(30, 173, 23) !important  ;
 }
+.input__error {
+    color: red !important;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
 .header {
     height: 80px; 
     position: sticky;

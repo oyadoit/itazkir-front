@@ -9,7 +9,7 @@ import Triangle from '../Custom/Particles/Triangle';
 import Hexagon from '../Custom/Particles/Hexagon';
 
 import Button from '../Custom/SubmitButton'
-import { AUTH_TOKEN } from '../../constants';
+import { AUTH_TOKEN } from '../../utils/constants';
 
 
 

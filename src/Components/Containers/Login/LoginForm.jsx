@@ -2,86 +2,89 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Style from 'style-it';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Redirect } from 'react-router'
 
 import Input from '../../Custom/Input';
 import SubmitButton from '../../Custom/SubmitButton';
 import AlreadyHave from '../../Custom/AlreadyHave';
 import DownloadFromStore from '../../Custom/DownloadFromStore';
-import { useState } from 'react';
-import { Redirect } from 'react-router'
 
-import { message, Button } from 'antd';
+
 
 import { Spin } from 'antd';
 
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'
-import { AUTH_TOKEN } from '../../../constants'
+import { AUTH_TOKEN } from '../../../utils/constants';
+import {LOGIN} from '../../../graphql/mutation';
+
+// form validation library
+import { FormValidation } from "calidation";
+import validator from '../../../utils/validation';
+
+import { errorMessage } from '../../../utils/helpers'
+
+
 
 
 const SignUpForm = props => {
 
-    const [errors, setErrors] = useState({});
-        const [values, setValues] = useState({
-            email: '',
-            password: ''
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    });
+
+        
+
+
+    const [Login, { loading, data}] = useMutation(LOGIN, { 
+
+        onError({graphQLErrors, networkError}){
+            if (graphQLErrors)
+                graphQLErrors.map(err => {
+                    errorMessage(err.message)
+                    console.log(`err: ${err.message}`)
+                    
+                }        
+            );
+            if (networkError) errorMessage('You are not connected to the internet');
+        },
+
+        variables: values,  
+        
+    });
+
+
+        
+    const handleSubmit  = ({ isValid }) => {
+
+        if (isValid) {
+            Login() 
+        }
+        
+    }
+        
+
+        
+
+
+    const handleChange = (e) => {
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
         });
-
-        //function from ant design to display error message
-        const errorMessage = (args) => {
-            message.error(args);
-        }
-
-        const [Login, {error, loading, data}] = useMutation(LOGIN, { 
-            
-            onError: (error) => {
-                setErrors(error.message);
-              },
-
-            
-            
-            variables: values 
-        });
-
-        const handleSubmit = (e) => {
-            e.preventDefault();
-             console.log(errors)   
-            Login()
-            setValues({
-                email: '',
-                password: '',
-               
-            })
-        }
-
-
-        const handleChange = (e) => {
-            setValues({
-                ...values,
-                [e.target.name]: e.target.value,
-            });
-        }
+    }
     
-        if (error) { 
-            (error.graphQLErrors.map(err => {
-                console.log(error.graphQLErrors)
-                errorMessage(err.message);
-            }))
-            
-        }
 
-        if (data) {
+    if (data) {
 
-            console.log(data)
-            const token  = data.tokenAuth.token
-            saveUserData(token)
-            if(AUTH_TOKEN){
-                return <Redirect to='/dashboard' />
-            }
-            // else {
-            //     return <Redirect to='/login' />
-            // }
+        const token  = data.tokenAuth.token
+        saveUserData(token)
+        if(AUTH_TOKEN){
+            return <Redirect to='/dashboard' />
         }
+        console.log(data)
+    }
 
 
     return Style.it(`
@@ -98,108 +101,92 @@ const SignUpForm = props => {
         width: 99%;
     }
     `,
-    <div className='signup__container'>
-        <div className='signup__image-left'>
-            <img 
-                src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584811416/iTazkir/login_ipiiei.png" 
-                alt=""
-                className='login__image'
-            />
-        </div>
-        <div className='signup__form-right'>
-            <h1 className='signup__form-heading'>Welcome back to<span className='signup__green-text'> iTazkir</span></h1>
-            <form className='signup__form' onSubmit={handleSubmit} noValidate>
-                <Input 
-                    htmlFor='Email'
-                    name='email'
-                    inputType='email'
-                    value={values.email}
-                    placeholder='Enter Email Address'
-                    onChange={handleChange}
+        <div className='signup__container'>
+            <div className='signup__image-left'>
+                <img 
+                    src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584811416/iTazkir/login_ipiiei.png" 
+                    alt=""
+                    className='login__image'
                 />
-                <Input 
-                    htmlFor='Password'
-                    name='password'
-                    inputType='password'
-                    value={values.password}
-                    placeholder='Enter Password'
-                    onChange={handleChange}
-                />
+            </div>
+            <div className='signup__form-right'>
+                <h1 className='signup__form-heading'>Welcome back to<span className='signup__green-text'> iTazkir</span></h1>
+
+                <FormValidation config={validator}  className='signup__form' onSubmit={handleSubmit} >
+                    {({ fields, errors, submitted }) => (
+                        <>
+                            <Input 
+                                htmlFor='Email'
+                                name='email'
+                                inputType='email'
+                                value={values.email && fields.email}
+                                placeholder='Enter Email Address'
+                                onChange={handleChange}
+                            />
+                            {submitted && errors.email &&
+                                <div className="input__error">{errors.email}</div>
+                            }
+                            <Input 
+                                htmlFor='Password'
+                                name='password'
+                                inputType='password'
+                                value={values.password && fields.password}
+                                placeholder='Enter Password'
+                                onChange={handleChange}
+                            />
+                            {submitted && errors.password &&
+                                <div className="input__error">{errors.password}</div>
+                            }
+                        
+                            <div className='login__forget__password-row'>
+                                <SubmitButton 
+                                    text='Login Here'
+                                />
+                                <Link className='reset__password-link' to='/reset-password'>Forgot Password ?</Link>
+                            </div>
+                            <div loader__container>
+                                    {loading ? <Spin size="large" /> : ('')}
+                            </div>
+
+                            <AlreadyHave 
+                                text='Dont have an Account?'
+                                linkText='Sign Up'
+                                to='/signup'
+                            />
+                        </>
+                    )}
+                </FormValidation > 
                 
-                <div className='login__forget__password-row'>
-                    <SubmitButton 
-                        text='Login Here'
+                
+
+                    
+                
+                <div className='download__container' style={{marginTop:'40px'}}>
+                    <DownloadFromStore 
+                        imageUrl='https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584607070/iTazkir/get_google_play_lmo8uc.png'
+                        className='download-from-store'
+                        alt='Download from android store'
+                        to='#'
                     />
-                    <Link className='reset__password-link' to='/reset-password'>Forgot Password ?</Link>
+
+                    <DownloadFromStore 
+                        imageUrl='https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584607077/iTazkir/download_app_store_kyq4uh.png'
+                        className='download-from-store'
+                        alt='Download from apple store'
+                        to='#'
+                    />
+
+        
+                    
                 </div>
-                <div loader__container>
-                        {loading ? <Spin size="large" /> : ('')}
-                </div>
-
-                <AlreadyHave 
-                    text='Dont have an Account?'
-                    linkText='Sign Up'
-                    to='/signup'
-                />
-            </form> 
-            
-            {/* {
-                Object.keys(errors).length > 0 && (
-                    <div>
-                        <ul>
-                        {
-                            Object.values(errors).map(value => (
-                                <li key={value}>{value}</li>
-                            ))
-                        }
-                        </ul>
-                    </div>
-                )
-            } */}
-
-                
-            
-            <div className='download__container' style={{marginTop:'40px'}}>
-                <DownloadFromStore 
-                    imageUrl='https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584607070/iTazkir/get_google_play_lmo8uc.png'
-                    className='download-from-store'
-                    alt='Download from android store'
-                    to='#'
-                />
-
-                <DownloadFromStore 
-                    imageUrl='https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584607077/iTazkir/download_app_store_kyq4uh.png'
-                    className='download-from-store'
-                    alt='Download from apple store'
-                    to='#'
-                />
-
-       
-                
             </div>
         </div>
-    </div>
-
-    
     )
 }
 
 
 
-const LOGIN = gql`
-  mutation login(
-      $email: String!, 
-      $password: String!, 
-    ) {
-    tokenAuth(
-        email: $email, 
-        password: $password, 
-    )
-    {
-        token
-    }
-  }
-`
+
 
 const saveUserData = token => {
     localStorage.setItem(AUTH_TOKEN, token)
@@ -212,4 +199,4 @@ SignUpForm.propTypes = {
 
 
 
-export default SignUpForm
+export default SignUpForm;

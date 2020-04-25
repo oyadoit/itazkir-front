@@ -6,7 +6,7 @@ function Input({placeholder, onChange, name, value,  inputType}) {
 
     return Style.it(`
         .input__container {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             width: 100%;
         }
         .input__container:first-child {

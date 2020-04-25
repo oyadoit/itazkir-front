@@ -7,38 +7,43 @@ import SubmitButton from '../../Custom/SubmitButton';
 import AlreadyHave from '../../Custom/AlreadyHave';
 
 import { Spin } from 'antd';
-import { message } from 'antd';
-
-
 
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'
-import { onError } from "apollo-link-error";
 
-// import Circle from '../../Custom/Particles/Circle';
-// import Triangle from '../../Custom/Particles/Triangle';
-// import Hexagon from '../../Custom/Particles/Hexagon';
+import { FormValidation } from "calidation";
+import validator from '../../../utils/validation';
+
+import { errorMessage } from '../../../utils/helpers'
 
 
 
 
 const SignUpForm = props => {
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: '',
     });
+    
 
 
-    const [SignUp, {loading, error, data}] = useMutation(CREATE_USER, {
+    const [SignUp, {loading, data}] = useMutation(CREATE_USER, {
 
-        onError(err) {
-            // console.log(err.graphQLErrors.extensions.exception.errors)
-            // setErrors(err.graphQLErrors[0].extensions.exception.errors);
+        onError({graphQLErrors, networkError}){
+            if (graphQLErrors)
+                graphQLErrors.map(err => {
+                    errorMessage(err.message)
+                    // setErrors(err.message);
+                    console.log(`err: ${err.message}`)
+                    
+                }        
+          );
+          if (networkError) errorMessage('You are not connected to the internet');
         },
-        
+
         variables: values,
         
     });
@@ -46,16 +51,10 @@ const SignUpForm = props => {
 
     
     
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        SignUp();
-        setValues({
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-           
-        })
+    const handleSubmit = ({ isValid }) => {
+        if(isValid){
+            SignUp();
+        }
     }
 
    
@@ -65,36 +64,13 @@ const SignUpForm = props => {
             ...values,
             [e.target.name]: e.target.value,
         });
-    }
-
-    if (error) { 
-        return  (
-            <div>
-                {error.graphQLErrors.map(({ message }, i) => (
-                    <h1 key={i}>{message}</h1>
-                ))}
-            </div>
-        )
-    }
-
-    // const link = onError(({ graphQLErrors, networkError }) => {
-    //     if (graphQLErrors)
-    //       graphQLErrors.map(({ message, locations, path }) =>
-    //         console.log(
-    //           `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-    //         ),
-    //       );
-      
-    //     if (networkError) console.log(`[Network error]: ${networkError}`);
-    //   });
-
+    } 
       
 
 
     if (data) {
 
         // Redirect to dashboard page
-        // alert('sign up successful')
         return <Redirect to='/get-started' />
     }
 
@@ -111,85 +87,95 @@ const SignUpForm = props => {
         
         <div className='signup__form-right'>
             <h1 className='signup__form-heading'>Create <span className='signup__green-text'> iTazkir </span>Account</h1>
-            <form className='signup__form' noValidate onSubmit={handleSubmit}>
-                <div className="firstname__lastname-input-container">
+            <FormValidation config={validator} className='signup__form'  onSubmit={handleSubmit}>
+                {({ fields, errors, submitted }) => (
+                    <>
+                        <div className="firstname__lastname-input-container">
+                            <div>
+                                <Input 
+                                    htmlFor='firstName'
+                                    labelValue='firstName'
+                                    name='firstName'
+                                    inputType='text'
+                                    value={values.firstName &&fields.firstName}
+                                    placeholder='Enter First Name'
+                                    width='300'
+                                    onChange={handleChange}
+                                />
+                                {submitted && errors.firstName &&                             
+                                    <div className="input__error">
+                                        {errors.firstName}
+                                    </div>
+                                }
+                            </div>
+                            <div>
+                                <Input 
+                                    htmlFor='lastName'
+                                    labelValue='lastName'
+                                    name='lastName'
+                                    inputType='text'
+                                    value={values.lastName && fields.lastName}
+                                    placeholder='Enter Last Name'
+                                    width='300'
+                                    onChange={handleChange}
+                                /> 
+                                {submitted && errors.lastName &&                             
+                                    <div className="input__error">
+                                        {errors.lastName}
+                                    </div>
+                                 }
+                            </div>
                 
-                    <Input 
-                        htmlFor='firstName'
-                        labelValue='firstName'
-                        name='firstName'
-                        inputType='text'
-                        value={values.firstName}
-                        placeholder='Enter First Name'
-                        width='300'
-                        onChange={handleChange}
-                    />
-                     <Input 
-                        htmlFor='lastName'
-                        labelValue='lastName'
-                        name='lastName'
-                        inputType='text'
-                        value={values.lastName}
-                        placeholder='Enter Last Name'
-                        width='300'
-                        onChange={handleChange}
-                    /> 
-        
-                </div>
-                <Input 
-                    htmlFor='Email'
-                    labelValue='Email'
-                    name='email'
-                    inputType='email'
-                    value={values.email}
-                    placeholder='Enter Email Address'
-                    onChange={handleChange}
-                />
-                <Input 
-                    htmlFor='Password'
-                    labelValue='Password'
-                    name='password'
-                    inputType='password'
-                    value={values.password}
-                    placeholder='Enter Password'
-                    onChange={handleChange}
-                />
-              
-                <div className='same__line'>
-                    <SubmitButton 
-                        text='Create Account'                 
-                    />
-                    <div loader__container>
-                        {loading ? <Spin size="large" /> : ('')}
-                    </div>
-                </div>
-               
-               
+                        </div>
+                        
+                        <Input 
+                            htmlFor='Email'
+                            labelValue='Email'
+                            name='email'
+                            inputType='email'
+                            value={values.email && fields.email}
+                            placeholder='Enter Email Address'
+                            onChange={handleChange}
+                        />
+                        {submitted && errors.email &&
+                            <div className="input__error">{errors.email}</div>
+                        }
+                        <Input 
+                            htmlFor='Password'
+                            labelValue='Password'
+                            name='password'
+                            inputType='password'
+                            value={values.password && fields.password}
+                            placeholder='Enter Password'
+                            onChange={handleChange}
+                        />
+                        {submitted && errors.password &&
+                            <div className="input__error">{errors.password}</div>
+                        }
+                    
+                        <div className='same__line'>
+                            <SubmitButton 
+                                text='Create Account'                 
+                            />
+                            <div loader__container>
+                                {loading ? <Spin size="large" /> : ('')}
+                            </div>
+                        </div>
+                    
+                    
 
-                <AlreadyHave 
-                    text='Already have an Account?'
-                    linkText='Login'
-                    to='/login'
-                />
-                {/* <Triangle color='#31DE28' width='15' height='15' top='390' left='400'/>
-                <Circle color='#31DE28' width='20' height='20' top='370' left='305'/>
-                <Triangle color='pink' width='5' height='5' top='595' left='800'/>
-                <Hexagon color='orange' width='5' height='5' top='550' left='160'/> */}
+                        <AlreadyHave 
+                            text='Already have an Account?'
+                            linkText='Login'
+                            to='/login'
+                        />
+                </>
+                )}
+            </FormValidation> 
 
-            </form> 
+
         </div>
-        {/* {
-            Object.keys(errors).length > 0 && (
-                <div className="error__mesage">
-                    <ul>
-                    {error.graphQLErrors.map(({ message }, i) => (
-                        <h1 key={i}>{message}</h1>
-                    ))}
-                    </ul>
-                </div>
-
-            )
-        } */}
+        
         
 
             
