@@ -12,15 +12,16 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'
 
 import { FormValidation } from "calidation";
-import validator from '../../../utils/validation';
+import {signupConfig} from '../../../utils/validation';
 
+import { CREATE_USER } from '../../../graphql/mutation'
 import { errorMessage } from '../../../utils/helpers'
 
 
 
 
 const SignUpForm = props => {
-    // const [errors, setErrors] = useState({});
+
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -32,19 +33,14 @@ const SignUpForm = props => {
 
     const [SignUp, {loading, data}] = useMutation(CREATE_USER, {
 
-        onError({graphQLErrors, networkError}){
-            if (graphQLErrors)
-                graphQLErrors.map(err => {
-                    errorMessage(err.message)
-                    // setErrors(err.message);
-                    console.log(`err: ${err.message}`)
-                    
-                }        
-          );
-          if (networkError) errorMessage('You are not connected to the internet');
-        },
+            onError({graphQLErrors, networkError}){
+                if (graphQLErrors) graphQLErrors.map(err => {errorMessage(err.message)})  
+ 
+                // if (networkError) errorMessage('You are not connected to the internet');
+            
+            },
 
-        variables: values,
+            variables: values,
         
     });
 
@@ -87,7 +83,7 @@ const SignUpForm = props => {
         
         <div className='signup__form-right'>
             <h1 className='signup__form-heading'>Create <span className='signup__green-text'> iTazkir </span>Account</h1>
-            <FormValidation config={validator} className='signup__form'  onSubmit={handleSubmit}>
+            <FormValidation config={signupConfig} className='signup__form'  onSubmit={handleSubmit}>
                 {({ fields, errors, submitted }) => (
                     <>
                         <div className="firstname__lastname-input-container">
@@ -97,7 +93,7 @@ const SignUpForm = props => {
                                     labelValue='firstName'
                                     name='firstName'
                                     inputType='text'
-                                    value={values.firstName &&fields.firstName}
+                                    value={values.firstName && fields.firstName}
                                     placeholder='Enter First Name'
                                     width='300'
                                     onChange={handleChange}
@@ -187,30 +183,7 @@ const SignUpForm = props => {
 }
 
 
-const CREATE_USER = gql`
-  mutation createUser(
-      $firstName: String!, 
-      $email: String!, 
-      $password: String!, 
-      $lastName: String!
-    ) {
-    createUser(
-        firstName: $firstName,
-        email: $email, 
-        password: $password, 
-        lastName:$lastName
-    ) {
-        user
-            {
-                id
-                firstName
-                lastName
-                email
-            }
-    }
-   
-  }
-`
+
 
 
 

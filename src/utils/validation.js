@@ -1,4 +1,4 @@
-const config = {
+export const signupConfig = {
     email: {
       isRequired: "Email field is required!",
       isEmail: "Enter a valid email"
@@ -17,6 +17,19 @@ const config = {
       isRequired: "Enter your lastname",
     }
 
-  };
+};
 
-export default config;
+
+export const  loginConfig = {
+  email: {
+    isRequired: "Email field is required!",
+    isEmail: "Enter a valid email"
+  },
+  password: {
+    isRequired: "Password field is required!",
+    isMinLength: {
+      message: "Password must be 8 character long",
+      length: 8
+    }
+  }
+}
