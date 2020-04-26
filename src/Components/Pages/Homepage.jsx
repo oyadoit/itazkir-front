@@ -11,18 +11,15 @@ import Footer from '../Custom/Footer';
 
 
 const Homepage = props => {
-    return Style.it(`
-    
-    `,
-    <div>
-         <Header />
-         <MainContent /> 
-         <Features /> 
-         <RecentReminder /> 
-         <ContactUs />
-         <Footer />
-
-    </div>
+    return (
+        <div>
+            <Header />
+            <MainContent /> 
+            <Features /> 
+            <RecentReminder /> 
+            <ContactUs />
+            <Footer />
+        </div>
 )
        
     

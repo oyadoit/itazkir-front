@@ -4,7 +4,17 @@ import Style from 'style-it'
 
 import DashboardMenu from '../../Custom/DashboardMenu';
 
+import { CURRENT_USER }  from  '../../../graphql/query';
+import { useQuery } from '@apollo/react-hooks'
+
 const Profile = props => {
+
+    const {loading, data } = useQuery(CURRENT_USER,{
+    })
+
+    if(loading) return <p>loading..</p>
+    if(data) console.log(data)
+
     return Style.it(`
         .profile__container {
             display: grid;
@@ -49,6 +59,7 @@ const Profile = props => {
             
         }
     `,
+        
         <div className='profile__container'>
             <DashboardMenu />
             <div className='profile__content--container'>
@@ -57,9 +68,9 @@ const Profile = props => {
                         <img className='profile__image' src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/XuNd60zUjvMskzW820ab9ecsr633" alt="User Profile Image"/>
                     </div>
                     <div className='user__details'>
-                        <h1>Aminajao96@gmail.com</h1>
-                        <h2>Ajao Al-Amin Olayiwola</h2>
-                        <h2>08125306468</h2>
+                        <h1>{data.currentUser.email}</h1>
+                        <h2>{data.currentUser.firstName } { data.currentUser.lastName}</h2>
+                        
                     </div>  
                 </div>
                 <div className='card__summary--container'>

@@ -85,7 +85,7 @@ const DashboardMenu = (props) => {
 
     <div class="menu">
       <div class="brand">
-        <p>iTazkir</p>
+        <p><Link to='/'>iTazkir</Link></p>
       </div>
       <nav class="menu-list">
         <ul>

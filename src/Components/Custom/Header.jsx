@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Style from 'style-it';
 import {  Link  } from 'react-router-dom';
+import {Redirect } from 'react-router-dom'
 
 import GetStartedButton from './GetStartedButton';
 import Circle from '../Custom/Particles/Circle';
@@ -77,7 +78,7 @@ const Header = props => {
         </div> 
         <div className="nav__container">
             <ul> 
-                {
+                {/* {
                     props.isLoggedIn? (
                         <>
                            
@@ -94,17 +95,22 @@ const Header = props => {
                             </li>  
                         </>
                         
-                    ):(
+                    ):( */}
                         <>
-                            <li><Link to='/about' className="nav__container--link">About</Link></li>
+                            
                             {
                                 authToken ? (
-                                <li><Link onClick={()=> {
-                                        localStorage.removeItem(AUTH_TOKEN)
-                                        // props.history.push('/')
-                                    }
-                                    } 
-                                    className="nav__container--link">Logout</Link></li>
+                                <>
+                                    <li><Link to='/dashboard' className="nav__container--link">Dashboard</Link></li>
+                                    <li><Link onClick={()=> {
+                                            localStorage.removeItem(AUTH_TOKEN)
+                                            return <Redirect to='/login' />
+                                            }
+                                            } 
+                                        className="button__green">Logout</Link>
+                                    </li>
+                                    
+                                </>
                                 ) : (
                                     <>
                                         <li><Link to='/login' className="nav__container--link">Login</Link></li>
@@ -115,8 +121,8 @@ const Header = props => {
                            
                         </>
                         
-                    )
-                }               
+                    {/* ) */}
+                {/* }                */}
                 
             </ul>
         </div>

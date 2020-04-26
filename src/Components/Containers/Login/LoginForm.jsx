@@ -36,8 +36,8 @@ const LoginForm = props => {
             onError({graphQLErrors, networkError}){
                 if (graphQLErrors) graphQLErrors.map(err => {errorMessage(err.message)})  
  
-                // if (networkError) errorMessage('You are not connected to the internet');
-            
+                if (networkError) errorMessage("You are not connected to the internet");
+                
             },
 
             variables: values

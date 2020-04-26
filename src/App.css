@@ -110,6 +110,7 @@ a:hover {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 20px;
+      justify-items: center;
       
   }
   .main__content--left {
@@ -145,7 +146,7 @@ a:hover {
     margin-top: 20px;
  }
 .download__container {
-    margin-top: 60px;
+    margin-top: 50px;
     display: flex;
     width: 300px;
     justify-content: space-between;
@@ -175,9 +176,11 @@ a:hover {
 .features__card--container {
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
     grid-gap: 30px;
     margin: auto;
+    text-align: center;
+    justify-items: center;
 }
 
 
@@ -198,10 +201,12 @@ a:hover {
 .recent__reminder--cards {
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr) );
-    grid-gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr) );
+    grid-gap: 60px;
     margin: auto;
     margin-bottom: 70px;
+    padding: 0px 80px 10px 80px;
+    justify-items: center;
 }
 .recent__reminder--heading {
     font-size: 33px;
@@ -236,6 +241,7 @@ a:hover {
     padding-top: 40px;
     padding-bottom: 40px;
     /* height: 80vh; */
+    /* justify-items: center; */
     /* display: flex; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -403,4 +409,88 @@ a:hover {
   .subscription-title {
     font-size: 1.3rem;
     margin-bottom: 20px;
-  }
+}
+
+
+
+
+/* media query */
+@media only screen and (max-width: 768px) {
+    .main__content--container {
+        grid-template-columns: 1fr;
+        padding-right: 50px;
+        padding-left: 50px;
+        /* margin-top: 20px; */
+        padding-top: 10px;
+    }
+    .main__content--right {
+        display: none;
+    }   
+}
+
+@media only screen and (max-width: 413px) {
+    .header__logo--container {
+        margin-left: 15px;
+    }
+  .nav__container {
+        margin-right: 10px;
+   }
+   .main__content--container {
+    padding-right: 50px;
+    padding-left: 40px;
+   }
+
+}
+
+@media only screen and (max-width: 320px) {
+    .download__container {
+        width: 250px !important;
+    }
+    .download-from-store {
+        width: 120px !important;
+    }
+}
+
+@media only screen and (min-width: 1725px) {
+    .main__content--large-text {
+        font-size: 53px;
+    }
+    .main__content--small-text {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .main__content--right {
+        margin-top: 80px;
+        /* height: fit-content; */
+    }
+    .recent__reminder--cards {
+        margin-bottom: 0px;
+        justify-items: center;
+    }
+    .recent__reminder--text {
+        padding: 30px 30px 0px 30px;
+        width: 80%;
+        justify-items: center;
+        /* text-align: center; */
+        margin: auto;
+    } 
+    .contact__us--grid-container {
+        /* grid-template-columns: 1fr; */
+        display: block !important;
+        width: 70%;
+
+    }
+    .contact__us--right {
+        margin: 0px !important;
+    }
+    .contact__us--left {
+        display: none;
+
+    }
+    .footer__container {
+        padding: 0px 20px 0px 20px !important;
+    }
+}
+

@@ -14,7 +14,7 @@ import { setContext } from 'apollo-link-context'
 import { AUTH_TOKEN } from './utils/constants';
 
 const link =  new HttpLink({
-    uri: 'http://itazkir.herokuapp.com/graphql/'
+    uri: 'https://itazkir.herokuapp.com/graphql/'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -22,7 +22,7 @@ const authLink = setContext((_, { headers }) => {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : ''
+        authorization: token ? `jwt ${token}` : ''
       }
     }
   })
