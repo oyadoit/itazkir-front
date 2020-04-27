@@ -14,8 +14,9 @@ const ContactUs = props => {
         padding-top: 80px;
         padding-left: 100px;
         padding-bottom: 100px;
-        display: flex;
+        // display: flex;
         flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
         back
     }
@@ -50,6 +51,7 @@ const ContactUs = props => {
     }
     .contact__us--heading {
         font-size: 33px;
+        text-align: center;
     }
     `,
         <div className='contact__us--container'>
