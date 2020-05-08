@@ -1,0 +1,597 @@
+@import '~antd/dist/antd.css';
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+
+}
+
+body, h1, h2, h3, h4, h5, h6, div {
+    font-family: 'Comfortaa', cursive !important;
+    color: rgb(63, 61, 86) !important;
+}
+a {
+    color: #31DE28 !important;
+}
+a:hover {
+    color: rgb(30, 173, 23) !important  ;
+}
+.input__error {
+    color: red !important;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.empty_message {
+    /* width: fit-content !important; */
+    margin: auto !important;
+    /* padding-right: 200px; */
+}
+
+.header {
+    height: 80px; 
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px solid rgba(8, 8, 8, 0.575);
+}
+.header__logo--container {
+      margin-left: 60px;
+}
+.header__logo--icon {
+      color: #31DE28;
+      /* color: #2f679c; */
+}
+.nav__container {
+      margin-right: 60px;
+}
+.nav__container > ul > li {
+      list-style: none;
+      margin: 12px;
+}
+.nav__container > ul  {
+      margin-bottom: 0px;
+      display: flex; 
+      justify-content: space-between;   
+}
+
+
+.button__green {           
+      background-color: #31DE28;
+      padding: 12px;
+      color: #fff !important;
+      border-radius: 2px;
+      transition: ease-in-out .3s;
+} 
+.button__green:hover {           
+    color: #fff !important;
+    background-color: rgb(43, 204, 34);
+    transition: ease-in-out .2s;
+} 
+.first-button {
+    background-color: #31DE28;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 2px;
+    /* font-weight: bold; */
+}
+.second-button {
+    background-color: #31DE28;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 2px;
+    /* font-weight: bold; */
+}
+.third-button {
+    background-color: #31DE28;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 2px;
+    
+}
+.nav__container--link {
+    color: #31DE28;     
+    font-size: 14px;
+}
+
+
+
+
+    
+/* //main content or call to action for home page */
+.main__content--container {
+      background: linear-gradient(to right, bottom, #fff rgba(63, 61, 86, 0.055));
+      padding-right: 120px;
+      padding-left: 120px;
+      padding-top: 70px;
+      margin-bottom: 100px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      justify-items: center;
+      
+  }
+  .main__content--left {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      /* align-self: center; */
+      /* margin-left: 60px; */
+  }
+  .main__content--image {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .main__content--large-text {
+      font-size: 33px;
+      color: rgb(63, 61, 86);
+      margin-top: 40px;
+  }
+  .main__content--small-text {
+      color: gray;
+      margin-bottom: 40px;
+  }
+  .white {
+      color: #fff;
+  }
+
+
+
+
+  /* main content style */
+.get__started {
+    margin-top: 20px;
+ }
+.download__container {
+    margin-top: 50px;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+
+
+
+/* features container style */
+.features__container {
+    background: linear-gradient(to right bottom, #fff, rgba(63, 61, 86, 0.055));
+    padding-top: 80px;
+    padding-bottom: 100px;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.features__heading {
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.features__card--container {
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
+    grid-gap: 30px;
+    margin: auto;
+    text-align: center;
+    justify-items: center;
+}
+
+
+
+
+/* recent reminder  component styles */
+.recent__reminder--container {
+    background: linear-gradient(to right bottom,  rgba(63, 61, 86, 0.055), #fff);
+    /* padding-right: 120px; */
+    /* padding-left: 120px; */
+    padding-bottom: 200px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    color: rgb(63, 61, 86);
+    /* display: flex; */
+    flex-direction: column;
+}
+.recent__reminder--cards {
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr) );
+    grid-gap: 60px;
+    margin: auto;
+    margin-bottom: 70px;
+    padding: 0px 60px 10px 60px;
+    justify-items: center;
+}
+.recent__reminder--heading {
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    color: rgb(63, 61, 86);
+    margin-bottom: 50px;
+}
+.recent__reminder--text {
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+.recent__reminder--button {
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    margin-top: 45px;
+
+}
+
+
+
+
+
+
+/* sign up section */
+.signup__container {
+    margin: auto;
+    margin-right: 120px;
+    margin-left: 120px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* height: 80vh; */
+    /* justify-items: center; */
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
+    
+}
+.signup__form-right {
+    padding-top: 50px;
+    /* padding-left: 100px; */
+    padding-right: 100px;
+}
+.signup__form {
+    display: flex;
+    flex-direction: column;
+}
+.sign__up--image {
+    width: 99%;
+}
+.signup__form-heading {
+    font-weight: bold;
+    font-size: 36px;
+    color: rgb(63, 61, 86);
+    margin-bottom: 30px;
+}
+.signup__green-text {
+    color: #31DE28;
+    font-size: 40px;
+}
+
+
+
+/* already have an account section */
+.already__container {
+    display: flex;
+    margin-top: 40px;
+    color: rgb(63, 61, 86);
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+.already__text {
+    margin-left: 0px;
+    align-content: center;
+    margin-bottom: 0px;
+    padding-right: 10px;
+}
+.already__link {
+    color: #31DE28;
+    letter-spacing: 1px;
+}
+
+.firstname__lastname-input-container{
+    display: flex;
+    justify-content: space-between  ;
+}
+
+/* submit button with loader container */
+.same__line {
+    display: flex;
+}
+.loader__container {
+    margin-top: 100px;
+}
+
+
+
+/* get started section after signup  i.e subscription flow */
+.subscription__flow--container {
+    background-color: rgba(63, 61, 86, 0.055);
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 2px;
+    padding: 90px;  
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reminder__subscription--container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
+    grid-gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 80px;
+}
+.subscription__heading {
+    font-size: 33px;
+}
+.subscription__text {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+.unsubscribe__span {
+    color: #31DE28;
+}
+
+
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e8f2;
+    padding: 40px 25px 27px 20px;
+}
+
+.profile-preview-info-photo {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+
+.profile-preview-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .profile-header-actions {
+    display: flex;
+    align-items: center;
+} */
+
+.profile-preview-text {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    /* font-weight: bold; */
+    /* color: #40455c; */
+}
+
+
+/* dashboard searchbar */
+.search-input {
+    width: 100%;
+    border: none;
+    height: 38px;
+    margin-left: 12px;
+}
+
+.search-bar {
+    width: 100%;
+    background-color: white;
+    padding: 10px 12px 10px 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+
+/* //subscription preview fro dashboard where user can subscribe to new reminders */
+  
+.subscription-container {
+    padding: 24px 25px 0 25px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subscription-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* media query */
+
+@media only screen and (min-width: 1725px) {
+    .main__content--large-text {
+        font-size: 53px;
+    }
+    .main__content--small-text {
+        font-size: 18px;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 1080px) and (min-width: 800px) {
+    .signup__container {
+        margin-right: 20px !important;
+        margin-left: 20px !important;
+    }
+    .signup__image-left{
+        padding-top: 40px !important;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .main__content--right {
+        margin-top: 80px;
+        /* height: fit-content; */
+    }
+    .contact__us--heading {
+        text-align: start !important;
+    }
+    .recent__reminder--cards {
+        margin-bottom: 0px;
+        justify-items: center;
+    }
+    .recent__reminder--text {
+        padding: 30px 30px 0px 30px;
+        width: 80%;
+        justify-items: center;
+        /* text-align: center; */
+        margin: auto;
+    } 
+    .contact__us--grid-container {
+        /* grid-template-columns: 1fr; */
+        display: block !important;
+        /* width: 100%; */
+
+    }
+    .contact__us--right {
+        margin: 0px !important;
+    }
+    .contact__us--left {
+        display: none;
+
+    }
+    .footer__container {
+        padding: 0px 20px 0px 20px !important;
+    }
+}
+
+@media only screen and (max-width: 960px) and (min-width: 800px) {
+    .contact__us--container {
+        padding-right: 200px !important;
+        padding-left: 200px !important;
+    }
+}
+
+@media only screen and (max-width: 800px)  {
+    .signup__container {
+        display: block !important;
+        margin-right: 120px !important;
+        margin-left: 120px !important;
+        padding-top: 0px !important;
+
+    }
+    .signup__image-left{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .main__content--container {
+        grid-template-columns: 1fr;
+        padding-right: 50px;
+        padding-left: 50px;
+        /* margin-top: 20px; */
+        padding-top: 10px;
+    }
+    .main__content--right {
+        display: none;
+    }   
+}
+
+
+@media only screen and (max-width: 625px)  {
+    .signup__container {
+        margin-right: 80px !important;
+        margin-left: 80px !important;
+    }
+    .signup__form-right{
+        padding-right: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .header__logo--container {
+        margin-left: 15px;
+    }
+  .nav__container {
+        margin-right: 10px;
+   }
+   .main__content--container {
+        padding-right: 20px;
+        padding-left: 15px;
+   }
+   .contact__us--container {
+        padding-right: 50px !important;
+        padding-left: 50px !important;
+   }
+   .contact__us--heading {
+       font-size: 28px !important;
+   }
+   .signup__container {
+        margin-right: 30px !important;
+        margin-left: 40px !important;
+   }
+   .signup__form-heading {
+       font-size: 28px !important;
+   }
+   .firstname__lastname-input-container {
+       display: block !important;
+   }
+
+}
+
+@media only screen and (max-width: 396px) {
+    .recent__reminder--cards {
+        padding: 0px;
+    }
+    .main__content--container {
+
+    }
+}
+
+@media only screen and (max-width: 356px) {
+    .main__content--container {
+        padding-left: 5px;
+   }
+   .main__content--large-text{
+       font-size: 18px !important;
+   }
+   .nav__container {
+       margin-right: 2px !important;
+   }
+   .nav__container > ul > li {
+       margin: 3px;
+   }
+   .header__logo--container{
+       margin-left: 5px;
+   }
+   .recent__reminder--heading {
+       font-size: 23px;
+   }
+}
+
+@media only screen and (max-width: 320px) {
+    .download__container {
+        width: 250px !important;
+    }
+    .download-from-store {
+        width: 120px !important;
+    }
+}
+
+
