@@ -6,9 +6,9 @@ const SearchBar = () => {
    
   `,
     <>
-      <div class="search-bar">
+      <div className="search-bar">
           <img src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869822/iTazkir/search_ha0nmq.svg" alt="search" />
-          <input class="search-input" placeholder="Search" />
+          <input className="search-input" placeholder="Search" />
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import Style from 'style-it'
 
 // components import
 import FeatureCard from '../../Custom/FeatureCard';
@@ -11,7 +12,18 @@ import Hexagon from '../../Custom/Particles/Hexagon';
 
 const Features = () => {
     
-    return (
+    return Style.it(`
+    @media only screen and (max-width: 396px) {
+        .features__container {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .card__container {
+            width: 250px !important;
+            height: 300px !important;
+        }
+    }
+    `,
     <div className='features__container'>
        <h1 className='features__heading'>How it works.</h1>
        <div className='features__card--container'>

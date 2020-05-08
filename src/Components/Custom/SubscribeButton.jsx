@@ -19,7 +19,7 @@ function SubscribeButton(props) {
             cursor: pointer;
         }
     `,
-        <button className='submit__button' type='submit'>{props.text}</button>
+        <button onClick={props.onClick} className='submit__button' type='submit'>{props.text}</button>
     )
 }
 

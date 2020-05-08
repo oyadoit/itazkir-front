@@ -4,9 +4,9 @@ import { message, Button } from 'antd';
 export const errorMessage = (args) => {
     message.error(args);
     message.config({
-        duration: 3,
-        top: 150,
-        rtl: true
-
+        top: 200,
+        duration: 4,
+        rtl: false,
+        
     })
 }

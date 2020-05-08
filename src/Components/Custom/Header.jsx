@@ -11,7 +11,7 @@ import Hexagon from '../Custom/Particles/Hexagon';
 
 import Button from '../Custom/SubmitButton'
 import { AUTH_TOKEN } from '../../utils/constants';
-
+import { logout } from '../../index'
 
 
 
@@ -19,6 +19,7 @@ const Header = props => {
 
     const authToken = localStorage.getItem(AUTH_TOKEN)
     
+
     return Style.it(
         `
         .profile__image {
@@ -102,11 +103,7 @@ const Header = props => {
                                 authToken ? (
                                 <>
                                     <li><Link to='/dashboard' className="nav__container--link">Dashboard</Link></li>
-                                    <li><Link onClick={()=> {
-                                            localStorage.removeItem(AUTH_TOKEN)
-                                            return <Redirect to='/login' />
-                                            }
-                                            } 
+                                    <li><Link onClick={logout} 
                                         className="button__green">Logout</Link>
                                     </li>
                                     

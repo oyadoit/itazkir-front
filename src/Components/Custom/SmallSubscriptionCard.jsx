@@ -3,8 +3,36 @@ import PropTypes from 'prop-types'
 import Style from 'style-it';
 
 import SubscribeButton from '../Custom/SubscribeButton';
+import { errorMessage } from '../../utils/helpers'
 
-const SmallSubscriptionCard = ({imageUrl, title, content, }) => {
+import { useMutation } from '@apollo/react-hooks'
+import { SUBSCRIBE } from '../../graphql/mutation'
+import { CURRENT_USER_SUBSCRIPTIONS } from '../../graphql/query'
+
+const SmallSubscriptionCard = ({imageUrl, title, id }) => {
+    const [Subscribe, {loading }] = useMutation(SUBSCRIBE, {
+        variables: { reminderId: id },
+        update(proxy, result) {
+            const data = proxy.readQuery({
+                query: CURRENT_USER_SUBSCRIPTIONS
+            });
+                 
+            data.userSubscriptions = [result.data.createSubscription, ...data.userSubscriptions ];
+            proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data});
+        },
+        onError({graphQLErrors, networkError}){
+            if (graphQLErrors) graphQLErrors.map(err => {errorMessage('You can only subscribe once')})  
+
+            if (networkError) errorMessage("You are not connected to the internet");
+            
+        },
+
+    })
+    // console.log(id)
+
+    // if(loading) return <p>loading..</p>
+    // if(data) console.log(data)
+
     return Style.it(`
         .card__image {
             border-radius: 50%;
@@ -43,7 +71,10 @@ const SmallSubscriptionCard = ({imageUrl, title, content, }) => {
                 <h4 className='card__title'>{title}</h4>
                 {/* <p className='card__text'>{content}</p> */}
             </div>
-            <SubscribeButton text='Subscribe'/>
+            <SubscribeButton 
+                text='Subscribe'
+                onClick={Subscribe}
+            />
             
         </div>
              

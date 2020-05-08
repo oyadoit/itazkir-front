@@ -7,15 +7,18 @@ import Input from '../../Custom/Input';
 import SubmitButton from '../../Custom/SubmitButton';
 import AlreadyHave from '../../Custom/AlreadyHave';
 import DownloadFromStore from '../../Custom/DownloadFromStore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router'
+
+// import { AuthContext } from '../../../context/auth';
 
 import { Spin } from 'antd';
 
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { AUTH_TOKEN } from '../../../utils/constants' 
 import {errorMessage} from '../../../utils/helpers'  //ant design error pop up
 import { LOGIN } from '../../../graphql/mutation'   // login mutation
+
 
 // frontend form Validation
 import { FormValidation } from "calidation";
@@ -23,16 +26,15 @@ import { loginConfig } from '../../../utils/validation';
 
 
 const LoginForm = props => {
-
+    
         const [values, setValues] = useState({
             email: '',
             password: ''
         });
 
-       
+        
 
-        const [Login, { loading, data}] = useMutation(LOGIN, { 
-            
+        const [Login, result] = useMutation(LOGIN, { 
             onError({graphQLErrors, networkError}){
                 if (graphQLErrors) graphQLErrors.map(err => {errorMessage(err.message)})  
  
@@ -42,6 +44,7 @@ const LoginForm = props => {
 
             variables: values
         });
+       
 
 
 
@@ -49,7 +52,6 @@ const LoginForm = props => {
             if(isValid) {
                 Login();
             }
-           
         }
 
 
@@ -60,11 +62,25 @@ const LoginForm = props => {
             });
         }
     
+        // useEffect(() => {
+        //     if(result.data){
+        //         console.log(result.data)
+        //         const token  = result.data.tokenAuth.token
+        //         saveUserData(token)
+        //     }
+        //     if(AUTH_TOKEN){
+        //         return <Redirect to='/dashboard' />
+        //     }
+        //     else {
+        //         return <Redirect to='/login' />
+        //     }
+                       
+        // })
 
-        if (data) {
+        if (result.data) {
 
-            console.log(data)
-            const token  = data.tokenAuth.token
+            console.log(result.data)
+            const token  = result.data.tokenAuth.token
             saveUserData(token)
             if(AUTH_TOKEN){
                 return <Redirect to='/dashboard' />
@@ -141,7 +157,7 @@ const LoginForm = props => {
                             />
 
                             <div loader__container>
-                                {loading ? <Spin size="large" /> : ('')}
+                                {result.loading ? <Spin size="large" /> : ('')}
                             </div>
 
                             <Link className='reset__password-link' to='/reset-password'>Forgot Password ?</Link>

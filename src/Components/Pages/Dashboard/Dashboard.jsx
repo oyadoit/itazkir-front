@@ -21,6 +21,7 @@ const Dashboard = props => {
         grid-template-columns: 200px 1fr 315px;
         grid-gap: 20px;
         min-height: 100vh;
+        
       }
 
       
@@ -28,9 +29,6 @@ const Dashboard = props => {
         grid-column-start: 2;
         background-color: #f5f6fb;
         padding: 32px;
-        // align-items: flex-start;
-        // justify-content: flex-start;
-        // flex-direction: column;
       }
       
       .profile {
@@ -78,13 +76,6 @@ const Dashboard = props => {
           </div>
           
           <div class="section">
-            <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
             <SmallReminderCard 
                 title='Islamic Reminder' 
                 content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
@@ -143,7 +134,10 @@ const Dashboard = props => {
         
         {/* <!-- New subscription should appear here for logged in user --> */}
 
-        <SubscriptionPreview />
+        <div class="subscription-container">
+            <h2 class="subscription-title">New Subscriptions </h2>
+            <SubscriptionPreview />  
+        </div>
 
       </div>
       

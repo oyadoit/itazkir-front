@@ -8,7 +8,7 @@ const Subscription = () => {
     return (
         <>
           <Header isLoggedIn/>
-          <SubscriptionFlow />  
+          <SubscriptionFlow />       {/* //get started section */}
         </>
     )
 }

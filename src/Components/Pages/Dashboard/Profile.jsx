@@ -1,15 +1,23 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types'
 import Style from 'style-it'
 
 import DashboardMenu from '../../Custom/DashboardMenu';
+
+
+import {AuthContext} from '../../../context/auth';
 
 import { CURRENT_USER }  from  '../../../graphql/query';
 import { useQuery } from '@apollo/react-hooks'
 
 const Profile = props => {
 
+    const context = useContext(AuthContext)
+
     const {loading, data } = useQuery(CURRENT_USER,{
+        update(){
+            context.login(data.currentUser)
+        }
     })
 
     if(loading) return <p>loading..</p>

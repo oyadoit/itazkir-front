@@ -39,3 +39,26 @@ export const CREATE_USER = gql`
    
   }
 `
+
+
+export const VERIFY_TOKEN = gql`
+  mutation verifyToken( $token: String! ){
+    verifyToken(token: $token){
+      payload
+    }
+  }
+`
+
+export const SUBSCRIBE = gql`
+  mutation createSubscription($reminderId: Int){
+    createSubscription(reminderId: $reminderId){
+      id
+      user{
+        id email
+      }
+      reminder{
+        name id owner{id email}
+      }
+    }
+  }
+`

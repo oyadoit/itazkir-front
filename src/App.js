@@ -2,6 +2,10 @@ import React from "react";
 import "./App.css";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
+import {AuthProvider} from './context/auth';
+
+
+
 // import { Button } from "antd";
 // import Header from "./Components/Custom/Header";
 import HomePage from "./Components/Pages/Homepage";
@@ -18,29 +22,28 @@ import AuthenticatedRoute from './Components/Custom/AuthenticatedRoute';
 
 
 function App() {
+
+  
   return (
-    <BrowserRouter>
-      {/* <Header /> */}
-      <Switch>
-         <Route exact path="/" component={HomePage} />
-         <Route exact path="/login" component={Login} />
-         <Route exact path="/signup" component={Signup} /> 
+    <AuthProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} /> 
 
-         <AuthenticatedRoute exact path="/get-started" component={Subscription} />   
-         <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
-         <AuthenticatedRoute exact path="/dashboard/profile" component={Profile} />
-         <AuthenticatedRoute exact path="/dashboard/reminders" component={AllReminders} />
-         <AuthenticatedRoute exact path="/dashboard/subscriptions" component={AllSubscriptions} />
-
-         {/* <Route exact path="/get-started" component={Subscription} />   
-         <Route exact path="/dashboard" component={Dashboard} />
-         <Route exact path="/dashboard/profile" component={Profile} />
-         <Route exact path="/dashboard/reminders" component={AllReminders} />
-         <Route exact path="/dashboard/subscriptions" component={AllSubscriptions} /> */}
-
-      </Switch>
-      {/* <Footer /> */}
-    </BrowserRouter>
+          <AuthProvider>
+            <AuthenticatedRoute exact path="/get-started" component={Subscription} />   
+            <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
+            <AuthenticatedRoute exact path="/dashboard/profile" component={Profile} />
+            <AuthenticatedRoute exact path="/dashboard/reminders" component={AllReminders} />
+            <AuthenticatedRoute exact path="/dashboard/subscriptions" component={AllSubscriptions} />
+          </AuthProvider>
+        
+        </Switch>
+        {/* <Footer /> */}
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

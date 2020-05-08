@@ -25,6 +25,11 @@ a:hover {
     font-size: 12px;
     margin-bottom: 10px;
 }
+.empty_message {
+    /* width: fit-content !important; */
+    margin: auto !important;
+    /* padding-right: 200px; */
+}
 
 .header {
     height: 80px; 
@@ -415,48 +420,6 @@ a:hover {
 
 
 /* media query */
-@media only screen and (max-width: 768px) {
-    .main__content--container {
-        grid-template-columns: 1fr;
-        padding-right: 50px;
-        padding-left: 50px;
-        /* margin-top: 20px; */
-        padding-top: 10px;
-    }
-    .main__content--right {
-        display: none;
-    }   
-}
-
-@media only screen and (max-width: 413px) {
-    .header__logo--container {
-        margin-left: 15px;
-    }
-  .nav__container {
-        margin-right: 10px;
-   }
-   .main__content--container {
-    padding-right: 50px;
-    padding-left: 40px;
-   }
-   .contact__us--container {
-    padding-right: 50px !important;
-    padding-left: 50px !important;
-   }
-   .contact__us--heading {
-       font-size: 28px !important;
-   }
-
-}
-
-@media only screen and (max-width: 320px) {
-    .download__container {
-        width: 250px !important;
-    }
-    .download-from-store {
-        width: 120px !important;
-    }
-}
 
 @media only screen and (min-width: 1725px) {
     .main__content--large-text {
@@ -464,6 +427,19 @@ a:hover {
     }
     .main__content--small-text {
         font-size: 18px;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 1080px) and (min-width: 800px) {
+    .signup__container {
+        margin-right: 20px !important;
+        margin-left: 20px !important;
+    }
+    .signup__image-left{
+        padding-top: 40px !important;
     }
 }
 
@@ -503,10 +479,119 @@ a:hover {
         padding: 0px 20px 0px 20px !important;
     }
 }
+
 @media only screen and (max-width: 960px) and (min-width: 800px) {
     .contact__us--container {
         padding-right: 200px !important;
         padding-left: 200px !important;
     }
 }
+
+@media only screen and (max-width: 800px)  {
+    .signup__container {
+        display: block !important;
+        margin-right: 120px !important;
+        margin-left: 120px !important;
+        padding-top: 0px !important;
+
+    }
+    .signup__image-left{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .main__content--container {
+        grid-template-columns: 1fr;
+        padding-right: 50px;
+        padding-left: 50px;
+        /* margin-top: 20px; */
+        padding-top: 10px;
+    }
+    .main__content--right {
+        display: none;
+    }   
+}
+
+
+@media only screen and (max-width: 625px)  {
+    .signup__container {
+        margin-right: 80px !important;
+        margin-left: 80px !important;
+    }
+    .signup__form-right{
+        padding-right: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .header__logo--container {
+        margin-left: 15px;
+    }
+  .nav__container {
+        margin-right: 10px;
+   }
+   .main__content--container {
+        padding-right: 20px;
+        padding-left: 15px;
+   }
+   .contact__us--container {
+        padding-right: 50px !important;
+        padding-left: 50px !important;
+   }
+   .contact__us--heading {
+       font-size: 28px !important;
+   }
+   .signup__container {
+        margin-right: 30px !important;
+        margin-left: 40px !important;
+   }
+   .signup__form-heading {
+       font-size: 28px !important;
+   }
+   .firstname__lastname-input-container {
+       display: block !important;
+   }
+
+}
+
+@media only screen and (max-width: 396px) {
+    .recent__reminder--cards {
+        padding: 0px;
+    }
+    .main__content--container {
+
+    }
+}
+
+@media only screen and (max-width: 356px) {
+    .main__content--container {
+        padding-left: 5px;
+   }
+   .main__content--large-text{
+       font-size: 18px !important;
+   }
+   .nav__container {
+       margin-right: 2px !important;
+   }
+   .nav__container > ul > li {
+       margin: 3px;
+   }
+   .header__logo--container{
+       margin-left: 5px;
+   }
+   .recent__reminder--heading {
+       font-size: 23px;
+   }
+}
+
+@media only screen and (max-width: 320px) {
+    .download__container {
+        width: 250px !important;
+    }
+    .download-from-store {
+        width: 120px !important;
+    }
+}
+
 

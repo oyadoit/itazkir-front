@@ -38,6 +38,18 @@ const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondBut
             color: #fff !important;
             
         }
+        @media only screen and (max-width: 356px) {
+            .card__container {
+                width: 270px !important;
+                padding: 8px;
+            }
+            .card__image {
+                margin-right: 10px;
+            }
+            .card__text{
+                margin-bottom: 0px;
+            }
+        }
     `,
         <div className='card__container'>
             <div>

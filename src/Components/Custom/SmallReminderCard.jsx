@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Style from 'style-it';
 
+import _ from 'lodash'
+
 import GetStartedButton from '../Custom/GetStartedButton'
 import { Link } from 'react-router-dom';
 
 
-const SmallReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondButton, thirdButton }) => {
+
+const SmallReminderCard = ({bgColor, title, imageUrl, tag, by, content, firstButton, secondButton, thirdButton }) => {
     return Style.it(`
         .card__container {
             background-color: ${bgColor};
@@ -14,7 +17,7 @@ const SmallReminderCard = ({bgColor, title, imageUrl, content, firstButton, seco
             height: 155px;
             margin-bottom: 10px;
             display: flex;
-            padding: 20px;
+            padding: 18px 8px 10px 12px;
             border-radius: 20px;
             
         }
@@ -38,16 +41,30 @@ const SmallReminderCard = ({bgColor, title, imageUrl, content, firstButton, seco
             font-size: 14px;
             font-weight: bold;
         }
+        .reminder__details-container {
+            
+        }
+        .reminder__name {
+            margin-bottom: 0px !important;
+            font-size: 10px;
+            color: #31DE28;
+        }
+        .reminder__owner {
+            margin-bottom: 0px !important;
+            font-size: 10px;
+            color: #31DE28;
+        }
     `,
         <div className='card__container'>
             <div>
                 <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
             </div>
             <div className='card__content--right'>
-                <h2 className='card__title'>{title}</h2>
+                <h2 className='card__title'>{_.truncate(title, {'length': 20, 'separator': ''})}</h2>
                 <p className='card__text'>{content}</p>
-                <div>
-                   <Link to=''> View All</Link>
+                <div className='reminder__details-container'>
+                   <p className='reminder__name'>Tag: {tag}</p>
+                   <p className='reminder__owner'>By: {by}</p>
                 </div>
             </div>
         </div>

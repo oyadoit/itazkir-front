@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import Style from "style-it";
 import { NavLink, Link } from 'react-router-dom';
 
+import { AUTH_TOKEN } from '../../utils/constants'
+import {logout } from '../../index'
+
 const DashboardMenu = (props) => {
   
   return Style.it(
@@ -83,16 +86,16 @@ const DashboardMenu = (props) => {
         }
     `,
 
-    <div class="menu">
-      <div class="brand">
+    <div className="menu">
+      <div className="brand">
         <p><Link to='/'>iTazkir</Link></p>
       </div>
-      <nav class="menu-list">
+      <nav className="menu-list">
         <ul>
           <li>
             <NavLink to="/dashboard" >
               <img
-                class="menu-icon"
+                className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869762/iTazkir/home_doj6mg.svg"
                 alt="home"
               />
@@ -102,7 +105,7 @@ const DashboardMenu = (props) => {
           <li>
             <NavLink activeClassName="active" to="/dashboard/reminders">
               <img
-                class="menu-icon"
+                className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869822/iTazkir/folder_iax9qu.svg"
                 alt="folder"
               />
@@ -112,7 +115,7 @@ const DashboardMenu = (props) => {
           <li>
             <NavLink activeClassName="active" to="/dashboard/subscriptions">
               <img
-                class="menu-icon"
+                className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869822/iTazkir/clock_h6lusg.svg"
                 alt="clock"
               />
@@ -122,7 +125,7 @@ const DashboardMenu = (props) => {
           <li>
             <NavLink activeClassName="active" to="/dashboard/profile">
               <img
-                class="menu-icon"
+                className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869821/iTazkir/users_yve7dc.svg"
                 alt="users"
               />
@@ -130,13 +133,15 @@ const DashboardMenu = (props) => {
             </NavLink>
           </li>
           <li>
-            <a >
+            <a onClick={logout}>
               <img
-                class="menu-icon"
+                className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869999/iTazkir/alert-circle_wiywpu.svg"
                 alt="alert"
               />
-              <span>Logout</span>
+              <span>
+                Logout
+              </span>
             </a>
           </li>
         </ul>

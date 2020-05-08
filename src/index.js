@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 import ApolloClient from 'apollo-client';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -33,7 +32,10 @@ const client = new ApolloClient({
   connectToDevTools : true
 });
 
-
+export const logout = () => {
+  localStorage.removeItem(AUTH_TOKEN)
+  client.resetStore();
+}
 
 
 ReactDOM.render(

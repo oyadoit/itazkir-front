@@ -12,11 +12,11 @@ const AuthenticatedRoute = ({ component: Component, ...rest}) => (
                 <Redirect
                     to={{
                         pathname: "/login",
-                        state: { from: props.location}
+                        state: {from: props.location}
                     }}
                 />
             )
         }
     />
 );
-export default AuthenticatedRoute
+export default AuthenticatedRoute;
