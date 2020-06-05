@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 
 import { AUTH_TOKEN } from '../../utils/constants'
 import {logout } from '../../index'
 
 const DashboardMenu = (props) => {
   
+  // const history = useHistory()
+
   return Style.it(
     `
     .menu {

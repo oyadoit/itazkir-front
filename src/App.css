@@ -4,6 +4,9 @@ html {
     overflow: scroll;
     overflow-x: hidden;
 }
+* {
+    font-family: 'Comfortaa', cursive !important;
+}
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -11,7 +14,6 @@ html {
 }
 
 body, h1, h2, h3, h4, h5, h6, div {
-    font-family: 'Comfortaa', cursive !important;
     color: rgb(63, 61, 86) !important;
 }
 a {
@@ -559,9 +561,9 @@ a:hover {
     .recent__reminder--cards {
         padding: 0px;
     }
-    .main__content--container {
+    /* .main__content--container {
 
-    }
+    } */
 }
 
 @media only screen and (max-width: 356px) {

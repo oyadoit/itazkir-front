@@ -9,7 +9,7 @@ const SubscriptionPreview =  () => {
     const {loading, data } = useQuery(ALL_REMINDERS)
 
     if(loading) return <p>loading..</p>
-    if(data) console.log(data)
+    // if(data) console.log(data)
 
     return (        
                 <div>

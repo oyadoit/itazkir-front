@@ -7,10 +7,10 @@ import Input from '../../Custom/Input';
 import SubmitButton from '../../Custom/SubmitButton';
 import AlreadyHave from '../../Custom/AlreadyHave';
 import DownloadFromStore from '../../Custom/DownloadFromStore';
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Redirect } from 'react-router'
 
-// import { AuthContext } from '../../../context/auth';
+import { AuthContext } from '../../../context/auth';
 
 import { Spin } from 'antd';
 
@@ -41,7 +41,7 @@ const LoginForm = props => {
                 if (networkError) errorMessage("You are not connected to the internet");
                 
             },
-
+            
             variables: values
         });
        

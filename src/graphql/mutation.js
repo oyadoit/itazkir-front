@@ -57,7 +57,9 @@ export const SUBSCRIBE = gql`
         id email
       }
       reminder{
-        name id owner{id email}
+        name id owner{id email} contentSet{
+          id title data
+        }
       }
     }
   }

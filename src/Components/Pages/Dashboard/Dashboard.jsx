@@ -76,7 +76,7 @@ const Dashboard = props => {
           </div>
           
           <div class="section">
-            <SmallReminderCard 
+            {/* <SmallReminderCard 
                 title='Islamic Reminder' 
                 content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
                 bgColor='#fff'
@@ -113,7 +113,7 @@ const Dashboard = props => {
                 bgColor='#fff'
                 secondButton
                 imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
+            /> */}
 
             <SmallReminderCard 
                 title='Islamic Reminder' 
