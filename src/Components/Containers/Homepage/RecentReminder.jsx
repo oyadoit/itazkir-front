@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import ReminderCard from "../../Custom/ReminderCard";
@@ -6,27 +6,46 @@ import GetStartedButton from "../../Custom/GetStartedButton";
 
 import { loadState } from "../../../utils/localStorage";
 
-const RecentReminder = (props) => {
-    // console.log(loadState + "aaa")
-  return (
-    <div className="recent__reminder--container">
-      <h1 className="recent__reminder--heading"> Recent Reminder</h1>
-      <div className="recent__reminder--cards">
-        {
-        loadState.map((recentReminder) => {
-          return (
-            <ReminderCard
-            key={recentReminder.id}
-              title="Islamic Reminder"
-              content=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam quos atque"
-              bgColor="rgb(109, 224, 103)"
-              firstButton
-              imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
-            />
-          );
-        })}
+// const RecentReminder = (props) => {
+class RecentReminder extends Component {
+  // console.log(loadState + "aaa")
+  constructor(props) {
+    super(props)
+    this.state = {
+      loadReminders: []
+    }
+  }
 
-        {/* <ReminderCard
+  componentWillMount() {
+    this.setState({ loadReminders: loadState() })
+  }
+
+  render() {
+    
+    const { loadReminders } = this.state;
+    const recentReminders = loadReminders.userContents.filter(reminder => parseInt(reminder.reminder.id) > loadReminders.userContents.length - 4)
+    console.log(recentReminders)
+    console.log()
+
+    return (
+      <div className="recent__reminder--container">
+        <h1 className="recent__reminder--heading"> Recent Reminder</h1>
+        <div className="recent__reminder--cards">
+           {
+            recentReminders.map((recentReminder) => {
+              return ( 
+                <ReminderCard
+                  key={recentReminder.id}
+                  title={recentReminder.title}
+                  content={recentReminder.data}
+                  bgColor="rgb(109, 224, 103)"
+                  firstButton
+                  imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
+                />
+               );
+            })}
+
+          {/* <ReminderCard
           title="Islamic Reminder"
           content=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam quos atque"
           bgColor="rgb(238, 174, 56)"
@@ -40,22 +59,23 @@ const RecentReminder = (props) => {
           thirdButton
           imageUrl="https://avatars1.githubusercontent.com/u/1754873?s=460&v=4"
         /> */}
-      </div>
-      <h3 className="recent__reminder--text">
-        Create an account to start receiving instant reminders you subscribe to
+        </div>
+        <h3 className="recent__reminder--text">
+          Create an account to start receiving instant reminders you subscribe to
       </h3>
-      <h3 className="recent__reminder--button">
-        <GetStartedButton
-          to="signup"
-          className="button__green recent__reminder--button"
-        >
-          Create Account now
+        <h3 className="recent__reminder--button">
+          <GetStartedButton
+            to="signup"
+            className="button__green recent__reminder--button"
+          >
+            Create Account now
         </GetStartedButton>
-      </h3>
-    </div>
-  );
-};
+        </h3>
+      </div>
+    );
+  };
+}
 
-RecentReminder.propTypes = {};
+// RecentReminder.propTypes = {};
 
 export default RecentReminder;

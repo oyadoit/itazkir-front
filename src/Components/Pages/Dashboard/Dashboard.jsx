@@ -9,6 +9,8 @@ import SearchBar from '../../Custom/SearchBar';
 import ProfilePreview from '../../Custom/ProfilePreview';
 import SubscriptionPreview from '../../Custom/SubscriptionPreview';
 import SmallReminderCard from '../../Custom/SmallReminderCard'
+import RecentReminder from '../../Containers/Homepage/RecentReminder';
+
 
 
 
@@ -66,16 +68,16 @@ const Dashboard = props => {
     <div className="dashboard__container">
      <DashboardMenu  />
 
-     <div class="content">
+     <div className="content">
         <SearchBar />
 
-        <div class="main-content">
+        <div className="main-content">
           <div className='same__row'>
             <h1>Recent Reminders</h1>
             <Link to='/dashboard/reminders'>View All</Link>
           </div>
           
-          <div class="section">
+          <div className="section">
             {/* <SmallReminderCard 
                 title='Islamic Reminder' 
                 content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
@@ -115,27 +117,27 @@ const Dashboard = props => {
                 imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
             /> */}
 
-            <SmallReminderCard 
+            {/* <SmallReminderCard 
                 title='Islamic Reminder' 
                 content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
                 bgColor='#fff'
                 secondButton
                 imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
-            
+            /> */}
+            <RecentReminder />
 
           </div>
         </div>
 
       </div>
 
-     <div class="profile">
+     <div className="profile">
         <ProfilePreview />
         
         {/* <!-- New subscription should appear here for logged in user --> */}
 
-        <div class="subscription-container">
-            <h2 class="subscription-title">New Subscriptions </h2>
+        <div className="subscription-container">
+            <h2 className="subscription-title">New Subscriptions </h2>
             <SubscriptionPreview />  
         </div>
 
