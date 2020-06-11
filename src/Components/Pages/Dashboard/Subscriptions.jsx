@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
 
+import { textContentReducer } from '../../../utils/helpers'
+
 import DashboardMenu from "../../Custom/DashboardMenu";
 import SmallSubscriptionCard from "../../Custom/SmallSubscriptionCard";
 import UserCurrentSubscription from "../../Custom/UserCurrentSubscription";
@@ -78,7 +80,7 @@ const Subscriptions = (props) => {
               data.userSubscriptions.map((eachSubscription) => (
                 <UserCurrentSubscription
                   imageUrl="https://avatars0.githubusercontent.com/u/8108337?s=460&v=4"
-                  title={eachSubscription.reminder.name}
+                  title={textContentReducer(eachSubscription.reminder.name, 20)}
                   key={eachSubscription.reminder.id}
                 />
               ))

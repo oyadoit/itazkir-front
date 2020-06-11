@@ -27,9 +27,5 @@ export const  loginConfig = {
   },
   password: {
     isRequired: "Password field is required!",
-    isMinLength: {
-      message: "Password must be 8 character long",
-      length: 8
-    }
   }
 }

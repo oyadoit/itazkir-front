@@ -26,7 +26,7 @@ const Dashboard = (props) => {
     .dashboard__container {
         display: grid;
         grid-template-columns: 200px 1fr 315px;
-        grid-gap: 20px;
+        grid-gap: 25px;
         min-height: 100vh;
         
       }
@@ -99,7 +99,7 @@ const Dashboard = (props) => {
               <div className="reminders__preview-container section">
                 {data.userContents && data.userContents.length > 0 ? (
                   data.userContents
-                    .slice(0, 6)
+                    .slice(Math.max(data.userContents.length - 6 , 0)).sort((a,b)=> (a.id > b.id) ? -1: 1)
                     .map((eachContent) => (
                       <SmallReminderCard
                         title={eachContent.title}
@@ -109,6 +109,7 @@ const Dashboard = (props) => {
                         by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
                         imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
                         key={eachContent.id}
+                        id={eachContent.id}
                       />
                     ))
                 ) : (

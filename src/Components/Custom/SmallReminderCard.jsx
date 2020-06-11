@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Style from 'style-it';
 
-import _ from 'lodash'
+import {textContentReducer } from '../../utils/helpers';
 
 import GetStartedButton from '../Custom/GetStartedButton'
 import { Link } from 'react-router-dom';
 
 
 
-const SmallReminderCard = ({bgColor, title, imageUrl, tag, by, content, firstButton, secondButton, thirdButton }) => {
+const SmallReminderCard = ({bgColor, title, imageUrl, tag, id, by, content, firstButton, secondButton, thirdButton }) => {
     return Style.it(`
         .card__container {
             background-color: ${bgColor};
@@ -19,6 +19,7 @@ const SmallReminderCard = ({bgColor, title, imageUrl, tag, by, content, firstBut
             display: flex;
             padding: 18px 8px 10px 12px;
             border-radius: 20px;
+            margin-bottom: 50px;
             
         }
         .card__content--right {
@@ -55,19 +56,26 @@ const SmallReminderCard = ({bgColor, title, imageUrl, tag, by, content, firstBut
             color: #31DE28;
         }
     `,
-        <div className='card__container'>
+    
+        <Link to={`/dashboard/reminders/${id}`} className='card__container'>
+            
             <div>
                 <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
             </div>
             <div className='card__content--right'>
-                <h2 className='card__title'>{_.truncate(title, {'length': 20, 'separator': ''})}</h2>
-                <p className='card__text'>{content}</p>
+                
+                
+    
+                <h2 className='card__title'>{textContentReducer(title, 20)}</h2>
+                <p className='card__text'>{textContentReducer(content, 50)}</p>
                 <div className='reminder__details-container'>
-                   <p className='reminder__name'>Tag: {tag}</p>
-                   <p className='reminder__owner'>By: {by}</p>
+                   <p className='reminder__name'>Tag: {textContentReducer(tag, 20)}</p>
+                   <p className='reminder__owner'>By: {textContentReducer(by, 20)}</p>
                 </div>
             </div>
-        </div>
+            
+        </Link>
+    
     )
 }
 

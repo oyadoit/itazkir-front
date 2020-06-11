@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Style from 'style-it';
 
+import {textContentReducer} from '../../utils/helpers'
+
 import SubscribeButton from '../Custom/SubscribeButton';
 import { errorMessage } from '../../utils/helpers'
 
@@ -68,7 +70,7 @@ const SmallSubscriptionCard = ({imageUrl, title, id }) => {
         <div className='small__subscription__card--container'>
             <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
             <div className='title__content--container'>
-                <h4 className='card__title'>{title}</h4>
+                <h4 className='card__title'>{textContentReducer(title,18)}</h4>
                 {/* <p className='card__text'>{content}</p> */}
             </div>
             <SubscribeButton 
