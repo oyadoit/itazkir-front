@@ -12,9 +12,9 @@ const DashboardMenu = (props) => {
 
   return Style.it(
     `
+
     .menu {
           grid-column-start: 1;
-          // background-color: #343951;
           color: white;
           display: flex;
           flex-direction: column;
@@ -49,6 +49,7 @@ const DashboardMenu = (props) => {
           height: 64px;
           padding-left: 32px;
           display: flex;
+          padding-right: 30px;
           flex-direction: row;
           align-items: center;
           justify-content: flex-start;

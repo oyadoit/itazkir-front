@@ -64,7 +64,9 @@ const AllReminders = (props) => {
         ) : (
           <div className="all__reminders--card-container">
             {data.userContents && data.userContents.length > 0 ? (
-              data.userContents.map((eachContent) => (
+              data.userContents
+              .sort((a,b)=> (a.id > b.id) ? -1: 1)
+              .map((eachContent) => (
                 <SmallReminderCard
                   title={eachContent.title}
                   content={eachContent.data}

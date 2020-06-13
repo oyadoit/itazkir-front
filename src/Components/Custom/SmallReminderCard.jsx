@@ -4,12 +4,12 @@ import Style from 'style-it';
 
 import {textContentReducer } from '../../utils/helpers';
 
-import GetStartedButton from '../Custom/GetStartedButton'
+// import GetStartedButton from '../Custom/GetStartedButton'
 import { Link } from 'react-router-dom';
 
 
 
-const SmallReminderCard = ({bgColor, title, imageUrl, tag, id, by, content, firstButton, secondButton, thirdButton }) => {
+const SmallReminderCard = ({bgColor, title, imageUrl, tag, id, by, content }) => {
     return Style.it(`
         .card__container {
             background-color: ${bgColor};
@@ -57,7 +57,7 @@ const SmallReminderCard = ({bgColor, title, imageUrl, tag, id, by, content, firs
         }
     `,
     
-        <Link to={`/dashboard/reminders/${id}`} className='card__container'>
+        <Link to={`/dashboard/reminders/${id}/${title}`} className='card__container'>
             
             <div>
                 <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
