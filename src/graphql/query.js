@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 //query the currrently loggedin user
-export const CURRENT_USER = gql`
+export const ME = gql`
   query {
     currentUser {
       id
@@ -11,6 +11,9 @@ export const CURRENT_USER = gql`
       lastName
       isActive
       phone
+      subscriptionSet {
+        id
+      }
     }
   }
 `;
@@ -76,3 +79,15 @@ export const SINGLE_REMINDER = gql`
     }
   }
 `;
+
+export const USER_TOTAL_REMINDER = gql`
+  query {
+    userContents {
+      id
+    }
+  }
+`;
+
+
+
+

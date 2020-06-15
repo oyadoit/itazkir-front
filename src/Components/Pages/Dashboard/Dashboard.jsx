@@ -99,8 +99,8 @@ const Dashboard = (props) => {
               <div className="reminders__preview-container section">
                 {data.userContents && data.userContents.length > 0 ? (
                   data.userContents
-                    .slice(Math.max(data.userContents.length - 6 , 0))
-                    .sort((a,b)=> (a.id > b.id) ? -1: 1)
+                    .slice(Math.max(data.userContents.length - 6, 0))
+                    .sort((a, b) => (a.id > b.id ? -1 : 1))
                     .map((eachContent) => (
                       <SmallReminderCard
                         title={eachContent.title}
@@ -127,8 +127,6 @@ const Dashboard = (props) => {
 
       <div className="profile">
         <ProfilePreview />
-
-        {/* <!-- New subscription should appear here for logged in user --> */}
 
         <div className="subscription-container">
           <h2 className="subscription-title">New Subscriptions </h2>

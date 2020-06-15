@@ -18,8 +18,6 @@ import { Spin } from "antd";
 const Subscriptions = (props) => {
   const { loading, data } = useQuery(CURRENT_USER_SUBSCRIPTIONS);
 
-  //   if (loading) return <p>loading..</p>;
-  // if(data) console.log(data)
 
   return Style.it(
     `
@@ -79,7 +77,7 @@ const Subscriptions = (props) => {
             {data.userSubscriptions && data.userSubscriptions.length > 0 ? (
               data.userSubscriptions.map((eachSubscription) => (
                 <UserCurrentSubscription
-                  imageUrl="https://avatars0.githubusercontent.com/u/8108337?s=460&v=4"
+                  // imageUrl="https://avatars0.githubusercontent.com/u/8108337?s=460&v=4"
                   title={textContentReducer(eachSubscription.reminder.name, 20)}
                   key={eachSubscription.reminder.id}
                 />

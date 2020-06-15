@@ -16,3 +16,9 @@ export const errorMessage = (args) => {
 export const textContentReducer = (what, length) => {
     return   _.truncate((what), {'length': length, 'separator': ''});
 }
+
+
+// accepts fullName as a parameter and gets the initials for firstname and lastname
+export const initialGetters = (fullName) => {
+    return fullName.split(" ").map((n)=>n[0]).join(" ").toUpperCase();
+}
