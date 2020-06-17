@@ -16,7 +16,7 @@ const SubscriptionPreview =  () => {
                     {
                         data.allReminders.length > 0 ? (data.allReminders.map((singleData) => (
                             <SmallSubscriptionCard 
-                                imageUrl='https://avatars0.githubusercontent.com/u/8108337?s=460&v=4'
+                                // imageUrl='https://avatars0.githubusercontent.com/u/8108337?s=460&v=4'
                                 title={singleData.name}
                                 id={singleData.id}
                                 key={singleData.id}

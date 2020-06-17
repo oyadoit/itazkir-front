@@ -1,25 +1,32 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types';
-import Style from 'style-it';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import Style from "style-it";
+import { Link } from "react-router-dom";
 
+import { useQuery, useApolloClient } from "@apollo/react-hooks";
+import { USER_CONTENTS } from "../../../graphql/query";
 
-import DashboardMenu from '../../Custom/DashboardMenu';
-import SearchBar from '../../Custom/SearchBar';
-import ProfilePreview from '../../Custom/ProfilePreview';
-import SubscriptionPreview from '../../Custom/SubscriptionPreview';
-import SmallReminderCard from '../../Custom/SmallReminderCard'
+import { Spin } from "antd";
+import DashboardMenu from "../../Custom/DashboardMenu";
+import SearchBar from "../../Custom/SearchBar";
+import ProfilePreview from "../../Custom/ProfilePreview";
+import SubscriptionPreview from "../../Custom/SubscriptionPreview";
+import SmallReminderCard from "../../Custom/SmallReminderCard";
 
+const Dashboard = (props) => {
+  const client = useApolloClient();
 
+  const { loading, data } = useQuery(USER_CONTENTS);
 
-const Dashboard = props => {
-  
+  if (data) console.log("user content ===" + data);
+  console.log(client);
 
-    return Style.it(`
+  return Style.it(
+    `
     .dashboard__container {
         display: grid;
         grid-template-columns: 200px 1fr 315px;
-        grid-gap: 20px;
+        grid-gap: 25px;
         min-height: 100vh;
         
       }
@@ -62,92 +69,74 @@ const Dashboard = props => {
         margin-bottom: 20px;
       }       
     `,
-    
-    <div className="dashboard__container">
-     <DashboardMenu  />
 
-     <div class="content">
+    <div className="dashboard__container">
+      <DashboardMenu />
+
+      <div className="content">
         <SearchBar />
 
-        <div class="main-content">
-          <div className='same__row'>
+        <div className="main-content">
+          <div className="same__row">
             <h1>Recent Reminders</h1>
-            <Link to='/dashboard/reminders'>View All</Link>
+            <Link to="/dashboard/reminders">View All</Link>
           </div>
-          
-          <div class="section">
-            {/* <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
 
-            <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
-
-            <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
-             <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
-
-            <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            /> */}
-
-            <SmallReminderCard 
-                title='Islamic Reminder' 
-                content=' Lorem ipsum dolor sit amet,  elit. Totam quos atque' 
-                bgColor='#fff'
-                secondButton
-                imageUrl='https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4'
-            />
-            
-
-          </div>
+          <>
+            {loading && !data ? (
+              <div
+                style={{
+                  margin: "Auto",
+                  marginTop: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
+            ) : (
+              <div className="reminders__preview-container section">
+                {data.userContents && data.userContents.length > 0 ? (
+                  data.userContents
+                    .slice(Math.max(data.userContents.length - 6, 0))
+                    .sort((a, b) => (a.id > b.id ? -1 : 1))
+                    .map((eachContent) => (
+                      <SmallReminderCard
+                        title={eachContent.title}
+                        content={eachContent.data}
+                        bgColor="#fff"
+                        tag={eachContent.reminder.name}
+                        by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
+                        imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
+                        key={eachContent.id}
+                        id={eachContent.id}
+                      />
+                    ))
+                ) : (
+                  <h2 className="empty__content-message">
+                    No Reminders Available yet, subscribe to start receiving
+                    reminders
+                  </h2>
+                )}
+              </div>
+            )}
+          </>
         </div>
-
       </div>
 
-     <div class="profile">
+      <div className="profile">
         <ProfilePreview />
-        
-        {/* <!-- New subscription should appear here for logged in user --> */}
 
-        <div class="subscription-container">
-            <h2 class="subscription-title">New Subscriptions </h2>
-            <SubscriptionPreview />  
+        <div className="subscription-container">
+          <h2 className="subscription-title">New Subscriptions </h2>
+          <SubscriptionPreview />
         </div>
-
       </div>
-      
-    </div> 
+    </div>
+  );
+};
 
-  )
-}
-
-Dashboard.propTypes = {
-
-}
+Dashboard.propTypes = {};
 
 export default Dashboard;

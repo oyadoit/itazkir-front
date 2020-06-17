@@ -64,15 +64,18 @@ const AllReminders = (props) => {
         ) : (
           <div className="all__reminders--card-container">
             {data.userContents && data.userContents.length > 0 ? (
-              data.userContents.map((eachContent) => (
+              data.userContents
+              .sort((a,b)=> (a.id > b.id) ? -1: 1)
+              .map((eachContent) => (
                 <SmallReminderCard
                   title={eachContent.title}
                   content={eachContent.data}
                   bgColor="#fff"
                   tag={eachContent.reminder.name}
                   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-                  imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
+                  // imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
                   key={eachContent.id}
+                  id={eachContent.id}
                 />
               ))
             ) : (
