@@ -18,7 +18,6 @@ import { logout } from '../../index'
 const Header = props => {
 
     const authToken = localStorage.getItem(AUTH_TOKEN)
-    
 
     return Style.it(
         `

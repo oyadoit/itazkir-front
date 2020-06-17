@@ -35,6 +35,7 @@ const client = new ApolloClient({
 export const logout = () => {
   localStorage.removeItem(AUTH_TOKEN)
   client.resetStore();
+  
 }
 
 
