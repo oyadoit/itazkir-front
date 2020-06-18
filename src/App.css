@@ -310,7 +310,8 @@ a:hover {
     display: flex;
 }
 .loader__container {
-    margin-top: 100px;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 
@@ -416,6 +417,16 @@ a:hover {
   .subscription-title {
     font-size: 1.3rem;
     margin-bottom: 20px;
+}
+
+.save__continue {
+    border: none;
+    padding: 15px;
+    border-radius: 2px;
+    background-color: #31DE28;
+    color: #fff !important;
+    margin-top: 5px;
+    font-size: 18px;
 }
 
 

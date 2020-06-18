@@ -18,8 +18,8 @@ const Dashboard = (props) => {
 
   const { loading, data } = useQuery(USER_CONTENTS);
 
-  if (data) console.log("user content ===" + data);
-  console.log(client);
+  // if (data) console.log("user content ===" + data);
+  // console.log(client);
 
   return Style.it(
     `

@@ -13,7 +13,7 @@ import { SINGLE_REMINDER } from "../../graphql/query";
 const SingleReminder = (props) => {
   const reminderId = props.match.params.reminderId;
   const title = props.match.params.title;
-  console.log("reminder===" + reminderId + title);
+  // console.log("reminder===" + reminderId + title);
 
   const { loading, data } = useQuery(SINGLE_REMINDER, {
     variables: {
@@ -22,7 +22,7 @@ const SingleReminder = (props) => {
     },
   });
 
-  console.log(data);
+  // console.log(data);
 
   return Style.it(
     `   .single__reminder-container {

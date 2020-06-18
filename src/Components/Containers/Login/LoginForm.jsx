@@ -16,7 +16,7 @@ import { Spin } from "antd";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { AUTH_TOKEN } from "../../../utils/constants";
-import { errorMessage } from "../../../utils/helpers"; //ant design error pop up
+import { errorMessage, saveToken } from "../../../utils/helpers"; //ant design error pop up
 import { LOGIN } from "../../../graphql/mutation"; // login mutation
 
 // frontend form Validation
@@ -58,7 +58,8 @@ const LoginForm = (props) => {
   if (result.data) {
     console.log(result.data);
     const token = result.data.tokenAuth.token;
-    saveUserData(token);
+    // saveUserData(token);
+    saveToken(token);
     if (AUTH_TOKEN) {
       return <Redirect to="/dashboard" />;
     } else {
@@ -131,7 +132,7 @@ const LoginForm = (props) => {
               <div className="login__forget__password-row">
                 <SubmitButton text="Login Here" />
 
-                <div loader__container>
+                <div className="loader__container">
                   {result.loading ? <Spin size="large" /> : ""}
                 </div>
 
@@ -169,9 +170,6 @@ const LoginForm = (props) => {
   );
 };
 
-const saveUserData = (token) => {
-  localStorage.setItem(AUTH_TOKEN, token);
-};
 
 LoginForm.propTypes = {};
 

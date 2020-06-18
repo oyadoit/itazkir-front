@@ -1,12 +1,12 @@
 import { message, Button } from 'antd';
 import _ from "lodash";
+import { AUTH_TOKEN } from "../utils/constants";
 
 //function from ant design to display error message
 export const errorMessage = (args) => {
     message.error(args);
     message.config({
         top: 200,
-        duration: 4,
         rtl: false,
         
     })
@@ -22,3 +22,8 @@ export const textContentReducer = (what, length) => {
 export const initialGetters = (fullName) => {
     return fullName.split(" ").map((n)=>n[0]).join(" ").toUpperCase();
 }
+
+export const saveToken = (token) => {
+    localStorage.setItem(AUTH_TOKEN, token);
+}
+

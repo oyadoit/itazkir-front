@@ -12,7 +12,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { SUBSCRIBE } from "../../graphql/mutation";
 import { CURRENT_USER_SUBSCRIPTIONS } from "../../graphql/query";
 
-const SmallSubscriptionCard = ({ imageUrl, title, id }) => {
+const SmallSubscriptionCard = ({ title, id }) => {
   const [Subscribe, { loading }] = useMutation(SUBSCRIBE, {
     variables: { reminderId: id },
     update(proxy, result) {

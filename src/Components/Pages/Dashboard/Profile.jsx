@@ -23,7 +23,7 @@ const Profile = (props) => {
   });
 
   // if(loading) return <p>loading..</p>
-  if (data) console.log(data);
+  // if (data) console.log(data);
   return Style.it(
     `
         .profile__container {

@@ -33,7 +33,7 @@ const Features = () => {
                 color={'#31DE28'}
                 icon={'fa-hourglass-start'}
             > 
-                <i class="fa fa-hourglass-start" aria-hidden="true"></i> 
+                <i className="fa fa-hourglass-start" aria-hidden="true"></i> 
             </FeatureCard>
             <FeatureCard 
                 header='Step 2' 
@@ -41,14 +41,14 @@ const Features = () => {
                 color={'pink'}
                 icon={'fa-check-circle-o'}
             >
-                <i class="fa fa-check-circle-o" aria-hidden="true"></i>    
+                <i className="fa fa-check-circle-o" aria-hidden="true"></i>    
             </FeatureCard> 
             <FeatureCard 
                 header='Step 3' 
                 content={'Relax and start receiving reminder your selected reminders'} 
                 color={'orange'}
             >
-                <i class="fa fa-clock-o" aria-hidden="true"></i>    
+                <i className="fa fa-clock-o" aria-hidden="true"></i>    
             </FeatureCard> 
 
             

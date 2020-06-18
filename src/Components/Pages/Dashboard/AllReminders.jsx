@@ -18,8 +18,8 @@ const AllReminders = (props) => {
 
   
   //   if (loading) return <p>loading..</p>;
-  if (data) console.log(data);
-  let savedState = saveState(data)
+  // if (data) console.log(data);
+  // let savedState = saveState(data)
 
   return Style.it(
     `

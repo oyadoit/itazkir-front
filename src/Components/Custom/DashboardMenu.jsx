@@ -135,7 +135,7 @@ const DashboardMenu = (props) => {
             </NavLink>
           </li>
           <li>
-            <Link onClick={logout}>
+            <Link to="#0" onClick={logout}>
               <img
                 className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869999/iTazkir/alert-circle_wiywpu.svg"
