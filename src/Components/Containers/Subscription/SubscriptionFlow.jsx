@@ -44,7 +44,7 @@ const SubscriptionFlow = () => {
                       ) : (
                         <>
                             {
-                                data.allReminders.length > 0 ? (data.allReminders.slice(0,6).map((eachReminder) => (
+                                data.allReminders.length > 0 ? (data.allReminders.slice(0,8).map((eachReminder) => (
                                     <SubscriptionCard 
                                         title={eachReminder.name} 
                                         content={eachReminder.name}

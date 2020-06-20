@@ -11,7 +11,7 @@ import { useMutation } from "@apollo/react-hooks"
 const SubscriptionCard = ({
   bgColor,
   title, id
-}) => {
+}) => { 
 
   const [Subscribe, {loading}] = useMutation(SUBSCRIBE, {
     variables: { reminderId: id },
@@ -33,11 +33,13 @@ const SubscriptionCard = ({
     `
         .card__container {
             background-color: ${bgColor};
-            width: 340px;
-            height: 210px;
+            // width: 340px;
+            // height: 210px;
             border-radius: 2px;
             display: flex;
             padding: 20px;
+            min-width: 260px !important;
+            min-height: 150px !important;
             
         }
         .card__content--right {
@@ -46,13 +48,13 @@ const SubscriptionCard = ({
             justify-content: space-evenly;
             color: #fff !important;
         }
-        .card__image {
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            margin-right: 30px;
-            margin-top:11px;
-        }
+        // .card__image {
+            // border-radius: 50%;
+            // width: 50px;
+            // height: 50px;
+            // margin-right: 30px;
+            // margin-top:11px;
+        // }
         .card__text {
             color: #fff !important;
         }
@@ -62,12 +64,22 @@ const SubscriptionCard = ({
             color: #fff !important;
             
         }
+        @media only screen and (max-width: 356px) {
+          .card__title {
+            margin-bottom: 0px !important;
+            font-size: 13px;
+          }
+          .card__text {
+            margin-bottom: 0px !important;
+            font-size: 11px;
+          }
+        }
     `,
     <div className="card__container">
       <div>
         <Avatar
           style={{
-            // backgroundColor: "#31DE28",
+            backgroundColor: "#31DE28",
             color: "#fff",
             fontWeight: "bold",
             verticalAlign: "middle",

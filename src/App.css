@@ -324,18 +324,21 @@ a:hover {
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 2px;
-    padding: 90px;  
-    /* display: flex; */
+    padding: 90px; 
+    display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .reminder__subscription--container {
+    
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
-    grid-gap: 30px;
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) ); */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr) ) !important ;
+    grid-gap: 40px;
     padding-top: 30px;
     padding-bottom: 80px;
+    
 }
 .subscription__heading {
     font-size: 33px;
@@ -427,6 +430,8 @@ a:hover {
     color: #fff !important;
     margin-top: 5px;
     font-size: 18px;
+    align-items: center;
+    text-align: center;
 }
 
 
@@ -572,9 +577,6 @@ a:hover {
     .recent__reminder--cards {
         padding: 0px;
     }
-    /* .main__content--container {
-
-    } */
 }
 
 @media only screen and (max-width: 356px) {
@@ -604,6 +606,75 @@ a:hover {
     }
     .download-from-store {
         width: 120px !important;
+    }
+}
+
+@media only screen and (max-width: 1039px) {
+    .subscription__flow--container {
+        margin-right: 80px;
+        margin-left:  80px;
+    }
+}
+
+@media only screen and (max-width: 899px) {
+    .subscription__flow--container {
+        margin-right: 20px;
+        margin-left:  20px;
+    }
+}
+@media only screen and (max-width: 779px) {
+    .reminder__subscription--container {
+        width: 300px;
+        margin: auto;
+    }
+    .subscription__flow--container {
+        margin-right: 80px;
+        margin-left:  80px;
+    }
+    .subscription__heading {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (max-width: 779px) {
+    .subscription__flow--container {
+        padding:  30px;
+        margin-right: 40px;
+        margin-left:  40px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .subscription__heading {
+        font-size: 24px;
+    }
+    .subscription__text {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 435px) {
+    .subscription__flow--container {
+        margin: 40px 10px 10px 10px;
+        padding: 15px;
+    }
+}
+@media only screen and (max-width: 356px) {
+    .subscription__flow--container {
+        margin: 0px;
+        padding: 35px 15px 15px 15px;
+    }
+    .subscription__heading {
+        font-size: 19px;
+    }
+    .subscription__text {
+        font-size: 16px;
+    }
+    .reminder__subscription--container {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+    }
+    .card__container {
+        width: 140px;
+        height: 160px;
+        padding: 10px;
     }
 }
 
