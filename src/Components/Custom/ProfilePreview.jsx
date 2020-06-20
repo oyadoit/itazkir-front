@@ -1,12 +1,20 @@
 import React from "react";
 import Style from "style-it";
 
-
-
+import { useQuery } from "@apollo/react-hooks"
+import { ME } from "../../graphql/query"
 import { Avatar } from "antd";
 import { Link } from "react-router-dom";
+import { initialGetters, textContentReducer } from "../../utils/helpers"
 
 const ProfilePreview = () => {
+
+  const { loading, data } = useQuery(ME, {
+
+  });
+   if(loading) return null;
+  
+
   return (
     <div className="profile-preview">
       <div className="">
@@ -14,7 +22,7 @@ const ProfilePreview = () => {
       </div>
       <Link to='/dashboard/profile'>
         <div className="profile-preview-info">
-          <span className="profile-preview-text">Imran Yaqub</span>
+          <span className="profile-preview-text">{ data ? textContentReducer(( data.currentUser.firstName + " " + data.currentUser.lastName), 12) : (<p>loading..</p>)}</span>
           
           <Avatar
             style={{
@@ -25,7 +33,9 @@ const ProfilePreview = () => {
             }}
             size="large"
           >
-            A M
+            {
+              initialGetters(`${data.currentUser.firstName}  ${data.currentUser.lastName}`)
+            }
           </Avatar>
         </div>
       </Link>

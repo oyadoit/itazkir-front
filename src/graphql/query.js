@@ -5,18 +5,31 @@ export const ME = gql`
   query {
     currentUser {
       id
-      lastLogin
       email
       firstName
       lastName
-      isActive
-      phone
       subscriptionSet {
         id
       }
     }
   }
 `;
+
+export const ME_FROM_CACHE = gql`
+  query {
+    currentUser {
+      id @client
+      email @client
+      firstName @client
+      lastName @client
+      subscriptionSet {
+        id @client
+      }
+    }
+  }
+`;
+
+
 
 //query all the reminders a user can subscribe to
 export const ALL_REMINDERS = gql`

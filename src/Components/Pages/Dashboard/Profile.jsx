@@ -7,7 +7,7 @@ import { Spin } from "antd";
 
 import { AuthContext } from "../../../context/auth";
 
-import { ME } from "../../../graphql/query";
+import { ME, ME_FROM_CACHE } from "../../../graphql/query";
 import { useQuery } from "@apollo/react-hooks";
 // import { USER_TOTAL_REMINDER } from "../../../graphql/query"
 
@@ -16,7 +16,7 @@ const Profile = (props) => {
 
   
 
-  const { loading, data } = useQuery(ME, {
+  const { loading, data } = useQuery(ME_FROM_CACHE, {
     update() {
       context.login(data.currentUser);
     },
