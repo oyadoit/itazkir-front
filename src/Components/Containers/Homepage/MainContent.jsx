@@ -22,6 +22,7 @@ const MainContent = props => {
                     imageUrl='https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584607070/iTazkir/get_google_play_lmo8uc.png'
                     className='download-from-store'
                     alt='Download from android store'
+                    to="#0"
                 />
 
                 <DownloadFromStore 

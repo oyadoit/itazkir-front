@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
-import { NavLink, Link, useHistory } from 'react-router-dom';
+import { NavLink,Redirect, Link, useHistory } from 'react-router-dom';
 
 import { AUTH_TOKEN } from '../../utils/constants'
 import {logout } from '../../index'
@@ -14,7 +14,6 @@ const DashboardMenu = (props) => {
     `
     .menu {
           grid-column-start: 1;
-          // background-color: #343951;
           color: white;
           display: flex;
           flex-direction: column;
@@ -49,6 +48,7 @@ const DashboardMenu = (props) => {
           height: 64px;
           padding-left: 32px;
           display: flex;
+          padding-right: 30px;
           flex-direction: row;
           align-items: center;
           justify-content: flex-start;
@@ -135,16 +135,16 @@ const DashboardMenu = (props) => {
             </NavLink>
           </li>
           <li>
-            <a onClick={logout}>
+            <Link to="#0" onClick={logout}>
               <img
                 className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869999/iTazkir/alert-circle_wiywpu.svg"
-                alt="alert"
+                alt="alert" 
               />
               <span>
                 Logout
               </span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

@@ -26,7 +26,7 @@ export const CREATE_USER = gql`
         firstName: $firstName,
         email: $email, 
         password: $password, 
-        lastName:$lastName
+        lastName:$lastName,
     ) {
         user
             {

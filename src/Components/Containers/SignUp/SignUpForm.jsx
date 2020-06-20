@@ -14,10 +14,8 @@ import { useMutation } from '@apollo/react-hooks'
 import { FormValidation } from "calidation";
 import {signupConfig} from '../../../utils/validation';
 
-import { CREATE_USER } from '../../../graphql/mutation'
-import { errorMessage } from '../../../utils/helpers'
-
-
+import { CREATE_USER, LOGIN } from '../../../graphql/mutation'
+import { errorMessage, saveToken } from '../../../utils/helpers'
 
 
 const SignUpForm = props => {
@@ -28,47 +26,51 @@ const SignUpForm = props => {
         email: '',
         password: '',
     });
+
+    const [generateToken, {data: token}] = useMutation(LOGIN, {
+        variables: {
+            email: values.email,
+            password: values.password
+        }
+    });
+
     
+    const [SignUp, {loading, data, error, called}] = useMutation(CREATE_USER, {
 
+        onError({graphQLErrors, networkError}){
+            if (graphQLErrors) graphQLErrors.map(err => {errorMessage("User already exist, try a different email address"||err.message)})  
+            if (networkError) errorMessage("You are not connected to the internet");
 
-    const [SignUp, {loading, data}] = useMutation(CREATE_USER, {
-
-            onError({graphQLErrors, networkError}){
-                if (graphQLErrors) graphQLErrors.map(err => {errorMessage(err.message)})  
- 
-                if (networkError) errorMessage("You are not connected to the internet");
-            
-            },
-
-            variables: values,
+        },
+        variables: values,
         
     });
 
-
     
-    
-    const handleSubmit = ({ isValid }) => {
+    const handleSubmit =  async ({ isValid}) => {
         if(isValid){
-            SignUp();
-        }
+            SignUp().then(() => {
+                generateToken();
+                console.log("generate token got called");
+            }).catch((err) => console.log(err))
+        }  
     }
-
-   
 
     const handleChange = (e) => {
         setValues({
             ...values,
             [e.target.name]: e.target.value,
         });
-    } 
-      
+    }
 
 
-    if (data) {
-
-        // Redirect to dashboard page
+    if (data && token) {
+        // console.log(token.tokenAuth)
+        const newToken = token.tokenAuth.token;
+        saveToken(newToken);
         return <Redirect to='/get-started' />
     }
+
 
 
     return (
@@ -153,7 +155,7 @@ const SignUpForm = props => {
                             <SubmitButton 
                                 text='Create Account'                 
                             />
-                            <div loader__container>
+                            <div className="loader__container">
                                 {loading ? <Spin size="large" /> : ('')}
                             </div>
                         </div>

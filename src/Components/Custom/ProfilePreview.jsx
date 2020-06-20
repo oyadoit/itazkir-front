@@ -1,19 +1,29 @@
 import React from "react";
 import Style from "style-it";
 
+import { useQuery } from "@apollo/react-hooks"
+import { ME } from "../../graphql/query"
 import { Avatar } from "antd";
 import { Link } from "react-router-dom";
+import { initialGetters, textContentReducer } from "../../utils/helpers"
 
 const ProfilePreview = () => {
+
+  const { loading, data } = useQuery(ME, {
+
+  });
+   if(loading) return null;
+  
+
   return (
-    <div class="profile-preview">
-      <div class="profile-preview-actions">
-        <span class="profile-preview-text">Welcome </span>
+    <div className="profile-preview">
+      <div className="">
+        <span className="profile-preview-text">Welcome </span>
       </div>
       <Link to='/dashboard/profile'>
-        <div class="profile-preview-info">
-          <span class="profile-preview-text">Imran Yaqub</span>
-          {/* <img src="https://avatars0.githubusercontent.com/u/8108337?s=460&v=4" class="profile-preview-info-photo" /> */}
+        <div className="profile-preview-info">
+          <span className="profile-preview-text">{ data ? textContentReducer(( data.currentUser.firstName + " " + data.currentUser.lastName), 12) : (<p>loading..</p>)}</span>
+          
           <Avatar
             style={{
               backgroundColor: "#31DE28",
@@ -23,7 +33,9 @@ const ProfilePreview = () => {
             }}
             size="large"
           >
-            A M
+            {
+              initialGetters(`${data.currentUser.firstName}  ${data.currentUser.lastName}`)
+            }
           </Avatar>
         </div>
       </Link>

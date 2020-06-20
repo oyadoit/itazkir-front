@@ -1,39 +1,43 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Style from 'style-it';
+import React from "react";
+import PropTypes from "prop-types";
+import Style from "style-it";
 
-import SubscribeButton from '../Custom/SubscribeButton';
-import { errorMessage } from '../../utils/helpers'
+import { Avatar } from "antd";
 
-import { useMutation } from '@apollo/react-hooks'
-import { SUBSCRIBE } from '../../graphql/mutation'
-import { CURRENT_USER_SUBSCRIPTIONS } from '../../graphql/query'
 
-const SmallSubscriptionCard = ({imageUrl, title, id }) => {
-    const [Subscribe, {loading }] = useMutation(SUBSCRIBE, {
-        variables: { reminderId: id },
-        update(proxy, result) {
-            const data = proxy.readQuery({
-                query: CURRENT_USER_SUBSCRIPTIONS
-            });
-                 
-            data.userSubscriptions = [result.data.createSubscription, ...data.userSubscriptions ];
-            proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data});
-        },
-        onError({graphQLErrors, networkError}){
-            if (graphQLErrors) graphQLErrors.map(err => {errorMessage('You can only subscribe once')})  
+import SubscribeButton from "../Custom/SubscribeButton";
+import { errorMessage, initialGetters, textContentReducer } from "../../utils/helpers";
 
-            if (networkError) errorMessage("You are not connected to the internet");
-            
-        },
+import { useMutation } from "@apollo/react-hooks";
+import { SUBSCRIBE } from "../../graphql/mutation";
+import { CURRENT_USER_SUBSCRIPTIONS } from "../../graphql/query";
 
-    })
-    // console.log(id)
+const SmallSubscriptionCard = ({ title, id }) => {
+  const [Subscribe, { loading }] = useMutation(SUBSCRIBE, {
+    variables: { reminderId: id },
+    update(proxy, result) {
+      const data = proxy.readQuery({
+        query: CURRENT_USER_SUBSCRIPTIONS,
+      });
 
-    // if(loading) return <p>loading..</p>
-    // if(data) console.log(data)
+      data.userSubscriptions = [
+        result.data.createSubscription,
+        ...data.userSubscriptions,
+      ];
+      proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data });
+    },
+    onError({ graphQLErrors, networkError }) {
+      if (graphQLErrors)
+        graphQLErrors.map((err) => {
+          errorMessage("You can only subscribe once");
+        });
 
-    return Style.it(`
+      if (networkError) errorMessage("You are not connected to the internet");
+    },
+  });
+
+  return Style.it(
+    `
         .card__image {
             border-radius: 50%;
             width: 50px;
@@ -52,38 +56,39 @@ const SmallSubscriptionCard = ({imageUrl, title, id }) => {
         .small__subscription__card--container {
             display: flex;
             padding: 20px;
-            justify-content: space-evenly;
+            padding-right: 10px;
+            justify-content: space-between;
             align-items: center;
-            // box-shadow: rgba(3, 27, 78, 0.06) 0px 2px 4px;
             box-shadow: 10px 10px 42px -35px rgba(0, 0, 0, 0.31);
             margin-bottom: 20px;
             border-radius: 3px;
             background-color: #fff;
 
+
         }
         .title__content--container {
-            margin-right: 15px;
+            margin-right: 5px;
+            margin-left: 5px;
         }
     `,
-        <div className='small__subscription__card--container'>
-            <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
-            <div className='title__content--container'>
-                <h4 className='card__title'>{title}</h4>
-                {/* <p className='card__text'>{content}</p> */}
-            </div>
-            <SubscribeButton 
-                text='Subscribe'
-                onClick={Subscribe}
-            />
-            
-        </div>
-             
-    )
-}
+    <div className="small__subscription__card--container">
+      <Avatar
+        style={{
+          fontWeight: "bold",
+        }}
+        size="large"
+      >
+          {initialGetters(title)}
+      </Avatar>
 
-SmallSubscriptionCard.propTypes = {
+      <div className="title__content--container">
+        <h4 className="card__title">{textContentReducer(title, 16)}</h4>
+      </div>
+      <SubscribeButton text="Subscribe" onClick={Subscribe} />
+    </div>
+  );
+};
 
-}
+SmallSubscriptionCard.propTypes = {};
 
-export default SmallSubscriptionCard
-
+export default SmallSubscriptionCard;

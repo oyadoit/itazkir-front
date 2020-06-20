@@ -1,11 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Style from 'style-it';
+import React from "react";
+import PropTypes from "prop-types";
+import Style from "style-it";
 
-import SubscribeButton from './SubscribeButton';
+import { initialGetters, textContentReducer } from "../../utils/helpers";
 
-const UserCurrentSubscription = ({imageUrl, title, content, }) => {
-    return Style.it(`
+import SubscribeButton from "./SubscribeButton";
+import { Avatar } from "antd";
+
+const UserCurrentSubscription = ({ imageUrl, title, content }) => {
+  return Style.it(
+    `
         .card__image {
             border-radius: 50%;
             width: 50px;
@@ -36,22 +40,25 @@ const UserCurrentSubscription = ({imageUrl, title, content, }) => {
             margin-right: 15px;
         }
     `,
-        <div className='small__subscription__card--container'>
-            <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
-            <div className='title__content--container'>
-                <h4 className='card__title'>{title}</h4>
-                
-            </div>
-            <SubscribeButton text='Unsubscribe'/>
-            
-        </div>
-             
-    )
-}
+    <div className="small__subscription__card--container">
+      <Avatar
+        style={{
+          fontWeight: "bold",
+          marginRight: "20px",
+        }}
+        size="large"
+      >
+        {initialGetters(title)}
+      </Avatar>
 
-UserCurrentSubscription.propTypes = {
+      <div className="title__content--container">
+        <h4 className="card__title">{textContentReducer(title, 15)}</h4>
+      </div>
+      <SubscribeButton text="Unsubscribe" />
+    </div>
+  );
+};
 
-}
+UserCurrentSubscription.propTypes = {};
 
-export default UserCurrentSubscription
-
+export default UserCurrentSubscription;
