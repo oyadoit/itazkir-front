@@ -18,6 +18,7 @@ import AllReminders from './Components/Pages/Dashboard/AllReminders';
 import AllSubscriptions from './Components/Pages/Dashboard/Subscriptions';
 import AuthenticatedRoute from './Components/Custom/AuthenticatedRoute';
 import SingleReminder from './Components/Pages/SingleReminder';
+import NewReminder from "./Components/Pages/Dashboard/NewReminder";
 
 function App() {  
   
@@ -37,6 +38,7 @@ function App() {
             <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
             <AuthenticatedRoute exact path="/dashboard/profile" component={Profile} />
             <AuthenticatedRoute exact path="/dashboard/reminders" component={AllReminders} />
+            <AuthenticatedRoute exact path="/dashboard/create-reminder" component={NewReminder} />
             <AuthenticatedRoute exact path="/dashboard/subscriptions" component={AllSubscriptions} />
             <AuthenticatedRoute exact path="/dashboard/reminders/:reminderId/:title" component={SingleReminder} />
           {/* </AuthProvider> */}
