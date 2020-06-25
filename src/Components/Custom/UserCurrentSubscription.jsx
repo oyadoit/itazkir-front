@@ -7,7 +7,9 @@ import { initialGetters, textContentReducer } from "../../utils/helpers";
 import SubscribeButton from "./SubscribeButton";
 import { Avatar } from "antd";
 
+
 const UserCurrentSubscription = ({ imageUrl, title, content }) => {
+  
   return Style.it(
     `
         .card__image {
