@@ -31,7 +31,7 @@ const SingleReminder = (props) => {
             flex-direction: column;
         }
         .reminder__container {
-            margin: 50px 120px ;
+            margin: 50px 100px ;
             padding: 50px;
             background-color: rgba(63, 61, 86, 0.055);
             min-height: 85vh;
@@ -41,6 +41,36 @@ const SingleReminder = (props) => {
             letter-spacing: 0.9px;
             position: relative;
             
+        }
+        @media only screen and (max-width: 960px) {
+          .reminder__container {
+            margin: 50px 50px;
+          }
+          .created__by, .tag {
+            font-size: 12px;
+          }
+        }
+        @media only screen and (max-width: 625px) {
+          .reminder__container {
+            line-height: 28px;
+            margin: 0px 0px;
+            padding: 20px;
+          }
+          .reminder__footer {
+            margin-right: 25px !important;
+          }
+          .single__reminder-heading {
+            font-size: 18px;
+          }
+          .single__reminder-content {
+            font-size: 14px;
+          }
+          .created__by, .tag {
+            font-size: 10px;
+          }
+          .single__reminder--content-container {
+            margin-bottom: 30px;
+          }
         }
         .reminder__footer {
           position: absolute; 
@@ -59,6 +89,8 @@ const SingleReminder = (props) => {
         .single__reminder-image {
           width: 100%;
         }
+        
+        
 
   `,
     <div className="single__reminder-container">
@@ -87,19 +119,19 @@ const SingleReminder = (props) => {
               alt="Reminder Image"/>
             </div>
 
-            <div>
-              <h1>{data.content.title}</h1>
-              <p>{data.content.data}</p>
+            <div className="single__reminder--content-container">
+              <h1 className="single__reminder-heading">{data.content.title}</h1>
+              <p className="single__reminder-content">{data.content.data}</p>
             </div>
 
             <br />
             <div className="reminder__footer">
               <Link to="/dashboard/reminders">back</Link>
-              <p>
-                created by: {data.content.reminder.owner.firstName}{" "}
+              <p className="created__by">
+                 by: {data.content.reminder.owner.firstName}{" "}
                 {data.content.reminder.owner.lastName}
               </p>
-              <p>tag: {data.content.reminder.name}</p>
+              <p className="tag">tag: {data.content.reminder.name}</p>
             </div>
           </>
         )}

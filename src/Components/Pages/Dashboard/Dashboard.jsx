@@ -13,6 +13,8 @@ import ProfilePreview from "../../Custom/ProfilePreview";
 import SubscriptionPreview from "../../Custom/SubscriptionPreview";
 import SmallReminderCard from "../../Custom/SmallReminderCard";
 
+import MobileHeader from "../../Custom/MobileHeader";
+
 // import Header from "../../Custom/Header";
 
 
@@ -69,7 +71,7 @@ const Dashboard = (props) => {
       }       
     `,
     <div>
-      {/* <Header /> */}
+      <MobileHeader />
       <div className="dashboard__container">
         <DashboardMenu />
 

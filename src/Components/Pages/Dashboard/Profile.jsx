@@ -4,6 +4,7 @@ import Style from "style-it";
 
 import DashboardMenu from "../../Custom/DashboardMenu";
 import { Spin } from "antd";
+import MobileHeader from "../../Custom/MobileHeader";
 
 import { AuthContext } from "../../../context/auth";
 
@@ -68,56 +69,59 @@ const Profile = (props) => {
         }
     `,
 
-    <div className="profile__container">
-      <DashboardMenu />
-      <div className="profile__content--container">
-        {loading ? (
-          <div
-            style={{
-              margin: "Auto",
-              marginTop: "60px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              alignContent: "center",
-            }}
-          >
-            <Spin size="large" />
-          </div>
-        ) : (
-          <>
-            <div className="image__name--row">
-              <div className="profile__image--container">
-                <img
-                  className="profile__image"
-                  src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/XuNd60zUjvMskzW820ab9ecsr633"
-                  alt="User Profile Image"
-                />
-              </div>
-              <div className="user__details">
-                <h1>{data.currentUser.email}</h1>
-                <h2>
-                  {data.currentUser.firstName} {data.currentUser.lastName}
-                </h2>
-              </div>
+    <div>
+      <MobileHeader />
+      <div className="profile__container">
+        <DashboardMenu />
+        <div className="profile__content--container">
+          {loading ? (
+            <div
+              style={{
+                margin: "Auto",
+                marginTop: "60px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                alignContent: "center",
+              }}
+            >
+              <Spin size="large" />
             </div>
-            <div className="card__summary--container">
-              <div className="card__summary">
-                <h2>Your Current Subscriptions</h2>
-                <h1>{data.currentUser.subscriptionSet.length}</h1>
+          ) : (
+            <>
+              <div className="image__name--row">
+                <div className="profile__image--container">
+                  <img
+                    className="profile__image"
+                    src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/XuNd60zUjvMskzW820ab9ecsr633"
+                    alt="User Profile Image"
+                  />
+                </div>
+                <div className="user__details">
+                  <h1>{data.currentUser.email}</h1>
+                  <h2>
+                    {data.currentUser.firstName} {data.currentUser.lastName}
+                  </h2>
+                </div>
               </div>
+              <div className="card__summary--container">
+                <div className="card__summary">
+                  <h2>Your Current Subscriptions</h2>
+                  <h1>{data.currentUser.subscriptionSet.length}</h1>
+                </div>
 
-              <div className="card__summary">
-                <h2>Your Total Reminders</h2>
-                <h1>
-                  {data.currentUser.reminderSet
-                    ? data.currentUser.reminderSet.length
-                    : "0"}
-                </h1>
+                <div className="card__summary">
+                  <h2>Your Total Reminders</h2>
+                  <h1>
+                    {data.currentUser.reminderSet
+                      ? data.currentUser.reminderSet.length
+                      : "0"}
+                  </h1>
+                </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

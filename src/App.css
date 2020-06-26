@@ -4,9 +4,6 @@ html {
     overflow-x: hidden;
 }
 
-* {
-    /* font-family: 'Comfortaa', cursive !important; */
-}
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -469,10 +466,11 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.reminder__container {
+.create__reminder-container {
     padding: 100px;
     padding-top: 30px;
     margin: auto;
+    border-bottom: 1px solid rgba(59, 58, 58, 0.534);
 }
 .create__reminder-form {
     width: 200px;
@@ -481,7 +479,56 @@ a:hover {
     font-size: 30px;
     font-weight: 700;
     font-style: itallic;
+}
+
+/* //create reminder content */
+.reminder__selector {
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 30px;
+}
+.create__content-heading-container{
+    display: flex;
+    margin-bottom: 20px;
+    /* justify-content: space-around; */
+}
+.reminder__image-upload {
+    margin-bottom: 15px;
+}
+
+.reminder__image-upload::before {
+    content: 'Select image';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    /* outline: none; */
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
   }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+
+  .reminders__list-container {
+      display: flex;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+  }
+  .reminder__list-item {
+      padding: 10px;
+      background-color: linear-gradient(top, #f9f9f9, #e3e3e3);;
+      border: 2px #31DE28 solid;
+      cursor: pointer;
+      margin: 5px;
+      border-radius: 5px;
+  }
+
 
 
 /* media query */
@@ -548,6 +595,9 @@ a:hover {
 }
 
 @media only screen and (max-width: 800px) {
+    /* .hamburger__menu {
+        display: inline-block !important;
+    } */
     .signup__container {
         display: block !important;
         margin-right: 120px !important;
@@ -567,9 +617,9 @@ a:hover {
         /* margin-top: 20px; */
         padding-top: 10px;
     }
-    .main__content--right {
+    /* .main__content--right {
         display: none;
-    }
+    } */
 }
 
 @media only screen and (max-width: 625px) {
@@ -789,5 +839,35 @@ a:hover {
     .card__summary {
         padding-right: 0px !important;
         width: 200px !important;
+    }
+}
+
+/* create new reminder media query */
+
+@media only screen and (max-width: 768px) {
+    .create__reminder-container  {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    .new__reminder-container {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    .create__content-heading {
+        font-size: 15px;
+    }
+    
+}
+
+
+
+/* header for mobile screen */
+.mobile__header {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile__header {
+        display: grid;
     }
 }

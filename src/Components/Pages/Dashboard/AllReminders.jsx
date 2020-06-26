@@ -6,6 +6,8 @@ import { Spin } from "antd";
 import DashboardMenu from "../../Custom/DashboardMenu";
 import SmallReminderCard from "../../Custom/SmallReminderCard";
 import SearchBar from "../../Custom/SearchBar";
+import MobileHeader from "../../Custom/MobileHeader";
+
 import { USER_CONTENTS } from "../../../graphql/query";
 
 import { MenuButton } from "../../Custom/Menu";
@@ -40,6 +42,7 @@ const AllReminders = (props) => {
         }
     `,
     <div className="all__reminders--page">
+      <MobileHeader />
       <DashboardMenu />
       <div className="all__reminders--container">
         <h1>All Reminders</h1>

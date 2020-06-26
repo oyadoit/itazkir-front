@@ -7,6 +7,7 @@ import { textContentReducer } from '../../../utils/helpers'
 import DashboardMenu from "../../Custom/DashboardMenu";
 import SmallSubscriptionCard from "../../Custom/SmallSubscriptionCard";
 import UserCurrentSubscription from "../../Custom/UserCurrentSubscription";
+import MobileHeader from "../../Custom/MobileHeader";
 
 import { useQuery } from "@apollo/react-hooks";
 import { CURRENT_USER_SUBSCRIPTIONS } from "../../../graphql/query";
@@ -56,6 +57,7 @@ const Subscriptions = (props) => {
         }
     `,
     <div className="subscriptions__container">
+      <MobileHeader />
       <DashboardMenu />
 
       <div className="user__subscriptions--container">
