@@ -9,8 +9,8 @@ import { ALL_REMINDERS } from "../../../graphql/query"
 
 // components
 import SubscriptionCard from '../../Custom/SubscriptionCard';
-import SubmitButton from '../../Custom/SubmitButton';
-import { textContentReducer,  } from "../../../utils/helpers"
+// import SubmitButton from '../../Custom/SubmitButton';
+// import { textContentReducer,  } from "../../../utils/helpers"
 import { Spin } from 'antd';
 
 const SubscriptionFlow = () => {

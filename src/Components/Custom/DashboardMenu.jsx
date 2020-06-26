@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
-import { NavLink,Redirect, Link, useHistory } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
-import { AUTH_TOKEN } from '../../utils/constants'
+// import { AUTH_TOKEN } from '../../utils/constants'
 import {logout } from '../../index'
 
 const DashboardMenu = (props) => {
   
-  // const history = useHistory()
 
   return Style.it(
     `
@@ -88,9 +87,9 @@ const DashboardMenu = (props) => {
         }
     `,
 
-    <div className="menu">
+    <div className="menu hamburger__menu">
       <div className="brand">
-        <p><Link to='/'>iTazkir</Link></p>
+        <p><Link to='/' className="header__logo--icon">iTazkir</Link></p>
       </div>
       <nav className="menu-list">
         <ul>

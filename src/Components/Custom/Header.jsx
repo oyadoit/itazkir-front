@@ -61,6 +61,7 @@ const Header = (props) => {
             opacity: 1;
             display: block;
         }
+        
 
         ul li ul li {
             clear: both;
@@ -72,7 +73,7 @@ const Header = (props) => {
     <div className="header">
       <div className="header__logo--container">
         <Link to="/" className="header__logo--icon">
-          iTazkir
+          ITazkir
         </Link>
       </div>
       <div className="nav__container">
@@ -86,7 +87,7 @@ const Header = (props) => {
                   </Link>
                 </li>
                 <li>
-                  <Link onClick={logout} className="button__green">
+                  <Link to="#0" onClick={logout} className="button__green">
                     Logout
                   </Link>
                 </li>

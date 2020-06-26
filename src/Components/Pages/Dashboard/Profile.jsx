@@ -7,23 +7,21 @@ import { Spin } from "antd";
 
 import { AuthContext } from "../../../context/auth";
 
-import { ME, ME_FROM_CACHE } from "../../../graphql/query";
+import { ME } from "../../../graphql/query";
 import { useQuery } from "@apollo/react-hooks";
 // import { USER_TOTAL_REMINDER } from "../../../graphql/query"
 
 const Profile = (props) => {
   const context = useContext(AuthContext);
 
-  
-
-  const { loading, data } = useQuery(ME_FROM_CACHE, {
-    update() {
-      context.login(data.currentUser);
-    },
+  const { loading, data } = useQuery(ME, {
+    // update() {
+    //   context.login(data.currentUser);
+    // },
   });
 
   // if(loading) return <p>loading..</p>
-  // if (data) console.log(data);
+  if (data) console.log(data);
   return Style.it(
     `
         .profile__container {
@@ -108,17 +106,14 @@ const Profile = (props) => {
                 <h2>Your Current Subscriptions</h2>
                 <h1>{data.currentUser.subscriptionSet.length}</h1>
               </div>
-              
+
               <div className="card__summary">
                 <h2>Your Total Reminders</h2>
-                {/* <h1>{
-                  isLoading ? (<p>loading...</p>):(
-                   <p>finished</p>
-                  )
-                  }</h1> */}
-                  <h1>
-                  
-                  </h1>
+                <h1>
+                  {data.currentUser.reminderSet
+                    ? data.currentUser.reminderSet.length
+                    : "0"}
+                </h1>
               </div>
             </div>
           </>

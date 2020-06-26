@@ -60,8 +60,8 @@ const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondBut
                 <p className='card__text'>{content}</p>
                 <div>
                     <GetStartedButton 
-                    className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
-                    
+                        className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
+                        to="/signup"
                     >
                         View All
                     </GetStartedButton>

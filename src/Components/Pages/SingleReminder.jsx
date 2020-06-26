@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 
 import DashboardMenu from "../Custom/DashboardMenu";
+import Header from "../../Components/Custom/Header"
 import { Spin } from "antd";
 
 import { SINGLE_REMINDER } from "../../graphql/query";
@@ -27,10 +28,11 @@ const SingleReminder = (props) => {
   return Style.it(
     `   .single__reminder-container {
             display: flex;
+            flex-direction: column;
         }
         .reminder__container {
-            margin: 50px 50px 50px 20px;
-            padding: 40px;
+            margin: 50px 120px ;
+            padding: 50px;
             background-color: rgba(63, 61, 86, 0.055);
             min-height: 85vh;
             min-width: 80%;
@@ -51,9 +53,16 @@ const SingleReminder = (props) => {
         p {
             font-size: 18px;
         }
+        .single__reminder-image-container {
+          margin-bottom: 40px;
+        }
+        .single__reminder-image {
+          width: 100%;
+        }
+
   `,
     <div className="single__reminder-container">
-      <DashboardMenu />
+      <Header />
       <div className="reminder__container">
         {loading ? (
           <div
@@ -70,6 +79,14 @@ const SingleReminder = (props) => {
           </div>
         ) : (
           <>
+            <div className="single__reminder-image-container">
+              <img className="single__reminder-image" 
+              // src="https://cdn.pixabay.com/photo/2018/09/28/19/07/islamic-3710002_960_720.jpg" 
+              // src="https://i.pinimg.com/originals/b5/b5/fa/b5b5fab7e29309cf4d34bc3713607704.jpg"
+              src= {data.content.imageUrl ? (data.content.imageUrl) : ("https://cdn.pixabay.com/photo/2018/09/28/19/07/islamic-3710002_960_720.jpg")}
+              alt="Reminder Image"/>
+            </div>
+
             <div>
               <h1>{data.content.title}</h1>
               <p>{data.content.data}</p>

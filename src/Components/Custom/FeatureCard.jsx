@@ -11,17 +11,21 @@ const FeatureCard = props => {
             max-width: 290px;
             height: 320px;
             padding:20px;
-            box-shadow: 0 19px 28px rgba(122, 120, 120, 0.062), 0 10px 10px rgba(122, 120, 120, 0.062);
+            // box-shadow: 0 19px 28px rgba(122, 120, 120, 0.062), 0 10px 10px rgba(122, 120, 120, 0.062);
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction:column;
             align-items: center;
             justify-content: space-evenly;
             align-content: center;
             text-align: center;
+            transition: 0.4s;
         }
         .card__container:hover {
-            box-shadow: 0 19px 28px rgba(196, 188, 188, 0.068), 0 10px 10px rgba(0,0,0,0.22);
-            transition: .3s;
+            // box-shadow: 0 19px 28px rgba(196, 188, 188, 0.068), 0 10px 10px rgba(0,0,0,0.22);
+            // transition: .3s;
+            transform: translateY(-1rem) scale(1.0);
+            
         }
         .fa {
             font-size: 30px;

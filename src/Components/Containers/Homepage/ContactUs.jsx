@@ -67,12 +67,12 @@ const ContactUs = props => {
                 <div className='contact__us--right'>
                     <form className='contact__us--form'>
                         <Input 
-                            inputName='name'
+                            name='name'
                             inputType='text'
                             placeholder='Enter your Name'
                         />
                         <Input 
-                            inputName='email'
+                            name='email'
                             inputType='email'
                             placeholder='Enter your Email Address'
                         />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
 
@@ -13,6 +13,7 @@ const SubscriptionCard = ({
   title, id
 }) => { 
 
+  const [subscribed, setSubscribed] = useState(false)
   const [Subscribe, {loading}] = useMutation(SUBSCRIBE, {
     variables: { reminderId: id },
 
@@ -22,6 +23,7 @@ const SubscriptionCard = ({
       if (graphQLErrors)
         graphQLErrors.map((err) => {
           errorMessage("You can only subscribe once");
+          setSubscribed(true);
         });
 
       if (networkError) errorMessage("You are not connected to the internet");

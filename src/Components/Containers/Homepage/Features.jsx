@@ -28,6 +28,7 @@ const Features = () => {
        <h1 className='features__heading'>How it works.</h1>
        <div className='features__card--container'>
             <FeatureCard 
+            
                 withButton header='Step 1' 
                 content={'Create an iTazkir account to start receiving reminder'} 
                 color={'#31DE28'}

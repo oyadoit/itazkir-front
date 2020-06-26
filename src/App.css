@@ -1,32 +1,36 @@
 @import '~antd/dist/antd.css';
-
 html {
     overflow: scroll;
     overflow-x: hidden;
 }
+
 * {
-    font-family: 'Comfortaa', cursive !important;
+    /* font-family: 'Comfortaa', cursive !important; */
 }
 
 ::-webkit-scrollbar {
     width: 0px;
-
 }
 
 body, h1, h2, h3, h4, h5, h6, div {
     color: rgb(63, 61, 86) !important;
+    font-family: 'Comfortaa', cursive !important;
 }
+
 a {
     color: #31DE28 !important;
 }
+
 a:hover {
-    color: rgb(30, 173, 23) !important  ;
+    color: rgb(30, 173, 23) !important;
 }
+
 .input__error {
     color: red !important;
     font-size: 12px;
     margin-bottom: 10px;
 }
+
 .empty_message {
     /* width: fit-content !important; */
     margin: auto !important;
@@ -34,7 +38,7 @@ a:hover {
 }
 
 .header {
-    height: 80px; 
+    height: 80px;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -44,39 +48,45 @@ a:hover {
     align-items: center;
     border-bottom: 0.1px solid rgba(8, 8, 8, 0.575);
 }
+
 .header__logo--container {
-      margin-left: 60px;
+    margin-left: 60px;
 }
+
 .header__logo--icon {
-      color: #31DE28;
-      /* color: #2f679c; */
+    color: #31DE28;
+    /* color: #2f679c; */
 }
+
 .nav__container {
-      margin-right: 60px;
-}
-.nav__container > ul > li {
-      list-style: none;
-      margin: 12px;
-}
-.nav__container > ul  {
-      margin-bottom: 0px;
-      display: flex; 
-      justify-content: space-between;   
+    margin-right: 60px;
 }
 
+.nav__container>ul>li {
+    list-style: none;
+    margin: 12px;
+}
 
-.button__green {           
-      background-color: #31DE28;
-      padding: 12px;
-      color: #fff !important;
-      border-radius: 2px;
-      transition: ease-in-out .3s;
-} 
-.button__green:hover {           
+.nav__container>ul {
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button__green {
+    background-color: #31DE28;
+    padding: 12px;
+    color: #fff !important;
+    border-radius: 2px;
+    transition: ease-in-out .3s;
+}
+
+.button__green:hover {
     color: #fff !important;
     background-color: rgb(43, 204, 34);
     transition: ease-in-out .2s;
-} 
+}
+
 .first-button {
     background-color: #31DE28;
     background-color: #fff;
@@ -84,6 +94,7 @@ a:hover {
     border-radius: 2px;
     /* font-weight: bold; */
 }
+
 .second-button {
     background-color: #31DE28;
     background-color: #fff;
@@ -91,67 +102,68 @@ a:hover {
     border-radius: 2px;
     /* font-weight: bold; */
 }
+
 .third-button {
     background-color: #31DE28;
     background-color: #fff;
     padding: 10px;
     border-radius: 2px;
-    
 }
+
 .nav__container--link {
-    color: #31DE28;     
+    color: #31DE28;
     font-size: 14px;
 }
 
-
-
-
-    
 /* //main content or call to action for home page */
+
 .main__content--container {
-      background: linear-gradient(to right, bottom, #fff rgba(63, 61, 86, 0.055));
-      padding-right: 120px;
-      padding-left: 120px;
-      padding-top: 70px;
-      margin-bottom: 100px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 20px;
-      justify-items: center;
-      
-  }
-  .main__content--left {
-      width: 90%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      /* align-self: center; */
-      /* margin-left: 60px; */
-  }
-  .main__content--image {
+    background: linear-gradient(to right, bottom, #fff rgba(63, 61, 86, 0.055));
+    padding-right: 120px;
+    padding-left: 120px;
+    padding-top: 70px;
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    justify-items: center;
+}
+
+.main__content--left {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* align-self: center; */
+    /* margin-left: 60px; */
+}
+
+.main__content--image {
     width: 100%;
     margin-top: 15px;
-  }
-  .main__content--large-text {
-      font-size: 33px;
-      color: rgb(63, 61, 86);
-      margin-top: 40px;
-  }
-  .main__content--small-text {
-      color: gray;
-      margin-bottom: 40px;
-  }
-  .white {
-      color: #fff;
-  }
+}
 
+.main__content--large-text {
+    font-size: 33px;
+    color: rgb(63, 61, 86);
+    margin-top: 40px;
+}
 
+.main__content--small-text {
+    color: gray;
+    margin-bottom: 40px;
+}
 
+.white {
+    color: #fff;
+}
 
-  /* main content style */
+/* main content style */
+
 .get__started {
     margin-top: 20px;
- }
+}
+
 .download__container {
     margin-top: 50px;
     display: flex;
@@ -159,10 +171,8 @@ a:hover {
     justify-content: space-between;
 }
 
-
-
-
 /* features container style */
+
 .features__container {
     background: linear-gradient(to right bottom, #fff, rgba(63, 61, 86, 0.055));
     padding-top: 80px;
@@ -174,28 +184,28 @@ a:hover {
     padding-left: 60px;
     padding-right: 60px;
 }
+
 .features__heading {
     font-size: 33px;
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
 }
+
 .features__card--container {
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 30px;
     margin: auto;
     text-align: center;
     justify-items: center;
 }
 
-
-
-
 /* recent reminder  component styles */
+
 .recent__reminder--container {
-    background: linear-gradient(to right bottom,  rgba(63, 61, 86, 0.055), #fff);
+    background: linear-gradient(to right bottom, rgba(63, 61, 86, 0.055), #fff);
     /* padding-right: 120px; */
     /* padding-left: 120px; */
     padding-bottom: 200px;
@@ -205,16 +215,18 @@ a:hover {
     /* display: flex; */
     flex-direction: column;
 }
+
 .recent__reminder--cards {
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 60px;
     margin: auto;
     margin-bottom: 70px;
     padding: 0px 60px 10px 60px;
     justify-items: center;
 }
+
 .recent__reminder--heading {
     font-size: 33px;
     display: flex;
@@ -222,25 +234,22 @@ a:hover {
     color: rgb(63, 61, 86);
     margin-bottom: 50px;
 }
+
 .recent__reminder--text {
     text-align: center;
     font-size: 17px;
     margin-bottom: 20px;
 }
+
 .recent__reminder--button {
     text-align: center;
     width: 200px;
     margin: auto;
     margin-top: 45px;
-
 }
 
-
-
-
-
-
 /* sign up section */
+
 .signup__container {
     margin: auto;
     margin-right: 120px;
@@ -253,70 +262,83 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 50px;
-    
 }
+
 .signup__form-right {
     padding-top: 50px;
     /* padding-left: 100px; */
     padding-right: 100px;
 }
+
 .signup__form {
     display: flex;
     flex-direction: column;
 }
+
 .sign__up--image {
     width: 99%;
 }
+
 .signup__form-heading {
     font-weight: bold;
     font-size: 36px;
     color: rgb(63, 61, 86);
     margin-bottom: 30px;
 }
+
 .signup__green-text {
     color: #31DE28;
     font-size: 40px;
 }
 
-
-
 /* already have an account section */
+
 .already__container {
     display: flex;
     margin-top: 40px;
     color: rgb(63, 61, 86);
     justify-content: flex-start;
     align-items: center;
-    
 }
+
 .already__text {
     margin-left: 0px;
     align-content: center;
     margin-bottom: 0px;
     padding-right: 10px;
 }
+
 .already__link {
     color: #31DE28;
     letter-spacing: 1px;
 }
 
-.firstname__lastname-input-container{
+.firstname__lastname-input-container {
     display: flex;
-    justify-content: space-between  ;
+    justify-content: space-between;
 }
 
+
+
+
+.reminders__preview-container, .all__reminders--card-container {
+    justify-items: center !important;
+}
+
+
 /* submit button with loader container */
+
 .same__line {
     display: flex;
 }
+
 .loader__container {
     margin-top: 10px;
     margin-left: 20px;
 }
 
-
-
 /* get started section after signup  i.e subscription flow */
+
 .subscription__flow--container {
     background-color: rgba(63, 61, 86, 0.055);
     margin-right: 150px;
@@ -324,35 +346,35 @@ a:hover {
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 2px;
-    padding: 90px; 
-    display: flex; 
+    padding: 90px;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .reminder__subscription--container {
-    
     display: grid;
     /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) ); */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr) ) !important ;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
     grid-gap: 40px;
     padding-top: 30px;
     padding-bottom: 80px;
-    
 }
+
 .subscription__heading {
     font-size: 33px;
 }
+
 .subscription__text {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 18px;
 }
+
 .unsubscribe__span {
     color: #31DE28;
 }
-
-
 
 .profile-preview {
     display: flex;
@@ -386,8 +408,8 @@ a:hover {
     /* color: #40455c; */
 }
 
-
 /* dashboard searchbar */
+
 .search-input {
     width: 100%;
     border: none;
@@ -408,16 +430,15 @@ a:hover {
     margin-bottom: 20px;
 }
 
-
 /* //subscription preview fro dashboard where user can subscribe to new reminders */
-  
+
 .subscription-container {
     padding: 24px 25px 0 25px;
     display: flex;
     flex-direction: column;
-  }
-  
-  .subscription-title {
+}
+
+.subscription-title {
     font-size: 1.3rem;
     margin-bottom: 20px;
 }
@@ -434,7 +455,33 @@ a:hover {
     text-align: center;
 }
 
+/* create reminder page */
 
+.new__reminder-container {
+    /* width: 500px; */
+    padding: 100px;
+    padding-top: 30px;
+    margin: auto;
+}
+.reminder_textarea {
+    width: 100%;
+    border-color: #31DE28;
+    margin-bottom: 20px;
+}
+
+.reminder__container {
+    padding: 100px;
+    padding-top: 30px;
+    margin: auto;
+}
+.create__reminder-form {
+    width: 200px;
+}
+.header__logo--icon {
+    font-size: 30px;
+    font-weight: 700;
+    font-style: itallic;
+  }
 
 
 /* media query */
@@ -448,15 +495,12 @@ a:hover {
     }
 }
 
-
-
-
 @media only screen and (max-width: 1080px) and (min-width: 800px) {
     .signup__container {
         margin-right: 20px !important;
         margin-left: 20px !important;
     }
-    .signup__image-left{
+    .signup__image-left {
         padding-top: 40px !important;
     }
 }
@@ -479,19 +523,17 @@ a:hover {
         justify-items: center;
         /* text-align: center; */
         margin: auto;
-    } 
+    }
     .contact__us--grid-container {
         /* grid-template-columns: 1fr; */
         display: block !important;
         /* width: 100%; */
-
     }
     .contact__us--right {
         margin: 0px !important;
     }
     .contact__us--left {
         display: none;
-
     }
     .footer__container {
         padding: 0px 20px 0px 20px !important;
@@ -505,15 +547,14 @@ a:hover {
     }
 }
 
-@media only screen and (max-width: 800px)  {
+@media only screen and (max-width: 800px) {
     .signup__container {
         display: block !important;
         margin-right: 120px !important;
         margin-left: 120px !important;
         padding-top: 0px !important;
-
     }
-    .signup__image-left{
+    .signup__image-left {
         display: none;
     }
 }
@@ -528,16 +569,15 @@ a:hover {
     }
     .main__content--right {
         display: none;
-    }   
+    }
 }
 
-
-@media only screen and (max-width: 625px)  {
+@media only screen and (max-width: 625px) {
     .signup__container {
         margin-right: 80px !important;
         margin-left: 80px !important;
     }
-    .signup__form-right{
+    .signup__form-right {
         padding-right: 0px !important;
     }
 }
@@ -546,31 +586,30 @@ a:hover {
     .header__logo--container {
         margin-left: 15px;
     }
-  .nav__container {
+    .nav__container {
         margin-right: 10px;
-   }
-   .main__content--container {
+    }
+    .main__content--container {
         padding-right: 20px;
         padding-left: 15px;
-   }
-   .contact__us--container {
+    }
+    .contact__us--container {
         padding-right: 50px !important;
         padding-left: 50px !important;
-   }
-   .contact__us--heading {
-       font-size: 28px !important;
-   }
-   .signup__container {
+    }
+    .contact__us--heading {
+        font-size: 28px !important;
+    }
+    .signup__container {
         margin-right: 30px !important;
         margin-left: 40px !important;
-   }
-   .signup__form-heading {
-       font-size: 28px !important;
-   }
-   .firstname__lastname-input-container {
-       display: block !important;
-   }
-
+    }
+    .signup__form-heading {
+        font-size: 28px !important;
+    }
+    .firstname__lastname-input-container {
+        display: block !important;
+    }
 }
 
 @media only screen and (max-width: 396px) {
@@ -582,22 +621,22 @@ a:hover {
 @media only screen and (max-width: 356px) {
     .main__content--container {
         padding-left: 5px;
-   }
-   .main__content--large-text{
-       font-size: 18px !important;
-   }
-   .nav__container {
-       margin-right: 2px !important;
-   }
-   .nav__container > ul > li {
-       margin: 3px;
-   }
-   .header__logo--container{
-       margin-left: 5px;
-   }
-   .recent__reminder--heading {
-       font-size: 23px;
-   }
+    }
+    .main__content--large-text {
+        font-size: 18px !important;
+    }
+    .nav__container {
+        margin-right: 2px !important;
+    }
+    .nav__container>ul>li {
+        margin: 3px;
+    }
+    .header__logo--container {
+        margin-left: 5px;
+    }
+    .recent__reminder--heading {
+        font-size: 23px;
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -609,19 +648,22 @@ a:hover {
     }
 }
 
+/* subscription flow media query */
+
 @media only screen and (max-width: 1039px) {
     .subscription__flow--container {
         margin-right: 80px;
-        margin-left:  80px;
+        margin-left: 80px;
     }
 }
 
 @media only screen and (max-width: 899px) {
     .subscription__flow--container {
         margin-right: 20px;
-        margin-left:  20px;
+        margin-left: 20px;
     }
 }
+
 @media only screen and (max-width: 779px) {
     .reminder__subscription--container {
         width: 300px;
@@ -629,7 +671,7 @@ a:hover {
     }
     .subscription__flow--container {
         margin-right: 80px;
-        margin-left:  80px;
+        margin-left: 80px;
     }
     .subscription__heading {
         font-size: 28px;
@@ -638,11 +680,12 @@ a:hover {
 
 @media only screen and (max-width: 779px) {
     .subscription__flow--container {
-        padding:  30px;
+        padding: 30px;
         margin-right: 40px;
-        margin-left:  40px;
+        margin-left: 40px;
     }
 }
+
 @media only screen and (max-width: 500px) {
     .subscription__heading {
         font-size: 24px;
@@ -651,12 +694,14 @@ a:hover {
         font-size: 18px;
     }
 }
+
 @media only screen and (max-width: 435px) {
     .subscription__flow--container {
         margin: 40px 10px 10px 10px;
         padding: 15px;
     }
 }
+
 @media only screen and (max-width: 356px) {
     .subscription__flow--container {
         margin: 0px;
@@ -678,4 +723,71 @@ a:hover {
     }
 }
 
+/* dashboard media query */
 
+
+@media only screen and (max-width: 849px) {
+    .image__name--row {
+        display: block !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .dashboard__container {
+        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        /* grid-gap: 25px; */
+        min-height: 100vh;
+    }
+    .subscriptions__container  {
+        display: block !important;
+    }
+    .profile__content--container {
+        width: inherit;
+        margin-left: 0px !important;
+    }
+    .profile__container {
+        display: flex;
+        width: 100vw !important;
+    }
+    .all__reminders--page {
+        display: block !important;
+        width: 100vw;
+    }
+    .hamburger__menu {
+        display: none !important;
+    }
+    .profile-preview {
+        display: none;
+    }
+    .subscription-container {
+        padding: 24px 100px 0 100px;
+    }
+}
+
+
+@media only screen and (max-width: 489px) {
+    .subscription-container {
+        padding: 24px 24px 0 24px;
+    }
+    .same__row > h1 {
+        font-size: 18px;
+    }
+    h2.subscription-title {
+        text-align: center;
+    }
+    .profile__content--container {
+        padding: 80px 30px 20px 30px !important;
+    }
+}
+
+@media only screen and (max-width: 338px) {
+    .profile__content--container {
+        padding: 40px 2px 10px 2px !important;  
+    }
+    .card__summary {
+        padding-right: 0px !important;
+        width: 200px !important;
+    }
+}

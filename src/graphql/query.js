@@ -8,28 +8,47 @@ export const ME = gql`
       email
       firstName
       lastName
+      isCreator
       subscriptionSet {
+        id
+      }
+      reminderSet {
         id
       }
     }
   }
 `;
 
-export const ME_FROM_CACHE = gql`
+// // query me from cache
+// export const ME_FROM_CACHE = gql`
+//   query {
+//     currentUser @client{
+//       id
+//       email
+//       firstName
+//       lastName
+//       isCreator
+//       subscriptionSet {
+//         id
+//       }
+//       reminderSet {
+//         id
+//       }
+//     }
+//   }
+// `;
+
+
+//check if user is a creator b4 allowing access to route
+export const IS_CREATOR = gql`
   query {
-    currentUser {
-      id @client
-      email @client
-      firstName @client
-      lastName @client
-      subscriptionSet {
-        id @client
-      }
+    currentUser{
+      id
+      email
+      isCreator
     }
   }
 `;
-
-
 
 //query all the reminders a user can subscribe to
 export const ALL_REMINDERS = gql`
@@ -93,14 +112,19 @@ export const SINGLE_REMINDER = gql`
   }
 `;
 
-export const USER_TOTAL_REMINDER = gql`
+export const USER_CURRENT_REMINDER = gql`
+  query {
+    userReminders {
+      id
+      name
+    }
+  }
+`;
+
+export const USER__CONTENTS = gql`
   query {
     userContents {
       id
     }
   }
 `;
-
-
-
-
