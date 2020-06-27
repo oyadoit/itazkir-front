@@ -1,3 +1,4 @@
+
 import React from 'react'
 import PropTypes from 'prop-types';
 
@@ -5,6 +6,7 @@ import ReminderCard from '../../Custom/ReminderCard';
 import GetStartedButton from '../../Custom/GetStartedButton';
 
 import {loadState} from "../../../utils/localStorage"
+
 
 const RecentReminder = props => {
     return (

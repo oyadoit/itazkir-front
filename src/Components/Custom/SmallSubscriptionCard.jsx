@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
 
@@ -8,11 +8,21 @@ import { Avatar } from "antd";
 import SubscribeButton from "../Custom/SubscribeButton";
 import { errorMessage, initialGetters, textContentReducer } from "../../utils/helpers";
 
-import { useMutation } from "@apollo/react-hooks";
+// import { useEffect } from 're'
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { SUBSCRIBE } from "../../graphql/mutation";
-import { CURRENT_USER_SUBSCRIPTIONS } from "../../graphql/query";
+import { CURRENT_USER_SUBSCRIPTIONS, ALL_REMINDERS } from "../../graphql/query";
 
-const SmallSubscriptionCard = ({ title, id }) => {
+// import { CURRENT_USER_SUBSCRIPTIONS } from '../../graphql/query';
+
+const SmallSubscriptionCard = ({ title, id, datas, buttonValue }) => {
+
+  const { loading: remindersLoading, data: { allReminders } } = useQuery(ALL_REMINDERS)
+
+
+  const userSubscriptions = datas
+  console.log(userSubscriptions)
+
   const [Subscribe, { loading }] = useMutation(SUBSCRIBE, {
     variables: { reminderId: id },
     update(proxy, result) {
@@ -35,6 +45,7 @@ const SmallSubscriptionCard = ({ title, id }) => {
       if (networkError) errorMessage("You are not connected to the internet");
     },
   });
+
 
   return Style.it(
     `
@@ -78,13 +89,16 @@ const SmallSubscriptionCard = ({ title, id }) => {
         }}
         size="large"
       >
-          {initialGetters(title)}
+        {initialGetters(title)}
       </Avatar>
 
       <div className="title__content--container">
         <h4 className="card__title">{textContentReducer(title, 16)}</h4>
       </div>
-      <SubscribeButton text="Subscribe" onClick={Subscribe} />
+      <SubscribeButton text={buttonValue} onClick={Subscribe} />
+      {/* {userSubscriptions.map(userSub => 
+        (allReminders.includes(userSub)? <SubscribeButton text={buttonValue} onClick={Subscribe} /> : <SubscribeButton text={buttonValue2} onClick={Subscribe} /> )
+      )} */}
     </div>
   );
 };

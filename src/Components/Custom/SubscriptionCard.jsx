@@ -3,22 +3,25 @@ import PropTypes from "prop-types";
 import Style from "style-it";
 
 import { Avatar } from "antd";
-import { initialGetters, errorMessage }from "../../utils/helpers"
+import { initialGetters, errorMessage } from "../../utils/helpers"
 import SubscribeButton from "../Custom/SubmitButton";
 import { SUBSCRIBE } from "../../graphql/mutation";
 import { useMutation } from "@apollo/react-hooks"
 
+
 const SubscriptionCard = ({
   bgColor,
   title, id
-}) => { 
+}) => {
 
   const [subscribed, setSubscribed] = useState(false)
   const [Subscribe, {loading}] = useMutation(SUBSCRIBE, {
+
     variables: { reminderId: id },
 
+
     // update(proxy, result) {
-     
+
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
@@ -28,7 +31,7 @@ const SubscriptionCard = ({
 
       if (networkError) errorMessage("You are not connected to the internet");
     },
-  // });
+    // });
   });
 
   return Style.it(
@@ -85,13 +88,13 @@ const SubscriptionCard = ({
             color: "#fff",
             fontWeight: "bold",
             verticalAlign: "middle",
-            marginRight:"15px",
-            marginTop:"12px",
+            marginRight: "15px",
+            marginTop: "12px",
           }}
           size="large"
         >
           {
-             initialGetters(title) 
+            initialGetters(title)
           }
         </Avatar>
       </div>
@@ -101,7 +104,7 @@ const SubscriptionCard = ({
           Subscribe now to start recieving reminders from {title}
         </p>
         <div>
-          <SubscribeButton text="Subscribe" onClick={Subscribe}/>
+          <SubscribeButton text="Subscribe" onClick={Subscribe} />
         </div>
       </div>
     </div>
