@@ -8,6 +8,7 @@ export default function CreateReminderForm(props) {
   const [values, setValues] = useState({
     title: "",
     reminder: "",
+    error: ""
   });
 
   const handleChange = (e) => {
@@ -20,9 +21,8 @@ export default function CreateReminderForm(props) {
   };
 
   const handleSubmit = (e) => {
-    // if (isValid) {
-    // }
-    e.preventDefault()
+    e.preventDefault();
+    
   };
 
   return Style.it(`
@@ -48,6 +48,7 @@ export default function CreateReminderForm(props) {
         <input
           className='title'
           type='text'
+          required
           placeholder='Remider Title'
           name='title'
           onChange={handleChange}
@@ -59,11 +60,11 @@ export default function CreateReminderForm(props) {
           rows="10"
           cols="100"
           name="reminder"
+          required
           onChange={handleChange}
         >
         </textarea>
       </div>
-
       <div className='input__container'>
         <button
           type='submit'
