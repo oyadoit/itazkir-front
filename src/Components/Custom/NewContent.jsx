@@ -9,59 +9,114 @@ import { errorMessage } from "../../utils/helpers";
 // import { UploadOutlined } from "@ant-design/icons";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { CREATE_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
+import { CREATE_NEW_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
 import { USER_CURRENT_REMINDER } from "../../graphql/query";
 // import { values } from "lodash";
 
 const NewContent = () => {
-  const [values, setValues] = useState({});
-
-  //   const [reminder, setReminder] = useState({
-  //     name: ''
-  // })
-
-  // const [createContent, { result }] = useMutation(CREATE_CONTENT, {
-  //     variables: {
-  //         values: values.title,
-  //         values: values.content,
-  //         // reminderId: 3
-  //     }
-  // });
-
-  // const {data: reminder, loading} = useQuery(USER_CURRENT_REMINDER, {
-  //   onError({ graphQLErrors, networkError }) {
-  //     if (graphQLErrors)
-  //       graphQLErrors.map((err) => {
-  //         errorMessage("Reminder Name cannot be empty");
-  //       });
-  //     if (networkError)
-  //       errorMessage("An error occured, try again")
-  //   },
-  // })
-
-  const [createReminder, { error, data }] = useMutation(CREATE_REMINDER, {
-    variables: {
-      name: values.reminder,
-    },
-    onError({ graphQLErrors, networkError }) {
-      if (graphQLErrors)
-        graphQLErrors.map((err) => {
-          errorMessage("Reminder Name cannot be empty");
-        });
-      if (networkError) errorMessage("An error occured, try again");
-    },
+  const [values, setValues] = useState({
+    title: '',
+    data: '',
+    reminderId: 1,
+    file: null,
+    error: ''
   });
+
+  // const formValues = document.getElementById("newContentForm")
+
+  // const parsedData = dataInputs.append(formValues)
 
   const handleChange = (e) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
+    console.log(values)
   };
+
+
+  const onFileChange = event => {
+    // const file = event.target.files[0];
+    setValues({
+      ...values,
+      file: event.target.files[0]
+    })
+    console.log(values)
+  }
+
+  const handleOnSelect = (event) => {
+    const selectedIndex = event.target.options.selectedIndex;
+    setValues({
+      ...values,
+      reminderId: event.target.options[selectedIndex].getAttribute('data-key')
+    })
+    // values.reminderId = event.target.options[selectedIndex].getAttribute('data-key');
+    // console.log(values)
+  }
+
+  const { data: reminder, loading } = useQuery(USER_CURRENT_REMINDER, {
+    onError({ graphQLErrors, networkError }) {
+      if (graphQLErrors)
+        graphQLErrors.map((err) => {
+          errorMessage("Reminder Name cannot be empty");
+        });
+      if (networkError)
+        errorMessage("An error occured, try again")
+    },
+  })
+
+
+const parseToForm = () => {
+  // document.getElementById("newContentForm")
+  const dataInputs = new FormData()
+  dataInputs.append('title', values.title)
+  dataInputs.append('data', values.data)
+  dataInputs.append('reminderId', values.reminderId)
+  dataInputs.append('file', values.file)
+  return dataInputs
+}
+
+  const [createContent, { error, result }] = useMutation(CREATE_NEW_CONTENT, {
+    variables: values,
+    onError({ graphQLErrors, networkError }) {
+      if (graphQLErrors)
+        graphQLErrors.map((err) => {
+          errorMessage("Reminder Name cannot be empty");
+        });
+      if (networkError) errorMessage("An error occured, try again");
+    }
+  });
+
+
+
+
+
+
+
+
+  // const [createReminder, { error, data }] = useMutation(CREATE_REMINDER, {
+
+  //   onError({ graphQLErrors, networkError }) {
+  //     if (graphQLErrors)
+  //       graphQLErrors.map((err) => {
+  //         errorMessage("Reminder Name cannot be empty");
+  //       });
+  //     if (networkError) errorMessage("An error occured, try again");
+  //   },
+
+
+  // });
+
+  const validateEntry = () => {
+    if (values.data === '' && values.file === null) return values.error = 'Either Reminders body or File has to be filled'
+  }
 
   const submitReminder = (e) => {
     e.preventDefault();
-    createReminder();
+    validateEntry();
+    // console.log('wanna submit', dataInputs)
+    createContent();
+
   };
 
 
@@ -104,45 +159,49 @@ const NewContent = () => {
       </div>
 
 
-      <div className="new__reminder-container">
-        <div className="create__content-heading-container">
-          <h1 className="create__content-heading">Create Content for</h1>
-          <select className="reminder__selector" name="reminders" >
-            <option className="reminder__option" value="ITWF NETWORK" id="id">ITWF Network</option>
-            <option className="reminder__option" value="Muslim PRO">Muslim PRO</option>
-            <option className="reminder__option" value="Islamic Reminder">Islamic Reminder</option>
-            <option className="reminder__option" value="Morning Azkar">Morning Azkar</option>
-          </select>
-        </div>
+      <form id="newContentForm" onSubmit={submitReminder} enctype="multipart/form-data">
+        <div className="new__reminder-container">
+          <div className="create__content-heading-container">
+            <h1 className="create__content-heading">Create Content for</h1>
+            <select className="reminder__selector" name="reminders" onSelect={handleOnSelect} >
+              <option className="reminder__option" value="ITWF NETWORK" data-key={1} id="id">ITWF Network</option>
+              <option className="reminder__option" value="E Lectures" data-key={4}>Muslim PRO</option>
+              <option className="reminder__option" value="Islamic Reminder" data-key={9}>Islamic Reminder</option>
+              <option className="reminder__option" value="Morning Azkar" data-key={2}>Morning Azkar</option>
+            </select>
+          </div>
 
-        <form>
+          <p>{(values.error) ? values.error : ''}</p>
           <Input
             inpuType="text"
             name="title"
+            required
             placeholder="Enter Title Here"
             onChange={handleChange}
           />
           <textarea
             className="reminder_textarea"
             placeholder="Enter content here"
-            name="content"
+            name="data"
             // cols="140"
             onChange={handleChange}
             rows="12"
           ></textarea>
-          <input 
+          <input
             className="reminder__image-upload"
             type="file"
-            id="avatar" 
+            id="avatar"
             name="avatar"
-            accept="image/png, image/jpeg" 
+            accept="image/png, image/jpeg"
+            onChange={onFileChange}
           />
 
           <br />
 
           <Submit text="Create Reminder" />
-        </form>
-      </div>
+        </div>
+      </form>
+
     </div>
   );
 };

@@ -104,6 +104,16 @@ const DashboardMenu = (props) => {
             </NavLink>
           </li>
           <li>
+            <NavLink activeClassName="active" to="/dashboard/create-reminder">
+              <img
+                className="menu-icon"
+                src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869822/iTazkir/folder_iax9qu.svg"
+                alt="folder"
+              />
+              <span>New Reminders</span>
+            </NavLink>
+          </li>
+          <li>
             <NavLink activeClassName="active" to="/dashboard/reminders">
               <img
                 className="menu-icon"

@@ -6,6 +6,15 @@ import { Link } from "react-router-dom";
 import { useQuery, useApolloClient } from "@apollo/react-hooks";
 import { USER_CONTENTS } from "../../../graphql/query";
 
+// <<<<<<< HEAD
+// import DashboardMenu from '../../Custom/DashboardMenu';
+// import SearchBar from '../../Custom/SearchBar';
+// import ProfilePreview from '../../Custom/ProfilePreview';
+// import SubscriptionPreview from '../../Custom/SubscriptionPreview';
+// import SmallReminderCard from '../../Custom/SmallReminderCard'
+// import RecentReminder from '../../Containers/Homepage/RecentReminder';
+
+// =======
 import { Spin } from "antd";
 import DashboardMenu from "../../Custom/DashboardMenu";
 import SearchBar from "../../Custom/SearchBar";
@@ -77,12 +86,12 @@ const Dashboard = (props) => {
 
         <div className="content">
           <SearchBar />
-
           <div className="main-content">
             <div className="same__row">
               <h1>Recent Reminders</h1>
               <Link to="/dashboard/reminders">View All</Link>
             </div>
+
 
             <>
               {loading && !data ? (
@@ -125,6 +134,7 @@ const Dashboard = (props) => {
               )}
             </>
           </div>
+
         </div>
 
         <div className="profile">
@@ -134,6 +144,7 @@ const Dashboard = (props) => {
             <h2 className="subscription-title">New Subscriptions </h2>
             <SubscriptionPreview />
           </div>
+
         </div>
       </div>
     </div>

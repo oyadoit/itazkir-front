@@ -75,20 +75,20 @@ const Subscriptions = (props) => {
             <Spin size="large" />
           </div>
         ) : (
-          <div className="user__current__subscriptions--card-container">
-            {data.userSubscriptions && data.userSubscriptions.length > 0 ? (
-              data.userSubscriptions.map((eachSubscription) => (
-                <UserCurrentSubscription
-                  // imageUrl="https://avatars0.githubusercontent.com/u/8108337?s=460&v=4"
-                  title={textContentReducer(eachSubscription.reminder.name, 20)}
-                  key={eachSubscription.reminder.id}
-                />
-              ))
-            ) : (
-              <h1 className="empty_message">You have no subscriptions yet</h1>
-            )}
-          </div>
-        )}
+            <div className="user__current__subscriptions--card-container">
+              {data.userSubscriptions && data.userSubscriptions.length > 0 ? (
+                data.userSubscriptions.map((eachSubscription) => (
+                  <UserCurrentSubscription
+                    // imageUrl="https://avatars0.githubusercontent.com/u/8108337?s=460&v=4"
+                    title={textContentReducer(eachSubscription.reminder.name, 20)}
+                    key={eachSubscription.reminder.id}
+                  />
+                ))
+              ) : (
+                  <h1 className="empty_message">You have no subscriptions yet</h1>
+                )}
+            </div>
+          )}
       </div>
       <div className="new__subscriptions--container">
         <h1>New Reminders</h1>
