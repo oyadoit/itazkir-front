@@ -7,11 +7,11 @@ import { IS_CREATOR } from "../../graphql/query"
 
 const CreatorRoute = ({ component: Component, ...rest}) => {
 
-    const { data } = useQuery(IS_CREATOR);
+    const { data: response, loading } = useQuery(IS_CREATOR);
 
     // if(loading) console.log("loading");
     // if (error) console.log("error");
-    if (data) {  console.log("data===" + data)}
+    if (response) {  console.log("data===" + response)}
 
     return (
         <Route

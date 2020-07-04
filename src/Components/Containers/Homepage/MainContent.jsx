@@ -39,7 +39,8 @@ const MainContent = props => {
         </div>  
         <div className="main__content--right">
             <img 
-                src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586108592/iTazkir/undraw_newsletter_vovu_twievt.png" 
+                // src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586108592/iTazkir/undraw_newsletter_vovu_twievt.png" 
+                src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1593520501/iTazkir/itazkir_hveegy.svg"
                 alt=""
                 className='main__content--image'
             />
