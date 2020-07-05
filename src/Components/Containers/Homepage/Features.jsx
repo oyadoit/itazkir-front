@@ -19,7 +19,7 @@ const Features = () => {
             padding-right: 10px;
         }
         .card__container {
-            width: 250px !important;
+            width: 200px !important;
             height: 300px !important;
         }
     }
@@ -30,7 +30,7 @@ const Features = () => {
             <FeatureCard 
             
                 withButton header='Step 1' 
-                content={'Create an iTazkir account to start receiving reminder'} 
+                content={'Create an iTazkir account to start receiving reminders'} 
                 color={'#31DE28'}
                 icon={'fa-hourglass-start'}
             > 
@@ -46,7 +46,7 @@ const Features = () => {
             </FeatureCard> 
             <FeatureCard 
                 header='Step 3' 
-                content={'Relax and start receiving reminder your selected reminders'} 
+                content={'Relax and start receiving reminders you subscribe to'} 
                 color={'orange'}
             >
                 <i className="fa fa-clock-o" aria-hidden="true"></i>    

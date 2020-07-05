@@ -14,7 +14,7 @@ const SubscriptionPreview = () => {
         userSubscriptions = userSubs.userSubscriptions
         userSubscriptions.map(oneUser => {
             userSubsArr.push(oneUser.reminder.id)
-        })
+        });
     }
 
     const { loading, data } = useQuery(ALL_REMINDERS)

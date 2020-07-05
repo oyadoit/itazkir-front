@@ -5,9 +5,6 @@ import Input from "./Input";
 import Submit from "./SubmitButton";
 import { errorMessage } from "../../utils/helpers";
 
-// import { Upload, message, Button } from "antd";
-// import { UploadOutlined } from "@ant-design/icons";
-
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { CREATE_NEW_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
 import { USER_CURRENT_REMINDER } from "../../graphql/query";
@@ -21,10 +18,6 @@ const NewContent = () => {
     file: null,
     error: ''
   });
-
-  // const formValues = document.getElementById("newContentForm")
-
-  // const parsedData = dataInputs.append(formValues)
 
   const handleChange = (e) => {
     setValues({

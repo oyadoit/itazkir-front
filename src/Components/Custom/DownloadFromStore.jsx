@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const DownloadFromStore = props => {
     return(
 
-        <Link to="{props.to}">
+        <Link to={props.to}>
             <img width='140px' className={props.className} src={props.imageUrl} alt={props.alt}/>
         </Link>
     )

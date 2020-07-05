@@ -128,3 +128,13 @@ export const USER__CONTENTS = gql`
     }
   }
 `;
+
+
+
+export const ALL_CONTENTS = gql`
+  query {
+    allContents{
+      id data title 
+    }
+}
+`

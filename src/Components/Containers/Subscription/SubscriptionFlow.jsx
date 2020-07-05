@@ -18,7 +18,7 @@ const SubscriptionFlow = () => {
    
 
     const {data, loading } = useQuery(ALL_REMINDERS)
-    if(data) console.log(data)
+    // if(data) console.log(data)
 
     return Style.it(`
     

@@ -11,7 +11,7 @@ function SubscribeButton(props) {
             // border-radius: 50px;
             border-radius: 3px;
 
-            background-color: #31DE28; 
+            background-color: ${(props.text == "subscribe") ? "#31DE28" : ""}; 
             color: #fff;
             // margin-top: 5px;
         }
@@ -19,7 +19,7 @@ function SubscribeButton(props) {
             cursor: pointer;
         }
     `,
-        <button onClick={props.onClick} className='submit__button' type='submit'>{props.text}</button>
+        <button  onClick={props.onClick} className='submit__button' type='submit'>{props.text}</button>
     )
 }
 

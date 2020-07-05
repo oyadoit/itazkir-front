@@ -6,7 +6,7 @@ import { Avatar } from "antd";
 
 
 import SubscribeButton from "../Custom/SubscribeButton";
-import { errorMessage, initialGetters, textContentReducer } from "../../utils/helpers";
+import { initialGetters, textContentReducer } from "../../utils/helpers";
 
 // import { useEffect } from 're'
 import { useMutation, useQuery } from "@apollo/react-hooks";
@@ -39,10 +39,10 @@ const SmallSubscriptionCard = ({ title, id, datas, buttonValue }) => {
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
-          errorMessage("You can only subscribe once");
+          console.log("You can only subscribe once");
         });
 
-      if (networkError) errorMessage("You are not connected to the internet");
+      if (networkError) console.log("You are not connected to the internet");
     },
   });
 
@@ -95,7 +95,7 @@ const SmallSubscriptionCard = ({ title, id, datas, buttonValue }) => {
       <div className="title__content--container">
         <h4 className="card__title">{textContentReducer(title, 16)}</h4>
       </div>
-      <SubscribeButton text={buttonValue} onClick={Subscribe} />
+      <SubscribeButton text={buttonValue}  onClick={Subscribe} />
       {/* {userSubscriptions.map(userSub => 
         (allReminders.includes(userSub)? <SubscribeButton text={buttonValue} onClick={Subscribe} /> : <SubscribeButton text={buttonValue2} onClick={Subscribe} /> )
       )} */}

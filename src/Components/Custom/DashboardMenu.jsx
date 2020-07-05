@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link } from "react-router-dom";
 
 // import { AUTH_TOKEN } from '../../utils/constants'
-import {logout } from '../../index'
+import { logout } from "../../index";
+import { useQuery } from "@apollo/react-hooks";
+import { IS_CREATOR } from "../../graphql/query";
 
 const DashboardMenu = (props) => {
-  
+  const { data } = useQuery(IS_CREATOR);
 
   return Style.it(
     `
@@ -89,12 +91,16 @@ const DashboardMenu = (props) => {
 
     <div className="menu hamburger__menu">
       <div className="brand">
-        <p><Link to='/' className="header__logo--icon">iTazkir</Link></p>
+        <p>
+          <Link to="/dashboard" className="header__logo--icon">
+            iTazkir
+          </Link>
+        </p>
       </div>
       <nav className="menu-list">
         <ul>
           <li>
-            <NavLink to="/dashboard" >
+            <NavLink to="/dashboard">
               <img
                 className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869762/iTazkir/home_doj6mg.svg"
@@ -103,16 +109,21 @@ const DashboardMenu = (props) => {
               <span>Home</span>
             </NavLink>
           </li>
-          <li>
-            <NavLink activeClassName="active" to="/dashboard/create-reminder">
-              <img
-                className="menu-icon"
-                src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869822/iTazkir/folder_iax9qu.svg"
-                alt="folder"
-              />
-              <span>New Reminders</span>
-            </NavLink>
-          </li>
+          {data && !!data.currentUser.isCreator ? (
+            <li>
+              <NavLink activeClassName="active" to="/dashboard/create-reminder">
+                <img
+                  className="menu-icon"
+                  src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869822/iTazkir/folder_iax9qu.svg"
+                  alt="folder"
+                />
+                <span>Create Reminder</span>
+              </NavLink>
+            </li>
+          ) : (
+            ""
+          )}
+
           <li>
             <NavLink activeClassName="active" to="/dashboard/reminders">
               <img
@@ -148,11 +159,9 @@ const DashboardMenu = (props) => {
               <img
                 className="menu-icon"
                 src="https://res.cloudinary.com/dg7n6i9e1/image/upload/v1586869999/iTazkir/alert-circle_wiywpu.svg"
-                alt="alert" 
+                alt="alert"
               />
-              <span>
-                Logout
-              </span>
+              <span>Logout</span>
             </Link>
           </li>
         </ul>

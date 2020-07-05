@@ -1,19 +1,4 @@
-// import React from 'react'
-// import PropTypes from 'prop-types'
 
-// const Footer = props => {
-//     return (
-//         <div className='footer__container'>
-//             This is the footer for crying out loud
-//         </div>
-//     )
-// }
-
-// Footer.propTypes = {
-
-// }
-
-// export default Footer
 
 import React from 'react'
 import Style from 'style-it';
@@ -37,8 +22,8 @@ const Footer = () => {
 
         <div className="footer__container">
           <div>Email</div>
-          <div>Github</div>
           <div>2020 iTazkir.</div>
+          <div>Github</div>
         </div>
     );
 }

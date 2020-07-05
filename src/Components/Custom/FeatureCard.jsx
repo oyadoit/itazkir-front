@@ -8,23 +8,22 @@ const FeatureCard = props => {
     return Style.it(`
         .card__container {
             background-color: #fff;
-            max-width: 290px;
+            max-width: 270px;
             height: 320px;
             padding:20px;
-            // box-shadow: 0 19px 28px rgba(122, 120, 120, 0.062), 0 10px 10px rgba(122, 120, 120, 0.062);
-            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
             display: flex;
+            box-shadow:
+            0  5px 10px rgba(154,160,185,0.05),
+            0 15px 40px rgba(166,173,201,0.2);
             flex-direction:column;
             align-items: center;
             justify-content: space-evenly;
             align-content: center;
             text-align: center;
-            transition: 0.4s;
+            transition: all .2s ease-in-out;
         }
         .card__container:hover {
-            // box-shadow: 0 19px 28px rgba(196, 188, 188, 0.068), 0 10px 10px rgba(0,0,0,0.22);
-            // transition: .3s;
-            transform: translateY(-1rem) scale(1.0);
+            transform: scale(1.08);
             
         }
         .fa {

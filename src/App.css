@@ -183,10 +183,10 @@ a:hover {
 }
 
 .features__heading {
-    font-size: 33px;
+    font-size: 38px;
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .features__card--container {

@@ -1,16 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types';
-import Style from 'style-it';
+import React from "react";
+import PropTypes from "prop-types";
+import Style from "style-it";
 
-import GetStartedButton from '../Custom/GetStartedButton'
+import GetStartedButton from "../Custom/GetStartedButton";
+import { Avatar } from "antd";
 
+import { initialGetters, textContentReducer } from "../../utils/helpers";
 
-const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondButton, thirdButton }) => {
-    return Style.it(`
+const ReminderCard = ({
+  bgColor,
+  title,
+  content,
+  firstButton,
+  secondButton,
+  thirdButton,
+}) => {
+  return Style.it(
+    `
         .card__container {
             background-color: ${bgColor};
-            width: 340px;
-            height: 210px;
+            width: 300px;
+            height: 190px;
             border-radius: 2px;
             display: flex;
             padding: 20px;
@@ -51,28 +61,41 @@ const ReminderCard = ({bgColor, title, imageUrl, content, firstButton, secondBut
             }
         }
     `,
-        <div className='card__container'>
-            <div>
-                <img className='card__image' src={imageUrl} alt="Reminder Owner"/>
-            </div>
-            <div className='card__content--right'>
-                <h2 className='card__title'>{title}</h2>
-                <p className='card__text'>{content}</p>
-                <div>
-                    <GetStartedButton 
-                        className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
-                        to="/signup"
-                    >
-                        View All
-                    </GetStartedButton>
-                </div>
-            </div>
+    <div className="card__container">
+      <div>
+        {/* <img className='card__image'  /> */}
+        <Avatar
+          style={{
+            color: `${bgColor}`,
+            backgroundColor: "#fff",
+            fontWeight: "bold",
+            verticalAlign: "middle",
+            marginRight: "25px",
+            marginTop: "10px",
+          }}
+          size="large"
+        >
+          {initialGetters(title)}
+        </Avatar>
+      </div>
+      <div className="card__content--right">
+        <h2 className="card__title">{textContentReducer(title, 20)}</h2>
+        <p className="card__text">{textContentReducer(content, 50)}</p>
+        <div>
+          <GetStartedButton
+            // className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
+            className="first-button"
+            to="/signup"
+            style={{ color: `${bgColor}` }}
+          >
+            Read more
+          </GetStartedButton>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-ReminderCard.propTypes = {
-
-}
+ReminderCard.propTypes = {};
 
 export default ReminderCard;

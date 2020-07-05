@@ -11,13 +11,13 @@ const CreatorRoute = ({ component: Component, ...rest}) => {
 
     // if(loading) console.log("loading");
     // if (error) console.log("error");
-    if (response) {  console.log("data===" + response)}
+    if (response) {  console.log( response)}
 
     return (
         <Route
         {...rest}
             render={props => 
-            localStorage.getItem(AUTH_TOKEN) ? (
+            localStorage.getItem(AUTH_TOKEN) && !!response.currentUser.isCreator ? (
                 <Component {...props} />
             ) : (
                

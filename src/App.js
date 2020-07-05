@@ -20,6 +20,7 @@ import AuthenticatedRoute from './Components/Custom/AuthenticatedRoute';
 import SingleReminder from './Components/Pages/SingleReminder';
 import CreatorRoute from "./Components/Custom/CreatorRoute";
 import NewContent from "./Components/Custom/NewContent";
+import NotFound from "./Components/NotFound";
 
 
 function App() {  
@@ -28,6 +29,9 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Switch>
+          {
+            
+          }
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} /> 
@@ -42,6 +46,7 @@ function App() {
             <CreatorRoute exact path="/dashboard/create-reminder"   component={NewContent}/>
           {/* </AuthProvider> */}
         
+          <Route component={NotFound} />
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>
