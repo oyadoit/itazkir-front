@@ -128,3 +128,15 @@ export const USER__CONTENTS = gql`
     }
   }
 `;
+
+export const CURRENT_USER_REMINDER = gql`
+query{
+  currentUser{
+    id
+    reminderSet {
+      id
+    }
+    isCreator
+  }
+}
+`
