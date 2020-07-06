@@ -4,34 +4,44 @@ import Style from "style-it";
 
 import { Avatar } from "antd";
 import { initialGetters, errorMessage } from "../../utils/helpers"
-import SubscribeButton from "../Custom/SubmitButton";
+import SubscribeButton from "../Custom/SubscribeButton";
 import { SUBSCRIBE } from "../../graphql/mutation";
-import { useMutation } from "@apollo/react-hooks"
+import { useMutation } from "@apollo/react-hooks";
+import { CURRENT_USER_SUBSCRIPTIONS, ALL_REMINDERS } from "../../graphql/query";
 
 
 const SubscriptionCard = ({
   bgColor,
-  title, id
+  title, id,datas, btnVal, subColor
 }) => {
 
-  const [subscribed, setSubscribed] = useState(false)
+  const userSubscriptions = datas;
+
+  // const [subscribed, setSubscribed] = useState(false)
   const [Subscribe, {loading}] = useMutation(SUBSCRIBE, {
 
     variables: { reminderId: id },
 
+    update(proxy, result) {
+      const data = proxy.readQuery({
+        query: CURRENT_USER_SUBSCRIPTIONS,
+      });
 
-    // update(proxy, result) {
+      data.userSubscriptions = [
+        result.data.createSubscription,
+        ...data.userSubscriptions,
+      ];
+      proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data });
+    },
 
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
           errorMessage("You can only subscribe once");
-          setSubscribed(true);
         });
 
       if (networkError) errorMessage("You are not connected to the internet");
     },
-    // });
   });
 
   return Style.it(
@@ -104,7 +114,7 @@ const SubscriptionCard = ({
           Subscribe now to start recieving reminders from {title}
         </p>
         <div>
-          <SubscribeButton text="Subscribe" onClick={Subscribe} />
+          <SubscribeButton subColor={subColor} text={btnVal} onClick={Subscribe} />
         </div>
       </div>
     </div>

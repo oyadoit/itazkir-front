@@ -25,8 +25,8 @@ const SubscriptionPreview = () => {
         <div>
             {
                 data.allReminders.length > 0 ? (data.allReminders.map((singleData) => {
-                    let btnVal = 'subscribe'
-                    if(userSubsArr.includes(singleData.id)) btnVal = 'subscribed'
+                    let btnVal = 'SUBSCRIBE'
+                    if(userSubsArr.includes(singleData.id)) btnVal = 'SUBSCRIBED'
                     return <SmallSubscriptionCard
                         // imageUrl='https://avatars0.githubusercontent.com/u/8108337?s=460&v=4'
                         title={singleData.name}

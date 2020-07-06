@@ -13,8 +13,6 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { SUBSCRIBE } from "../../graphql/mutation";
 import { CURRENT_USER_SUBSCRIPTIONS, ALL_REMINDERS } from "../../graphql/query";
 
-// import { CURRENT_USER_SUBSCRIPTIONS } from '../../graphql/query';
-
 const SmallSubscriptionCard = ({ title, id, datas, buttonValue }) => {
 
   const { loading: remindersLoading, data: { allReminders } } = useQuery(ALL_REMINDERS)

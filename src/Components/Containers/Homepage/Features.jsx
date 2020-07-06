@@ -19,7 +19,7 @@ const Features = () => {
             padding-right: 10px;
         }
         .card__container {
-            width: 200px !important;
+            width: 250px !important;
             height: 300px !important;
         }
     }
