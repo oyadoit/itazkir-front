@@ -136,5 +136,22 @@ export const ALL_CONTENTS = gql`
     allContents{
       id data title 
     }
+  }
+    `;
+
+
+export const CURRENT_USER_CONTENTS = gql`
+query{
+  currentUser{
+    id
+    firstName
+    lastName
+    phone
+    reminderSet {
+      id
+      name
+    }
+    isCreator
+  }
 }
 `

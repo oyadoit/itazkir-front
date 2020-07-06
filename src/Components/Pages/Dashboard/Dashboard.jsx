@@ -30,6 +30,7 @@ import MobileHeader from "../../Custom/MobileHeader";
 const Dashboard = (props) => {
   
   const { loading, data } = useQuery(USER_CONTENTS);
+if (loading) return 'Loading ......'
 
   return Style.it(
     `

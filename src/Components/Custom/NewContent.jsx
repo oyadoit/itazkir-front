@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from "./Header";
 import Input from "./Input";
@@ -7,34 +7,36 @@ import { errorMessage } from "../../utils/helpers";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { CREATE_NEW_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
-import { USER_CURRENT_REMINDER } from "../../graphql/query";
+import { USER_CURRENT_REMINDER, CURRENT_USER_CONTENTS } from "../../graphql/query";
+import { set } from "lodash";
 // import { values } from "lodash";
 
+
 const NewContent = () => {
+  // let currentUserReminders;
   const [values, setValues] = useState({
     title: '',
     data: '',
-    reminderId: 1,
+    reminderId: 14,
     file: null,
     error: ''
   });
+
+
 
   const handleChange = (e) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
-    console.log(values)
   };
 
 
-  const onFileChange = event => {
-    // const file = event.target.files[0];
+  const onFileChange = (event) => {
     setValues({
       ...values,
       file: event.target.files[0]
     })
-    console.log(values)
   }
 
   const handleOnSelect = (event) => {
@@ -43,11 +45,10 @@ const NewContent = () => {
       ...values,
       reminderId: event.target.options[selectedIndex].getAttribute('data-key')
     })
-    // values.reminderId = event.target.options[selectedIndex].getAttribute('data-key');
-    // console.log(values)
   }
 
-  const { data: reminder, loading } = useQuery(USER_CURRENT_REMINDER, {
+
+  const { data: currentUserReminders, loading, error: err } = useQuery(CURRENT_USER_CONTENTS, {
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
@@ -58,19 +59,8 @@ const NewContent = () => {
     },
   })
 
-
-const parseToForm = () => {
-  // document.getElementById("newContentForm")
-  const dataInputs = new FormData()
-  dataInputs.append('title', values.title)
-  dataInputs.append('data', values.data)
-  dataInputs.append('reminderId', values.reminderId)
-  dataInputs.append('file', values.file)
-  return dataInputs
-}
-
   const [createContent, { error, result }] = useMutation(CREATE_NEW_CONTENT, {
-    variables: values,
+
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
@@ -80,26 +70,6 @@ const parseToForm = () => {
     }
   });
 
-
-
-
-
-
-
-
-  // const [createReminder, { error, data }] = useMutation(CREATE_REMINDER, {
-
-  //   onError({ graphQLErrors, networkError }) {
-  //     if (graphQLErrors)
-  //       graphQLErrors.map((err) => {
-  //         errorMessage("Reminder Name cannot be empty");
-  //       });
-  //     if (networkError) errorMessage("An error occured, try again");
-  //   },
-
-
-  // });
-
   const validateEntry = () => {
     if (values.data === '' && values.file === null) return values.error = 'Either Reminders body or File has to be filled'
   }
@@ -107,17 +77,19 @@ const parseToForm = () => {
   const submitReminder = (e) => {
     e.preventDefault();
     validateEntry();
-    // console.log('wanna submit', dataInputs)
-    createContent();
-
+    createContent({ variables: values });
   };
 
 
-  if (error) console.log(error);
-  // if (loading) return <h1>loading...</h1>
-  // if(data) console.log(data)
+  // if (error) console.log(error);
+  if (loading) return <h1>loading...</h1>
+  const userReminders = currentUserReminders.currentUser.reminderSet
+  if (userReminders.length === 1) {
+    values.reminderId = userReminders[0].id
+  }
 
   return (
+
     <div>
       <Header />
       <div className="create__reminder-container ">
@@ -152,16 +124,22 @@ const parseToForm = () => {
       </div>
 
 
-      <form id="newContentForm" onSubmit={submitReminder} enctype="multipart/form-data">
+      <form id="newContentForm" onSubmit={submitReminder} encType="multipart/form-data">
         <div className="new__reminder-container">
           <div className="create__content-heading-container">
-            <h1 className="create__content-heading">Create Content for</h1>
-            <select className="reminder__selector" name="reminders" onSelect={handleOnSelect} >
-              <option className="reminder__option" value="ITWF NETWORK" data-key={1} id="id">ITWF Network</option>
-              <option className="reminder__option" value="E Lectures" data-key={4}>Muslim PRO</option>
-              <option className="reminder__option" value="Islamic Reminder" data-key={9}>Islamic Reminder</option>
-              <option className="reminder__option" value="Morning Azkar" data-key={2}>Morning Azkar</option>
-            </select>
+            <h1 className="create__content-heading">Create Content for:</h1>
+            {
+              (userReminders && userReminders.length === 1)
+                ?
+                <h1 className="" value={userReminders[0].name} data-key={userReminders[0].id}>&nbsp; {userReminders[0].name}</h1>
+                :
+                <select className="reminder__selector" name="reminders" onChange={handleOnSelect} >
+                  <option defaultValue>Choose...</option>
+                  {userReminders && userReminders.map(userReminder => (
+                    <option key={userReminder.id} className="reminder__option" value={userReminder.name} data-key={userReminder.id} id={userReminder.id}>{userReminder.name}</option>
+                  ))}
+                </select>
+            }
           </div>
 
           <p>{(values.error) ? values.error : ''}</p>
