@@ -17,7 +17,6 @@ export default function CreateReminderForm(props) {
       [e.target.name]: e.target.value,
     });
     console.log(values)
-
   };
 
   const handleSubmit = (e) => {

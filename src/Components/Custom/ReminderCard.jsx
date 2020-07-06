@@ -18,7 +18,8 @@ const ReminderCard = ({
   return Style.it(
     `
         .card__container {
-            background-color: ${bgColor};
+            // background-color: ${bgColor};
+            background-color: rgba(75, 209, 68, 0.733);
             width: 300px;
             height: 190px;
             border-radius: 2px;
@@ -66,7 +67,8 @@ const ReminderCard = ({
         {/* <img className='card__image'  /> */}
         <Avatar
           style={{
-            color: `${bgColor}`,
+            // color: `${bgColor}`,
+            color: "#31DE28",
             backgroundColor: "#fff",
             fontWeight: "bold",
             verticalAlign: "middle",

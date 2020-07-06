@@ -41,6 +41,7 @@ const SmallReminderCard = ({
         }
         .card__text {
             font-size: 12px;
+            width: 100%;
         }
         .card__title {
             font-size: 14px;
@@ -82,9 +83,9 @@ const SmallReminderCard = ({
         <Link to={`/dashboard/reminders/${id}/${title}`}>
           <h2 className="card__title">{textContentReducer(title, 20)}</h2>
         </Link>
-        <Link to={`/dashboard/reminders/${id}/${title}`}>
+        {/* <Link to={`/dashboard/reminders/${id}/${title}`}> */}
           <p className="card__text">{textContentReducer(content, 50)}</p>
-        </Link>
+        {/* </Link> */}
         <div className="reminder__details-container">
           <p className="reminder__name">Tag: {textContentReducer(tag, 20)}</p>
           <p className="reminder__owner">By: {textContentReducer(by, 20)}</p>

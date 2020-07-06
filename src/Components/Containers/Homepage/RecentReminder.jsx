@@ -10,7 +10,7 @@ const RecentReminder = (props) => {
   const { data, loading } = useQuery(ALL_CONTENTS);
 //   console.log(data);
 
-    const colArr = ["rgb(109, 224, 103)", "rgb(238, 174, 56)", "#2f679c"]
+    // const colArr = ["rgb(109, 224, 103)", "rgb(238, 174, 56)", "#2f679c"]
   return (
     <div className="recent__reminder--container">
       <h1 className="recent__reminder--heading"> Recent Reminder</h1>
@@ -22,7 +22,7 @@ const RecentReminder = (props) => {
               <ReminderCard
                 title={each.title}
                 content={each.data}
-                bgColor={colArr[each.id - 1]}
+                // bgColor={colArr[each.id - 1]}
                 key={each.id}
 
               />
