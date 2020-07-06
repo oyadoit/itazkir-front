@@ -129,12 +129,16 @@ export const USER__CONTENTS = gql`
   }
 `;
 
-export const CURRENT_USER_REMINDER = gql`
+export const CURRENT_USER_CONTENTS = gql`
 query{
   currentUser{
     id
+    firstName
+    lastName
+    phone
     reminderSet {
       id
+      name
     }
     isCreator
   }

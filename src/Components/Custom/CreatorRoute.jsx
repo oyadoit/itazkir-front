@@ -11,7 +11,7 @@ const CreatorRoute = ({ component: Component, ...rest}) => {
 
     // if(loading) console.log("loading");
     // if (error) console.log("error");
-    if (data) {  console.log("data===" + data)}
+    // if (data) {  console.log("data===" + data)}
 
     return (
         <Route

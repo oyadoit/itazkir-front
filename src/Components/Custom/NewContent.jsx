@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useUpload } from 'react-use-upload';
 
 import Header from "./Header";
 import Input from "./Input";
@@ -11,40 +10,23 @@ import { errorMessage } from "../../utils/helpers";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { CREATE_NEW_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
-import { USER_CURRENT_REMINDER, CURRENT_USER_REMINDER } from "../../graphql/query";
+import { USER_CURRENT_REMINDER, CURRENT_USER_CONTENTS } from "../../graphql/query";
 import { set } from "lodash";
 // import { values } from "lodash";
 
 
 const NewContent = () => {
+  // let currentUserReminders;
   const [values, setValues] = useState({
     title: '',
     data: '',
-    reminderId: null,
+    reminderId: 14,
     file: null,
     error: ''
   });
 
-  const { data: currentUser, loading } = useQuery(CURRENT_USER_REMINDER, {
-    onError({ graphQLErrors, networkError }) {
-      if (graphQLErrors)
-        graphQLErrors.map((err) => {
-          errorMessage("Reminder Name cannot be empty");
-        });
-      if (networkError)
-        errorMessage("An error occured, try again")
-    },
-  })
-  if (currentUser) {
-    // const currentUserSubscriptionId = currentUser
-    // const currentUserSubscriptionId = currentUser.currentUser.reminderSet[0].id
-    // console.log(currentUserSubscriptionId)
 
-    // setValues({
-    //   ...values,
-    //   reminderId: currentUserSubscriptionId
-    // })
-  }
+
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -66,21 +48,19 @@ const NewContent = () => {
       ...values,
       reminderId: event.target.options[selectedIndex].getAttribute('data-key')
     })
-    // values.reminderId = event.target.options[selectedIndex].getAttribute('data-key');
-    // console.log(values)
   }
 
 
-  // const { data: reminder, loading } = useQuery(USER_CURRENT_REMINDER, {
-  //   onError({ graphQLErrors, networkError }) {
-  //     if (graphQLErrors)
-  //       graphQLErrors.map((err) => {
-  //         errorMessage("Reminder Name cannot be empty");
-  //       });
-  //     if (networkError)
-  //       errorMessage("An error occured, try again")
-  //   },
-  // })
+  const { data: currentUserReminders, loading, error: err } = useQuery(CURRENT_USER_CONTENTS, {
+    onError({ graphQLErrors, networkError }) {
+      if (graphQLErrors)
+        graphQLErrors.map((err) => {
+          errorMessage("Reminder Name cannot be empty");
+        });
+      if (networkError)
+        errorMessage("An error occured, try again")
+    },
+  })
 
   const [createContent, { error, result }] = useMutation(CREATE_NEW_CONTENT, {
 
@@ -105,8 +85,11 @@ const NewContent = () => {
 
 
   // if (error) console.log(error);
-  // if (loading) return <h1>loading...</h1>
-  // if(data) console.log(data)ee
+  if (loading) return <h1>loading...</h1>
+  const userReminders = currentUserReminders.currentUser.reminderSet
+  if (userReminders.length === 1) {
+    values.reminderId = userReminders[0].id
+  }
 
   return (
 
@@ -147,13 +130,19 @@ const NewContent = () => {
       <form id="newContentForm" onSubmit={submitReminder} encType="multipart/form-data">
         <div className="new__reminder-container">
           <div className="create__content-heading-container">
-            <h1 className="create__content-heading">Create Content for</h1>
-            <select className="reminder__selector" name="reminders" onSelect={handleOnSelect} >
-              <option className="reminder__option" value="ITWF NETWORK" data-key={1} id="id">ITWF Network</option>
-              <option className="reminder__option" value="E Lectures" data-key={4}>Muslim PRO</option>
-              <option className="reminder__option" value="Islamic Reminder" data-key={9}>Islamic Reminder</option>
-              <option className="reminder__option" value="Morning Azkar" data-key={2}>Morning Azkar</option>
-            </select>
+            <h1 className="create__content-heading">Create Content for:</h1>
+            {
+              (userReminders && userReminders.length === 1)
+                ?
+                <h1 className="" value={userReminders[0].name} data-key={userReminders[0].id}>&nbsp; {userReminders[0].name}</h1>
+                :
+                <select className="reminder__selector" name="reminders" onChange={handleOnSelect} >
+                  <option defaultValue>Choose...</option>
+                  {userReminders && userReminders.map(userReminder => (
+                    <option key={userReminder.id} className="reminder__option" value={userReminder.name} data-key={userReminder.id} id={userReminder.id}>{userReminder.name}</option>
+                  ))}
+                </select>
+            }
           </div>
 
           <p>{(values.error) ? values.error : ''}</p>
