@@ -472,7 +472,7 @@ a:hover {
     padding: 100px;
     padding-top: 30px;
     margin: auto;
-    border-bottom: 1px solid rgba(59, 58, 58, 0.534);
+    /* border-bottom: 1px solid rgba(59, 58, 58, 0.534); */
 }
 .create__reminder-form {
     width: 200px;

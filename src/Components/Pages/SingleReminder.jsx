@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/react-hooks";
 import DashboardMenu from "../Custom/DashboardMenu";
 import Header from "../../Components/Custom/Header"
 import { Spin } from "antd";
+import SubmitButton from "../../Components/Custom/SubmitButton";
 
 import { SINGLE_REMINDER } from "../../graphql/query";
 
@@ -23,7 +24,14 @@ const SingleReminder = (props) => {
     },
   });
 
-  // console.log(data);
+  if(!loading && data){
+    let reminderOwner = data.content.reminder.owner.id;
+    console.log(reminderOwner);
+  }
+  
+  
+
+  console.log(data);
 
   return Style.it(
     `   .single__reminder-container {
@@ -95,7 +103,11 @@ const SingleReminder = (props) => {
   `,
     <div className="single__reminder-container">
       <Header />
+     
       <div className="reminder__container">
+        <div style={{display: 'flex', marginBottom: "40px", justifyContent: "space-between"}}>
+          <SubmitButton text="Edit Content" /> <SubmitButton bgCol="red" text="Delete Content"/>
+        </div>
         {loading ? (
           <div
             style={{
@@ -111,13 +123,12 @@ const SingleReminder = (props) => {
           </div>
         ) : (
           <>
-            <div className="single__reminder-image-container">
-              <img className="single__reminder-image" 
-              // src="https://cdn.pixabay.com/photo/2018/09/28/19/07/islamic-3710002_960_720.jpg" 
-              // src="https://i.pinimg.com/originals/b5/b5/fa/b5b5fab7e29309cf4d34bc3713607704.jpg"
-              src= {data.content.imageUrl ? (data.content.imageUrl) : ("https://cdn.pixabay.com/photo/2018/09/28/19/07/islamic-3710002_960_720.jpg")}
-              alt="Reminder Image"/>
-            </div>
+          {
+            data.content && data.content.contentImage ? ( <div className="single__reminder-image-container">
+            <img className="single__reminder-image"  src= {data.content.contentImage}
+            alt="Reminder Image"/>
+          </div>) : ("")
+          }
 
             <div className="single__reminder--content-container">
               <h1 className="single__reminder-heading">{data.content.title}</h1>
@@ -128,10 +139,10 @@ const SingleReminder = (props) => {
             <div className="reminder__footer">
               <Link to="/dashboard/reminders">back</Link>
               <p className="created__by">
-                 by: {data.content.reminder.owner.firstName}{" "}
+                 by:{data.content.reminder.owner.firstName}{" "}
                 {data.content.reminder.owner.lastName}
               </p>
-              <p className="tag">tag: {data.content.reminder.name}</p>
+              <p className="tag">tag:{data.content.reminder.name}</p>
             </div>
           </>
         )}

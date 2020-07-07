@@ -129,3 +129,11 @@ export const CREATE_REMINDER = gql`
     }
   }
 `;
+
+export const DELETE_CONTENT = gql`
+  mutation deleteContent($id: Int!){
+    deleteContent(id: $id){
+      message
+    }
+  }
+`

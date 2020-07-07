@@ -90,7 +90,7 @@ const SmallReminderCard = ({
           <p className="reminder__name">Tag: {textContentReducer(tag, 20)}</p>
           <p className="reminder__owner">By: {textContentReducer(by, 20)}</p>
         </div>
-        <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span>
+        {/* <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span> */}
       </div>
     </div>
   );

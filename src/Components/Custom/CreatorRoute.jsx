@@ -7,18 +7,18 @@ import { IS_CREATOR } from "../../graphql/query"
 
 const CreatorRoute = ({ component: Component, ...rest}) => {
 
-    const { data: response, loading } = useQuery(IS_CREATOR);
+    const { data, loading } = useQuery(IS_CREATOR);
 
     // if(loading) console.log("loading");
     // if (error) console.log("error");
-    if (response) {  console.log( response)}
+    if (data) {  console.log( data)}
     // if (data) {  console.log("data===" + data)}
 
     return (
         <Route
         {...rest}
             render={props => 
-            localStorage.getItem(AUTH_TOKEN) && !!response.currentUser.isCreator ? (
+            localStorage.getItem(AUTH_TOKEN) && data && !!data.currentUser.isCreator ? (
                 <Component {...props} />
             ) : (
                

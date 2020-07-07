@@ -2,13 +2,13 @@ import React from 'react';
 import Style from 'style-it';
 
 
-function SubmitButton({text, onClick}) {
+function SubmitButton({text, pad, bgCol, onClick}) {
     return Style.it(`
         .submit__button {
             border: none;
-            padding: 10px;
+            padding: ${pad}
             border-radius: 2px;
-            background-color: #31DE28;
+            background-color: ${bgCol ||"#31DE28"};
             color: #fff;
             margin-top: 5px;
         }
