@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 
+import { Redirect } from "react-router-dom";
 import Header from "./Header";
 import Input from "./Input";
 import Submit from "./SubmitButton";
 import DashboardMenu from "../Custom/DashboardMenu";
 import Style from "style-it";
+import { useLastLocation } from "react-router-last-location";
 
-import { errorMessage } from "../../utils/helpers";
+import { openNotificationWithIcon } from "../../utils/helpers";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { CREATE_NEW_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
@@ -55,40 +57,75 @@ const NewContent = () => {
       onError({ graphQLErrors, networkError }) {
         if (graphQLErrors)
           graphQLErrors.map((err) => {
-            errorMessage("Reminder Name cannot be empty");
+            openNotificationWithIcon(
+              "warning",
+              "warning message",
+              "Reminder Name cannot be empty"
+            );
           });
-        if (networkError) errorMessage("An error occured, try again");
+        if (networkError)
+          openNotificationWithIcon(
+            "error",
+            "An error occured, please try again"
+          );
       },
     }
   );
 
-  const [createContent, { error, result }] = useMutation(CREATE_NEW_CONTENT, {
+  const [createContent, { error, data }] = useMutation(CREATE_NEW_CONTENT, {
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
-          errorMessage("Reminder Name cannot be empty");
+          openNotificationWithIcon(
+            "warning",
+            "Warning message",
+            "You need to choose a reminder"
+          );
         });
-      if (networkError) errorMessage("An error occured, try again");
+      if (networkError)
+        openNotificationWithIcon(
+          "error",
+          "Error message",
+          "An error occured, try again"
+        );
     },
+    // onCompleted() {
+    //   openNotificationWithIcon(
+    //     "success",
+    //     "Successful",
+    //     "New content for your reminder created successful"
+    //   );
+    // },
   });
 
   const validateEntry = () => {
     if (values.data === "" && values.file === null)
-      return (values.error = "Either Reminders body or File has to be filled");
+      openNotificationWithIcon(
+        "error",
+        "Error occured",
+        "Either Reminder content or image File has to be filled"
+      );
+    return (values.error = "Either Reminders body or File has to be filled");
   };
 
   const submitReminder = (e) => {
     e.preventDefault();
     validateEntry();
     createContent({ variables: values });
+    
   };
 
-  // if (error) console.log(error);
-  if (loading) return <h1>loading...</h1>;
   const userReminders = currentUserReminders.currentUser.reminderSet;
   if (userReminders.length === 1) {
     values.reminderId = userReminders[0].id;
   }
+
+  if(data) {
+    console.log(data)
+    openNotificationWithIcon("success",  "Created Successfully",  "Your new content was created successfully");
+    return <Redirect to="/dashboard"/>
+  }
+
 
   return Style.it(
     `
@@ -101,31 +138,6 @@ const NewContent = () => {
       {/* <Header /> */}
       <DashboardMenu />
       <div>
-        <div className="create__reminder-container ">
-          <h1>Your Reminders</h1>
-          <div className="reminders__list-container">
-            {/* {
-            reminder ? reminder.map((eachReminder) => {
-            return <h1 key={eachReminder.id}>{eachReminder.name}</h1>
-            }) : (
-              "You have not created any reminder yet"
-            )
-          } */}
-            <p className="reminder__list-item">ITWF Network</p>
-            <p className="reminder__list-item">Islamic Reminder</p>
-          </div>
-          <form className="create__reminder-form" onSubmit={submitReminder}>
-            <Input
-              required
-              inputType="text"
-              name="reminder"
-              onChange={handleChange}
-              placeholder="Add new reminder"
-            />
-            <Submit text="Add Reminder" />
-          </form>
-        </div>
-
         <form
           id="newContentForm"
           onSubmit={submitReminder}
@@ -192,7 +204,7 @@ const NewContent = () => {
 
             <br />
 
-            <Submit text="Create Reminder" />
+            <Submit pad="10" text="Create Reminder" />
           </div>
         </form>
       </div>

@@ -16,7 +16,7 @@ import { Spin } from "antd";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { AUTH_TOKEN } from "../../../utils/constants";
-import { errorMessage, saveToken } from "../../../utils/helpers"; //ant design error pop up
+import { openNotificationWithIcon, saveToken } from "../../../utils/helpers"; //ant design error pop up
 import { LOGIN } from "../../../graphql/mutation"; // login mutation
 
 // frontend form Validation
@@ -33,10 +33,10 @@ const LoginForm = (props) => {
     onError({ graphQLErrors, networkError }) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
-          errorMessage(err.message);
+          openNotificationWithIcon('error', "Login Failed", "Please enter valid credentials")
         });
 
-      if (networkError) errorMessage("You are not connected to the internet");
+        if (networkError) openNotificationWithIcon('error', "No internet connection", "Please check your internet connection and try again");
     },
 
     variables: values,
@@ -61,8 +61,12 @@ const LoginForm = (props) => {
     // saveUserData(token);
     saveToken(token);
     if (AUTH_TOKEN) {
-      return <Redirect to="/dashboard" />;
+      openNotificationWithIcon('success', "Welcome back to Itazkir" )
+      return (
+        <Redirect to="/dashboard" />
+        );
     } else {
+      openNotificationWithIcon('erro', "An error occured");
       return <Redirect to="/login" />;
     }
   }
@@ -130,7 +134,7 @@ const LoginForm = (props) => {
               </div>
 
               <div className="login__forget__password-row">
-                <SubmitButton text="Login Here" />
+                <SubmitButton pad="10" text="Login Here" />
 
                 <div className="loader__container">
                   {result.loading ? <Spin size="large" /> : ""}

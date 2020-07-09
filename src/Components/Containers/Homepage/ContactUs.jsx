@@ -78,7 +78,7 @@ const ContactUs = props => {
                         />
                         <textarea placeholder='Type your message here pls' className='contact__us--textarea' name="comment" id="" cols="15" rows="3"></textarea>
 
-                        <SubmitButton text='Send Message'/>
+                        <SubmitButton pad="10" text='Send Message'/>
                     </form>
                 </div>   
             </div>       

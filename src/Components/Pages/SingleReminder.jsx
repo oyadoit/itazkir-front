@@ -1,37 +1,64 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { useLastLocation } from 'react-router-last-location';
 
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 
-import DashboardMenu from "../Custom/DashboardMenu";
+// import DashboardMenu from "../Custom/DashboardMenu";
 import Header from "../../Components/Custom/Header"
 import { Spin } from "antd";
 import SubmitButton from "../../Components/Custom/SubmitButton";
+import { openNotificationWithIcon } from "../../utils/helpers"
 
-import { SINGLE_REMINDER } from "../../graphql/query";
+import { SINGLE_REMINDER, IS_CREATOR } from "../../graphql/query";
+import { DELETE_CONTENT } from "../../graphql/mutation";
+
+
+
 
 const SingleReminder = (props) => {
   const reminderId = props.match.params.reminderId;
   const title = props.match.params.title;
+  const ownerId = props.match.params.ownerId;
+  // const ownerId;
   // console.log("reminder===" + reminderId + title);
+
+  const lastLocation = useLastLocation();
+
+  const {data: result} = useQuery(IS_CREATOR);
+
+  const [deleteContent, {data: message }] = useMutation(DELETE_CONTENT, {
+    variables: {
+      id: reminderId,
+    },
+
+  })
+  
 
   const { loading, data } = useQuery(SINGLE_REMINDER, {
     variables: {
       id: reminderId,
       title: title,
+      ownerId: ownerId,
     },
   });
-
-  if(!loading && data){
-    let reminderOwner = data.content.reminder.owner.id;
-    console.log(reminderOwner);
+  
+  if(message) {
+    openNotificationWithIcon('success', "Delete Successful", `You deleted content: ${title}`)
+    return <Redirect to={lastLocation}/>
   }
-  
-  
+  if (data) var reminderOwnerId = data.content.reminder.owner.id;
+  if(result) var currentUserId = result.currentUser.id;
 
-  console.log(data);
+  const editDeleteButton =  (
+      <div style={{display: 'flex', marginBottom: "40px", justifyContent: "space-between"}}>
+        <SubmitButton rightLeft="5" pad="5" text="Edit Content" /> <SubmitButton onClick={deleteContent} bgCol="red" text="Delete Content"/>
+      </div>)
+
+
+
 
   return Style.it(
     `   .single__reminder-container {
@@ -105,9 +132,10 @@ const SingleReminder = (props) => {
       <Header />
      
       <div className="reminder__container">
-        <div style={{display: 'flex', marginBottom: "40px", justifyContent: "space-between"}}>
-          <SubmitButton text="Edit Content" /> <SubmitButton bgCol="red" text="Delete Content"/>
-        </div>
+        {
+          (data && result && (reminderOwnerId === currentUserId) ? (editDeleteButton) : "")
+          
+        }
         {loading ? (
           <div
             style={{
@@ -137,7 +165,7 @@ const SingleReminder = (props) => {
 
             <br />
             <div className="reminder__footer">
-              <Link to="/dashboard/reminders">back</Link>
+              <Link to={lastLocation}>back</Link>
               <p className="created__by">
                  by:{data.content.reminder.owner.firstName}{" "}
                 {data.content.reminder.owner.lastName}

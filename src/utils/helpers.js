@@ -1,6 +1,7 @@
-import { message, Button } from 'antd';
+import { message, Button, notification, Space } from 'antd';
 import _ from "lodash";
 import { AUTH_TOKEN } from "../utils/constants";
+
 
 function capitalize(str) {
     var splitStr = str.toLowerCase().split(' ');
@@ -22,6 +23,20 @@ export const errorMessage = (args) => {
         
     })
 }
+
+
+
+export const openNotificationWithIcon = (type, message, description) => {
+  notification[type]({
+    message: [message],
+    description: [description],
+    placement: 'bottomLeft',
+    duration: 4
+  });
+};
+
+
+
 
 // help truncate content of text< just specify what you pass and length as arguments
 export const textContentReducer = (what, length) => {

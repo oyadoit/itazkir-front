@@ -15,13 +15,19 @@ import { useQuery } from "@apollo/react-hooks";
 const Profile = (props) => {
   const context = useContext(AuthContext);
 
-  const { loading, data } = useQuery(ME, {
-    // update() {
-    //   context.login(data.currentUser);
-    // },
-  });
+  const { loading, data } = useQuery(ME);
 
-  // if(loading) return <p>loading..</p>
+  const reminderSetNumber = (data) => {
+    if (data.currentUser.reminderSet.length > 0) {
+      return (
+        <div className="card__summary">
+          <h2>Your Total Reminders</h2>
+          <h1>{data.currentUser.reminderSet.length}</h1>
+        </div>
+      );
+    }
+  };
+
   if (data) console.log(data);
   return Style.it(
     `
@@ -109,15 +115,10 @@ const Profile = (props) => {
                   <h2>Your Current Subscriptions</h2>
                   <h1>{data.currentUser.subscriptionSet.length}</h1>
                 </div>
+                {
+                  reminderSetNumber(data)
+                }
 
-                <div className="card__summary">
-                  <h2>Your Total Reminders</h2>
-                  <h1>
-                    {data.currentUser.reminderSet
-                      ? data.currentUser.reminderSet.length
-                      : "0"}
-                  </h1>
-                </div>
               </div>
             </>
           )}

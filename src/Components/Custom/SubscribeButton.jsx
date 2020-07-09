@@ -4,7 +4,7 @@ import Style from 'style-it';
 
 function SubscribeButton(props) {
 
-    const bgColor = (props.text == "SUBSCRIBE") ? "#31DE28" : (props.text == "SUBSCRIBED" ? "#33b92c79" : "" )
+    const bgColor = (props.text === "SUBSCRIBE") ? "#31DE28" : (props.text === "SUBSCRIBED" ? "#33b92c79" : "" )
     return Style.it(`
         .submit__button {
             border: none;

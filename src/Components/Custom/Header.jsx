@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Style from "style-it";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import GetStartedButton from "./GetStartedButton";
 import Circle from "../Custom/Particles/Circle";
 import Triangle from "../Custom/Particles/Triangle";
 import Hexagon from "../Custom/Particles/Hexagon";
 
-import Button from "../Custom/SubmitButton";
+// import Button from "../Custom/SubmitButton";
 import { AUTH_TOKEN } from "../../utils/constants";
 import { logout } from "../../index";
 
@@ -72,7 +72,7 @@ const Header = (props) => {
 
     <div className="header">
       <div className="header__logo--container">
-        <Link to="/" className="header__logo--icon">
+        <Link to={authToken ? "/dashboard" : "/"} className="header__logo--icon">
           ITazkir
         </Link>
       </div>

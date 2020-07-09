@@ -18,7 +18,9 @@ const SmallReminderCard = ({
   id,
   by,
   content,
+  ownerId
 }) => {
+  // console.log(ownerId + "owner");
   return Style.it(
     `
         .card__container {
@@ -79,19 +81,19 @@ const SmallReminderCard = ({
           {initialGetters(by)}
         </Avatar>
       </div>
+      <Link to={`/dashboard/reminders/${ownerId}/${id}/${title}`}>
       <div className="card__content--right">
-        <Link to={`/dashboard/reminders/${id}/${title}`}>
+        
           <h2 className="card__title">{textContentReducer(title, 20)}</h2>
-        </Link>
-        {/* <Link to={`/dashboard/reminders/${id}/${title}`}> */}
           <p className="card__text">{textContentReducer(content, 50)}</p>
-        {/* </Link> */}
+        
         <div className="reminder__details-container">
           <p className="reminder__name">Tag: {textContentReducer(tag, 20)}</p>
           <p className="reminder__owner">By: {textContentReducer(by, 20)}</p>
         </div>
         {/* <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span> */}
       </div>
+      </Link>
     </div>
   );
 };

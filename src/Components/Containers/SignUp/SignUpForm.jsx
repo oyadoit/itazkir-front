@@ -15,7 +15,7 @@ import { FormValidation } from "calidation";
 import {signupConfig} from '../../../utils/validation';
 
 import { CREATE_USER, LOGIN } from '../../../graphql/mutation'
-import { errorMessage, saveToken } from '../../../utils/helpers'
+import { openNotificationWithIcon, saveToken } from '../../../utils/helpers'
 
 
 const SignUpForm = props => {
@@ -38,9 +38,10 @@ const SignUpForm = props => {
     const [SignUp, {loading, data, error, called}] = useMutation(CREATE_USER, {
 
         onError({graphQLErrors, networkError}){
-            if (graphQLErrors) graphQLErrors.map(err => {errorMessage("User already exist, try a different email address"||err.message)})  
-            if (networkError) errorMessage("You are not connected to the internet");
-
+            if (graphQLErrors) graphQLErrors.map(err => {openNotificationWithIcon('error',  "User already exist, try a different email address"||err.message)})  
+            
+            if (networkError) openNotificationWithIcon('error', "An error occured, please check your internet connection");
+            
         },
         variables: values,
         
@@ -51,7 +52,7 @@ const SignUpForm = props => {
         if(isValid){
             SignUp().then(() => {
                 generateToken();
-                console.log("generate token got called");
+                // console.log("generate token got called");
             }).catch((err) => console.log(err))
         }  
     }
@@ -68,6 +69,7 @@ const SignUpForm = props => {
         // console.log(token.tokenAuth)
         const newToken = token.tokenAuth.token;
         saveToken(newToken);
+        openNotificationWithIcon("success", "Welcome to ITazkir", "Welcome to ITazkir, please subscribe to reminders o your choice, and receive contents created for each");
         return <Redirect to='/get-started' />
     }
 
@@ -153,6 +155,7 @@ const SignUpForm = props => {
                     
                         <div className='same__line'>
                             <SubmitButton 
+                                pad="10"
                                 text='Create Account'                 
                             />
                             <div className="loader__container">

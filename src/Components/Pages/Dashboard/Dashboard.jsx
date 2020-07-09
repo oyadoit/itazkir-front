@@ -30,7 +30,7 @@ import MobileHeader from "../../Custom/MobileHeader";
 const Dashboard = (props) => {
   
   const { loading, data } = useQuery(USER_CONTENTS);
-if (loading) return 'Loading ......'
+  // if (loading) return 'Loading ......'
 
   return Style.it(
     `
@@ -123,6 +123,7 @@ if (loading) return 'Loading ......'
                           imageUrl="https://avatars0.githubusercontent.com/u/39632030?s=60&u=17bfe0a10b32f448983358ead04b14382726beca&v=4"
                           key={eachContent.id}
                           id={eachContent.id}
+                          ownerId={eachContent.reminder.owner.id}
                         />
                       ))
                   ) : (
