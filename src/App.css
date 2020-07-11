@@ -509,7 +509,7 @@ a:hover {
 .reminder__image-upload::before {
     content: 'Select image';
     display: inline-block;
-    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    background: linear-gradient(to right, #f9f9f9, #e3e3e3);
     border: 1px solid #999;
     border-radius: 3px;
     padding: 5px 8px;
@@ -532,7 +532,7 @@ a:hover {
   }
   .reminder__list-item {
       padding: 10px;
-      background-color: linear-gradient(top, #f9f9f9, #e3e3e3);;
+      background-color: linear-gradient(to top, #f9f9f9, #e3e3e3);;
       border: 2px #31DE28 solid;
       cursor: pointer;
       margin: 5px;

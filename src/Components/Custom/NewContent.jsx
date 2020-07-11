@@ -108,6 +108,7 @@ const NewContent = () => {
     
     if(data && currentUserReminders) {    
       openNotificationWithIcon("success",  "Created Successfully",  "Your new content has been created successfully");
+      e.target.reset();
     }
     
     
