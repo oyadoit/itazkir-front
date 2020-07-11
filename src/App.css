@@ -458,10 +458,17 @@ a:hover {
 /* create reminder page */
 
 .new__reminder-container {
-    /* width: 500px; */
+    
     padding: 100px;
     padding-top: 30px;
     margin: auto;
+}
+.reminder_title {
+    width: 100%;
+    border: 1px solid #31DE28;
+    padding: 10px;
+
+    margin-bottom: 20px;
 }
 .reminder_textarea {
     width: 100%;

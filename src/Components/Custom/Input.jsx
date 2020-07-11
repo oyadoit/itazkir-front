@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from 'style-it';
 
-function Input({placeholder, onChange, name, value,  inputType}) {
+function Input({placeholder, onChange, name, value,  inputType, required}) {
 
 
     return Style.it(`

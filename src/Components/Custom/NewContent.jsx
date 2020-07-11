@@ -89,13 +89,6 @@ const NewContent = () => {
           "An error occured, try again"
         );
     },
-    // onCompleted() {
-    //   openNotificationWithIcon(
-    //     "success",
-    //     "Successful",
-    //     "New content for your reminder created successful"
-    //   );
-    // },
   });
 
   const validateEntry = () => {
@@ -105,13 +98,18 @@ const NewContent = () => {
         "Error occured",
         "Either Reminder content or image File has to be filled"
       );
-    return (values.error = "Either Reminders body or File has to be filled");
+    return;
   };
 
   const submitReminder = (e) => {
     e.preventDefault();
     validateEntry();
     createContent({ variables: values });
+    
+    if(data && currentUserReminders) {    
+      openNotificationWithIcon("success",  "Created Successfully",  "Your new content has been created successfully");
+    }
+    
     
   };
 
@@ -120,11 +118,7 @@ const NewContent = () => {
     values.reminderId = userReminders[0].id;
   }
 
-  if(data) {
-    console.log(data)
-    openNotificationWithIcon("success",  "Created Successfully",  "Your new content was created successfully");
-    return <Redirect to="/dashboard"/>
-  }
+  
 
 
   return Style.it(
@@ -132,12 +126,16 @@ const NewContent = () => {
     .container {
       display: flex;
     }
+    .form_container {
+      width:  -webkit-fill-available;
+    }
+
   `,
 
     <div className="container">
       {/* <Header /> */}
       <DashboardMenu />
-      <div>
+      <div className="form_container">
         <form
           id="newContentForm"
           onSubmit={submitReminder}
@@ -178,8 +176,9 @@ const NewContent = () => {
             </div>
 
             <p>{values.error ? values.error : ""}</p>
-            <Input
-              inpuType="text"
+            <input
+              className="reminder_title"
+              type="text"
               name="title"
               required
               placeholder="Enter Title Here"
@@ -189,9 +188,8 @@ const NewContent = () => {
               className="reminder_textarea"
               placeholder="Enter content here"
               name="data"
-              // cols="140"
               onChange={handleChange}
-              rows="12"
+              rows="15"
             ></textarea>
             <input
               className="reminder__image-upload"
