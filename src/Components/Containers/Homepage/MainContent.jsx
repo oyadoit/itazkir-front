@@ -1,11 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 
 
 import DownloadFromStore from '../../Custom/DownloadFromStore'
 import GetStartedButton from '../../Custom/GetStartedButton';
-import Circle from '../../Custom/Particles/Circle';
+// import Circle from '../../Custom/Particles/Circle';
 // import Triangle from '../../Custom/Particles/Triangle';
 import Hexagon from '../../Custom/Particles/Hexagon';
 

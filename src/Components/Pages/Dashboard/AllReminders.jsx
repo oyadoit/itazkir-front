@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Style from "style-it";
 
 import { Spin } from "antd";
@@ -11,7 +10,7 @@ import MobileHeader from "../../Custom/MobileHeader";
 import { USER_CONTENTS } from "../../../graphql/query";
 
 import { MenuButton } from "../../Custom/Menu";
-import { canvasStyle, menuButtonStyle } from "../../../Animations/menu";
+// import { canvasStyle, menuButtonStyle } from "../../../Animations/menu";
 
 import { useQuery } from "@apollo/react-hooks";
 

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-import { Redirect } from "react-router-dom";
-import Header from "./Header";
-import Input from "./Input";
+// import { Redirect } from "react-router-dom";
+// import Header from "./Header";
+// import Input from "./Input";
 import Submit from "./SubmitButton";
 import DashboardMenu from "../Custom/DashboardMenu";
 import Style from "style-it";
-import { useLastLocation } from "react-router-last-location";
+// import { useLastLocation } from "react-router-last-location";
 
 import { openNotificationWithIcon } from "../../utils/helpers";
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { CREATE_NEW_CONTENT, CREATE_REMINDER } from "../../graphql/mutation";
 import {
-  USER_CURRENT_REMINDER,
+  
   CURRENT_USER_CONTENTS,
 } from "../../graphql/query";
 import { set } from "lodash";

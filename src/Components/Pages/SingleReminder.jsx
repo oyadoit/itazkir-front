@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Style from "style-it";
 import { Link, Redirect } from "react-router-dom";
 import { useLastLocation } from "react-router-last-location";
@@ -11,18 +11,45 @@ import Header from "../../Components/Custom/Header";
 import { Spin } from "antd";
 import SubmitButton from "../../Components/Custom/SubmitButton";
 import { openNotificationWithIcon } from "../../utils/helpers";
+// import Input from "../../Components/Custom/Input";
 
-import { SINGLE_REMINDER, IS_CREATOR } from "../../graphql/query";
-import { DELETE_CONTENT } from "../../graphql/mutation";
+import { SINGLE_REMINDER, IS_CREATOR, USER_CONTENTS } from "../../graphql/query";
+import { DELETE_CONTENT, UPDATE_CONTENT } from "../../graphql/mutation";
 
 const SingleReminder = (props) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [values, setValues] = useState({
+    title: "",
+    data: "",
+    contentImage: "",
+    reminderId: 14,
+    file: null,
+    error: "",
+  });
+  
+
 
   const reminderId = props.match.params.reminderId;
   const title = props.match.params.title;
   const ownerId = props.match.params.ownerId;
-  // const ownerId;
-  // console.log("reminder===" + reminderId + title);
+
+  const { loading, data } = useQuery(SINGLE_REMINDER, {
+    variables: {
+      id: reminderId,
+      title: title,
+      ownerId: ownerId,
+      
+    },
+  });  
+ 
+  const [update, {loading: isLoading, data: res }] = useMutation(UPDATE_CONTENT, {
+    variables: {
+      id: reminderId,
+      title: values.title,
+      data: values.data,
+      file: values.file 
+    }
+  })
 
   const lastLocation = useLastLocation();
 
@@ -32,15 +59,23 @@ const SingleReminder = (props) => {
     variables: {
       id: reminderId,
     },
+
+    // update(proxy, result) {
+    //   const data = proxy.readQuery({
+    //     query: USER_CONTENTS,
+    //   });
+
+    //   data. = [
+        
+    //     ...data.userSubscriptions,
+    //   ];
+    //   proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data });
+    // },
+
+
   });
 
-  const { loading, data } = useQuery(SINGLE_REMINDER, {
-    variables: {
-      id: reminderId,
-      title: title,
-      ownerId: ownerId,
-    },
-  });
+  
 
   if (message) {
     openNotificationWithIcon(
@@ -50,8 +85,46 @@ const SingleReminder = (props) => {
     );
     return <Redirect to={lastLocation} />;
   }
-  if (data) var reminderOwnerId = data.content.reminder.owner.id;
+  if (data) {
+    var reminderOwnerId = data.content.reminder.owner.id;
+
+  }
   if (result) var currentUserId = result.currentUser.id;
+
+
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onFileChange = (event) => {
+    setValues({
+      ...values,
+      file: event.target.files[0],
+    });
+  };
+
+  
+
+  const validateEntry = () => {
+    if (values.data === "" && values.file === null)
+      openNotificationWithIcon(
+        "error",
+        "Error occured",
+        "Either Reminder content or image File has to be filled"
+      );
+    return;
+  };
+
+  const updateReminder = (e) => {
+    e.preventDefault();
+    validateEntry();
+    update();
+
+  };
+
 
   const editDeleteButton = (
     <div
@@ -74,8 +147,6 @@ const SingleReminder = (props) => {
       />
     </div>
   );
-
-  // const isEditingTrue
 
   return Style.it(
     `   .single__reminder-container {
@@ -150,23 +221,27 @@ const SingleReminder = (props) => {
 
     <div className="single__reminder-container">
       <Header />
+
       {isEditing ? (
         <div className="reminder__container">
           <SubmitButton onClick={() => setIsEditing(!isEditing)} pad="5" text="Go back"/>
 
-          <form className="edit_form">
+          <form onSubmit={updateReminder} className="edit_form">
             <input
                 className="reminder_title"
                 type="text"
                 name="title"
                 required
-                placeholder="Enter Title Here"
+                placeholder={data.content.title}
+                onChange={handleChange}
+                
               />
               <textarea
                 className="reminder_textarea"
-                placeholder="Enter content here"
+                placeholder={data.content.data}
                 name="data"
                 rows="15"
+                onChange={handleChange}
               ></textarea>
               <input
                 className="reminder__image-upload"
@@ -174,12 +249,14 @@ const SingleReminder = (props) => {
                 id="avatar"
                 name="avatar"
                 accept="image/png, image/jpeg"
+                onChange={onFileChange}
               />
 
               <SubmitButton pad="5"  text=" Save and Continue  "/>
 
           </form>
         </div>
+
       ) : (
         <div className="reminder__container">
           {data && result && reminderOwnerId === currentUserId

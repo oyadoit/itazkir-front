@@ -92,26 +92,7 @@ export const CREATE_CONTENT = gql`
   }
 `;
 
-export const CREATE_NEW_CONTENT = gql`
-mutation ($data: String $file: Upload $reminderId: Int! $title: String!){
-  createContent(data: $data, file: $file, reminderId:$reminderId, title: $title){
-    id
-    data
-    title
-    fileLocation
-    reminder {
-        id
-        name
-        owner {
-          id
-          email
-          firstName
-          lastName
-        }
-      }
-  }
-}
-`;
+
 
 //  create reminder users can subscribe to
 export const CREATE_REMINDER = gql`
@@ -136,4 +117,34 @@ export const DELETE_CONTENT = gql`
       message
     }
   }
+`
+
+export const CREATE_NEW_CONTENT = gql`
+mutation ($data: String $file: Upload $reminderId: Int! $title: String!){
+  createContent(data: $data, file: $file, reminderId:$reminderId, title: $title){
+    id
+    data
+    title
+    fileLocation
+    reminder {
+        id
+        name
+        owner {
+          id
+          email
+          firstName
+          lastName
+        }
+      }
+  }
+}
+`;
+
+
+export const UPDATE_CONTENT = gql`
+mutation updateContent($id: Int, $data: String, $file: Upload,  $title: String  ){
+  updateContent (id: $id, data: $data, title: $title, file: $file){
+     id data title  
+  }
+}
 `

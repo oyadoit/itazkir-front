@@ -19,24 +19,6 @@ export const ME = gql`
   }
 `;
 
-// // query me from cache
-// export const ME_FROM_CACHE = gql`
-//   query {
-//     currentUser @client{
-//       id
-//       email
-//       firstName
-//       lastName
-//       isCreator
-//       subscriptionSet {
-//         id
-//       }
-//       reminderSet {
-//         id
-//       }
-//     }
-//   }
-// `;
 
 
 //check if user is a creator b4 allowing access to route

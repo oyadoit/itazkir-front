@@ -1,11 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Style from "style-it";
 
 import { textContentReducer } from '../../../utils/helpers'
 
 import DashboardMenu from "../../Custom/DashboardMenu";
-import SmallSubscriptionCard from "../../Custom/SmallSubscriptionCard";
+// import SmallSubscriptionCard from "../../Custom/SmallSubscriptionCard";
 import UserCurrentSubscription from "../../Custom/UserCurrentSubscription";
 import MobileHeader from "../../Custom/MobileHeader";
 

@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import Style from "style-it";
 
 import { Avatar } from "antd";
@@ -7,15 +6,15 @@ import { initialGetters, errorMessage } from "../../utils/helpers"
 import SubscribeButton from "../Custom/SubscribeButton";
 import { SUBSCRIBE } from "../../graphql/mutation";
 import { useMutation } from "@apollo/react-hooks";
-import { CURRENT_USER_SUBSCRIPTIONS, ALL_REMINDERS } from "../../graphql/query";
+import { CURRENT_USER_SUBSCRIPTIONS } from "../../graphql/query";
 
 
 const SubscriptionCard = ({
   bgColor,
-  title, id,datas, btnVal, subColor
+  title, id,  subColor
 }) => {
 
-  const userSubscriptions = datas;
+  // const userSubscriptions = datas;
 
   // const [subscribed, setSubscribed] = useState(false)
   const [Subscribe, {loading}] = useMutation(SUBSCRIBE, {
