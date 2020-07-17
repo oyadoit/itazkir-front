@@ -113,7 +113,7 @@ const SubscriptionCard = ({
           Subscribe now to start recieving reminders from {title}
         </p>
         <div>
-          <SubscribeButton subColor={subColor} text='dummy' onClick={Subscribe} />
+          <SubscribeButton subColor={subColor} text={btnVal} onClick={Subscribe} />
         </div>
       </div>
     </div>
