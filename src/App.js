@@ -20,6 +20,7 @@ import SingleReminder from "./Components/Pages/SingleReminder";
 import CreatorRoute from "./Components/Custom/CreatorRoute";
 import NewContent from "./Components/Custom/NewContent";
 import NotFound from "./Components/NotFound";
+import Reminders from "./Components/Pages/Reminders";
 
 function App() {
   return (
@@ -27,7 +28,6 @@ function App() {
       <BrowserRouter>
         <LastLocationProvider>
           <Switch>
-            {}
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
@@ -36,8 +36,12 @@ function App() {
               path="/dashboard/reminders/:ownerId/:reminderId/:title"
               component={SingleReminder}
             />
+              <Route
+              exact
+              path="/reminders"
+              component={Reminders}
+            />
 
-            {/* <AuthProvider> */}
             <AuthenticatedRoute
               exact
               path="/get-started"

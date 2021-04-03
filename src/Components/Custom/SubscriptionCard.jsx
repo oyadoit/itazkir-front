@@ -1,25 +1,19 @@
-import React from "react";
-import Style from "style-it";
+import React from 'react';
+import Style from 'style-it';
 
-import { Avatar } from "antd";
-import { initialGetters, errorMessage } from "../../utils/helpers"
-import SubscribeButton from "../Custom/SubscribeButton";
-import { SUBSCRIBE } from "../../graphql/mutation";
-import { useMutation } from "@apollo/react-hooks";
-import { CURRENT_USER_SUBSCRIPTIONS } from "../../graphql/query";
+import {Avatar} from 'antd';
+import {initialGetters, errorMessage} from '../../utils/helpers';
+import SubscribeButton from '../Custom/SubscribeButton';
+import {SUBSCRIBE} from '../../graphql/mutation';
+import {useMutation} from '@apollo/react-hooks';
+import {CURRENT_USER_SUBSCRIPTIONS} from '../../graphql/query';
 
-
-const SubscriptionCard = ({
-  bgColor,
-  title, id,  subColor
-}) => {
-
+const SubscriptionCard = ({bgColor, title, id, btnVal, subColor}) => {
   // const userSubscriptions = datas;
 
   // const [subscribed, setSubscribed] = useState(false)
   const [Subscribe, {loading}] = useMutation(SUBSCRIBE, {
-
-    variables: { reminderId: id },
+    variables: {reminderId: id},
 
     update(proxy, result) {
       const data = proxy.readQuery({
@@ -30,16 +24,16 @@ const SubscriptionCard = ({
         result.data.createSubscription,
         ...data.userSubscriptions,
       ];
-      proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data });
+      proxy.writeQuery({query: CURRENT_USER_SUBSCRIPTIONS, data});
     },
 
-    onError({ graphQLErrors, networkError }) {
+    onError({graphQLErrors, networkError}) {
       if (graphQLErrors)
         graphQLErrors.map((err) => {
-          errorMessage("You can only subscribe once");
+          errorMessage('You can only subscribe once');
         });
 
-      if (networkError) errorMessage("You are not connected to the internet");
+      if (networkError) errorMessage('You are not connected to the internet');
     },
   });
 
@@ -93,18 +87,16 @@ const SubscriptionCard = ({
       <div>
         <Avatar
           style={{
-            backgroundColor: "#31DE28",
-            color: "#fff",
-            fontWeight: "bold",
-            verticalAlign: "middle",
-            marginRight: "15px",
-            marginTop: "12px",
+            backgroundColor: '#31DE28',
+            color: '#fff',
+            fontWeight: 'bold',
+            verticalAlign: 'middle',
+            marginRight: '15px',
+            marginTop: '12px',
           }}
           size="large"
         >
-          {
-            initialGetters(title)
-          }
+          {initialGetters(title)}
         </Avatar>
       </div>
       <div className="card__content--right">
@@ -113,7 +105,11 @@ const SubscriptionCard = ({
           Subscribe now to start recieving reminders from {title}
         </p>
         <div>
-          <SubscribeButton subColor={subColor} text={btnVal} onClick={Subscribe} />
+          <SubscribeButton
+            subColor={subColor}
+            text={btnVal}
+            onClick={Subscribe}
+          />
         </div>
       </div>
     </div>
