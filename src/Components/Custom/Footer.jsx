@@ -22,7 +22,7 @@ const Footer = () => {
 
         <div className="footer__container">
           <div>Email</div>
-          <div>2020 iTazkir.</div>
+          <div>{new Date().getFullYear()} iTazkir.</div>
           <div>Github</div>
         </div>
     );
