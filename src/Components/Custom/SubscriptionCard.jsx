@@ -102,7 +102,7 @@ const SubscriptionCard = ({bgColor, title, id, btnVal, subColor}) => {
       <div className="card__content--right">
         <h2 className="card__title">{title}</h2>
         <p className="card__text">
-          Subscribe now to start recieving reminders from {title}
+          Subscribe now to start receiving reminders from {title}
         </p>
         <div>
           <SubscribeButton
