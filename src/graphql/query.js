@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 //query the currrently loggedin user
 export const ME = gql`
@@ -19,12 +19,10 @@ export const ME = gql`
   }
 `;
 
-
-
 //check if user is a creator b4 allowing access to route
 export const IS_CREATOR = gql`
   query {
-    currentUser{
+    currentUser {
       id
       email
       isCreator
@@ -104,30 +102,30 @@ export const USER_CURRENT_REMINDER = gql`
   }
 `;
 
-
-
-
-
 export const ALL_CONTENTS = gql`
   query {
-    allContents{
-      id data title 
+    allContents {
+      id
+      data
+      title
+      reminder {
+        owner {
+          id
+        }
+      }
     }
   }
-    `;
-
+`;
 
 export const CURRENT_USER_CONTENTS = gql`
-query{
-  currentUser{
-    id
-    reminderSet {
+  query {
+    currentUser {
       id
-      name
+      reminderSet {
+        id
+        name
+      }
+      isCreator
     }
-    isCreator
   }
-}
-`
-
-
+`;

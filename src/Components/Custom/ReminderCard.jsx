@@ -11,6 +11,8 @@ const ReminderCard = ({
   bgColor,
   title,
   content,
+  reminderID,
+  ownerID,
   firstButton,
   secondButton,
   thirdButton,
@@ -87,11 +89,11 @@ const ReminderCard = ({
           <GetStartedButton
             // className={firstButton? 'first-button' : (secondButton ? 'second-button' : 'third-button')}
             className="first-button"
-            to="/signup"
+            to={`/dashboard/reminders/${ownerID}/${reminderID}/${title}`}
             style={{ color: `${bgColor}` }}
           >
             Read more
-          </GetStartedButton>
+          </GetStartedButton>          
         </div>
       </div>
     </div>

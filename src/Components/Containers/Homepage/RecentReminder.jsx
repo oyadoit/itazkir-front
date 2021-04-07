@@ -8,8 +8,7 @@ import { ALL_CONTENTS } from "../../../graphql/query";
 
 const RecentReminder = (props) => {
   const { data, loading } = useQuery(ALL_CONTENTS);
-//   console.log(data);
-
+  
     // const colArr = ["rgb(109, 224, 103)", "rgb(238, 174, 56)", "#2f679c"]
   return (
     <div className="recent__reminder--container">
@@ -24,6 +23,8 @@ const RecentReminder = (props) => {
                 content={each.data}
                 // bgColor={colArr[each.id - 1]}
                 key={each.id}
+                reminderID={each.id}
+                ownerID={each.reminder.owner.id}
 
               />
             ))}
