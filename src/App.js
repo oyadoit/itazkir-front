@@ -9,7 +9,7 @@ import { AuthProvider } from "./context/auth";
 import HomePage from "./Components/Pages/Homepage";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
-import Footer from "./Components/Custom/Footer";
+// import Footer from "./Components/Custom/Footer";
 import Subscription from "./Components/Pages/Subscription";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import Profile from "./Components/Pages/Dashboard/Profile";
@@ -21,6 +21,7 @@ import CreatorRoute from "./Components/Custom/CreatorRoute";
 import NewContent from "./Components/Custom/NewContent";
 import NotFound from "./Components/NotFound";
 import Reminders from "./Components/Pages/Reminders";
+import Content from "./Components/Pages/ContentPage";
 
 function App() {
   return (
@@ -41,7 +42,11 @@ function App() {
               path="/reminders"
               component={Reminders}
             />
-
+            <Route
+              exact
+              path="/reminders/:reminderName"
+              component={Content}
+            />
             <AuthenticatedRoute
               exact
               path="/get-started"

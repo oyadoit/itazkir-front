@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Style from "style-it";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Style from 'style-it';
+import {Link} from 'react-router-dom';
 // import { Redirect } from "react-router-dom";
 
-import GetStartedButton from "./GetStartedButton";
-import Circle from "../Custom/Particles/Circle";
-import Triangle from "../Custom/Particles/Triangle";
-import Hexagon from "../Custom/Particles/Hexagon";
+import GetStartedButton from './GetStartedButton';
+import Circle from '../Custom/Particles/Circle';
+import Triangle from '../Custom/Particles/Triangle';
+import Hexagon from '../Custom/Particles/Hexagon';
 
 // import Button from "../Custom/SubmitButton";
-import { AUTH_TOKEN } from "../../utils/constants";
-import { logout } from "../../index";
+import {AUTH_TOKEN} from '../../utils/constants';
+import {logout} from '../../index';
 
 const Header = (props) => {
   const authToken = localStorage.getItem(AUTH_TOKEN);
@@ -68,11 +68,18 @@ const Header = (props) => {
             width: 100%;
             padding: 10px;
         }
+        // .nav__links--container {
+        //   display: flex;
+        //   justify-content: space-between;
+        // }
         `,
 
     <div className="header">
       <div className="header__logo--container">
-        <Link to={authToken ? "/dashboard" : "/"} className="header__logo--icon">
+        <Link
+          to={authToken ? '/dashboard' : '/'}
+          className="header__logo--icon"
+        >
           ITazkir
         </Link>
       </div>
@@ -94,6 +101,11 @@ const Header = (props) => {
               </>
             ) : (
               <>
+                <li>
+                  <Link to="/reminders" className="nav__container--link">
+                    Reminders
+                  </Link>
+                </li>
                 <li>
                   <Link to="/login" className="nav__container--link">
                     Login

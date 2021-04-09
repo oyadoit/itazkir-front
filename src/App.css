@@ -881,3 +881,12 @@ a:hover {
         display: grid;
     }
 }
+
+.content__page--container {
+    background-color: rgba(63, 61, 86, 0.055);
+    min-height: 100vh;
+}
+.content__heading {
+    /* display: flex; */
+    /* justify-content: space-around; */
+}

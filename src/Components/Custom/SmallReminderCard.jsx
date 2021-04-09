@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Style from "style-it";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Style from 'style-it';
 
-import { textContentReducer } from "../../utils/helpers";
-import { initialGetters } from "../../utils/helpers";
+import {textContentReducer} from '../../utils/helpers';
+import {initialGetters} from '../../utils/helpers';
 
 // import GetStartedButton from '../Custom/GetStartedButton'
-import { Link } from "react-router-dom";
-import { DeleteFilled } from "@ant-design/icons";
-import { Avatar } from "antd";
+import {Link} from 'react-router-dom';
+import {DeleteFilled} from '@ant-design/icons';
+import {Avatar} from 'antd';
 
 const SmallReminderCard = ({
   bgColor,
@@ -18,7 +18,7 @@ const SmallReminderCard = ({
   id,
   by,
   content,
-  ownerId
+  ownerId,
 }) => {
   // console.log(ownerId + "owner");
   return Style.it(
@@ -66,15 +66,14 @@ const SmallReminderCard = ({
 
     <div className="card__container">
       <div>
-
         <Avatar
           style={{
             // backgroundColor: "#31DE28",
-            color: "#fff",
-            fontWeight: "bold",
-            verticalAlign: "middle",
-            marginRight: "10px",
-            marginTop: "3px",
+            color: '#fff',
+            fontWeight: 'bold',
+            verticalAlign: 'middle',
+            marginRight: '10px',
+            marginTop: '3px',
           }}
           size="large"
         >
@@ -82,17 +81,16 @@ const SmallReminderCard = ({
         </Avatar>
       </div>
       <Link to={`/dashboard/reminders/${ownerId}/${id}/${title}`}>
-      <div className="card__content--right">
-        
+        <div className="card__content--right">
           <h2 className="card__title">{textContentReducer(title, 20)}</h2>
           <p className="card__text">{textContentReducer(content, 50)}</p>
-        
-        <div className="reminder__details-container">
-          <p className="reminder__name">Tag: {textContentReducer(tag, 20)}</p>
-          <p className="reminder__owner">By: {textContentReducer(by, 20)}</p>
+
+          <div className="reminder__details-container">
+            <p className="reminder__name">Tag: {textContentReducer(tag, 20)}</p>
+            <p className="reminder__owner">By: {textContentReducer(by, 20)}</p>
+          </div>
+          {/* <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span> */}
         </div>
-        {/* <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span> */}
-      </div>
       </Link>
     </div>
   );
