@@ -3,14 +3,17 @@ import { Spin } from 'antd';
 import React from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
-import { ALL_CONTENTS } from '../../graphql/query';
+import { REMINDER_CONTENT } from '../../graphql/query';
 import Header from '../Custom/Header';
 import SmallReminderCard from '../Custom/SmallReminderCard';
 
 const Content = (props) => {
 const id = useParams('reminderName')
-console.log(id);
-  const { loading, data } = useQuery(ALL_CONTENTS);
+  const { loading, data } = useQuery(REMINDER_CONTENT, {
+    variables: {
+      reminderId: id.reminderName
+    }
+  });
   console.log(loading, data);
 
   if (loading) {
@@ -34,10 +37,10 @@ console.log(id);
     <div className="content__page--container">
       <Header />
       <Heading>Daily Reminder</Heading>
-      {data.allContents && data.allContents.map(content => 
+      {data.reminderContent && data.reminderContent.map(content => 
       <Container>
         <SmallReminderCard
-          title="New title"
+          title={`${content.data}`}
           content="This is part of the content for the reminder"
           bgColor="#fff"
           tag="Islamic Reminder"

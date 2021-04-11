@@ -7,11 +7,10 @@ import styled from 'styled-components';
 import {  SINGLE_REMINDER_CONTENT } from '../../graphql/query';
 
 const ContentPage = (props) => {
-const id = useParams('id')
-console.log(id);
+const contentId = useParams('contentId')
   const { loading, data } = useQuery(SINGLE_REMINDER_CONTENT, {
     variables: {
-      id: id.id
+      contentId: contentId.contentId
     }
   });
   const lastLocation = useLastLocation();
@@ -19,7 +18,6 @@ console.log(id);
   console.log(loading, data);
 
   if (loading) {
-    console.log(data);
     return (
     <div
       style={{

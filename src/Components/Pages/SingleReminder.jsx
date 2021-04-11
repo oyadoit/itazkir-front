@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import Style from "style-it";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import { useLastLocation } from "react-router-last-location";
 
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -16,6 +16,7 @@ import { openNotificationWithIcon } from "../../utils/helpers";
 import { SINGLE_REMINDER, IS_CREATOR, USER_CONTENTS } from "../../graphql/query";
 import { DELETE_CONTENT, UPDATE_CONTENT } from "../../graphql/mutation";
 
+
 const SingleReminder = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [values, setValues] = useState({
@@ -28,7 +29,7 @@ const SingleReminder = (props) => {
   });
   
 
-
+// const contentId = useParams('id').contentId;
   const reminderId = props.match.params.reminderId;
   const title = props.match.params.title;
   const ownerId = props.match.params.ownerId;
@@ -41,7 +42,7 @@ const SingleReminder = (props) => {
       
     },
   });  
- 
+
   const [update, {loading: isLoading, data: res }] = useMutation(UPDATE_CONTENT, {
     variables: {
       id: reminderId,

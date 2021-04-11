@@ -37,7 +37,7 @@ const Reminders = (props) => {
           contentNo="12"
           bgColor="#fff"
           by="A M"
-          to={`/reminders/${reminder.name}`}
+          to={`/reminders/${reminder.id}`}
         />
         ))}
 

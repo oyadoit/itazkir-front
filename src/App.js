@@ -50,7 +50,7 @@ function App() {
             />
             <Route
               exact
-              path="/reminders/:reminderName/content/:id"
+              path="/reminders/:reminderName/content/:contentId"
               component={ContentPage}
             />
             <AuthenticatedRoute

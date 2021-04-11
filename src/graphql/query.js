@@ -94,8 +94,8 @@ export const SINGLE_REMINDER = gql`
 `;
 
 export const SINGLE_REMINDER_CONTENT = gql`
-  query content($id: Int!) {
-    content(id: $id) {
+  query content($contentId: Int!) {
+    content(id: $contentId) {
       id
       title
       data
@@ -134,6 +134,23 @@ export const ALL_CONTENTS = gql`
     }
   }
 `;
+
+export const REMINDER_CONTENT = gql`
+query reminderContent($reminderId: Int!) {
+  reminderContent(reminderId: $reminderId) {
+    contentImage
+    data
+    id
+    reminder {
+      id
+      name
+      isApproved
+    }
+  }
+}
+
+`;
+
 
 export const CURRENT_USER_CONTENTS = gql`
   query {
