@@ -43,8 +43,8 @@ const Content = (props) => {
             content="This is part of the content for the reminder"
             bgColor="#fff"
             tag="Islamic Reminder"
-            //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-            by="I R"
+            by={`${content?.reminder?.name}`}
+            // by="I R"
             key="1"
             id="1"
             ownerId="21"

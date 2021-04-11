@@ -9,8 +9,9 @@ import { ALL_REMINDERS } from '../../graphql/query';
 const Reminders = (props) => {
   const { loading, data } = useQuery(ALL_REMINDERS);
 
-    if (loading) {
-      return (
+  console.log(data)
+  if (loading) {
+    return (
       <div
         style={{
           margin: "Auto",
@@ -22,22 +23,22 @@ const Reminders = (props) => {
       >
         <Spin size="large" />
       </div>
-       ) 
-      }
-     
-    return (
+    )
+  }
+
+  return (
     <div className="single__reminder-container">
       <Header />
       <Heading>All Reminders</Heading>
       <Container>
         {data.allReminders && data.allReminders.map(reminder => (
           <RemindersCard
-          title={`${reminder.name}`}
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          to={`/reminders/${reminder.id}`}
-        />
+            title={`${reminder.name}`}
+            contentNo="12"
+            bgColor="#fff"
+            by={`${reminder?.name}`}
+            to={`/reminders/${reminder.id}`}
+          />
         ))}
 
       </Container>
