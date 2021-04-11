@@ -890,3 +890,30 @@ a:hover {
     /* display: flex; */
     /* justify-content: space-around; */
 }
+
+.single__reminder-image-container {
+    width: 90%;
+    margin: auto;
+    margin-top: 60px;
+}
+.single__reminder-image {
+    width: 100%;
+    height: 100%;
+}
+
+.single__reminder--content-container {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+}
+.single__reminder-content {
+    font-size: 18px;
+}
+.reminder__footer {
+    width: 90%;
+    margin: auto;
+    margin-right: 100px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}

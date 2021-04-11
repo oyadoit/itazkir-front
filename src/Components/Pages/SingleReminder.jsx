@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import Style from "style-it";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useLastLocation } from "react-router-last-location";
 
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -13,7 +13,7 @@ import SubmitButton from "../../Components/Custom/SubmitButton";
 import { openNotificationWithIcon } from "../../utils/helpers";
 // import Input from "../../Components/Custom/Input";
 
-import { SINGLE_REMINDER, IS_CREATOR, USER_CONTENTS } from "../../graphql/query";
+import { SINGLE_REMINDER, IS_CREATOR } from "../../graphql/query";
 import { DELETE_CONTENT, UPDATE_CONTENT } from "../../graphql/mutation";
 
 
@@ -27,9 +27,9 @@ const SingleReminder = (props) => {
     file: null,
     error: "",
   });
-  
 
-// const contentId = useParams('id').contentId;
+
+  // const contentId = useParams('id').contentId;
   const reminderId = props.match.params.reminderId;
   const title = props.match.params.title;
   const ownerId = props.match.params.ownerId;
@@ -39,16 +39,16 @@ const SingleReminder = (props) => {
       id: reminderId,
       title: title,
       ownerId: ownerId,
-      
-    },
-  });  
 
-  const [update, {loading: isLoading, data: res }] = useMutation(UPDATE_CONTENT, {
+    },
+  });
+
+  const [update, { loading: isLoading, data: res }] = useMutation(UPDATE_CONTENT, {
     variables: {
       id: reminderId,
       title: values.title,
       data: values.data,
-      file: values.file 
+      file: values.file
     }
   })
 
@@ -59,24 +59,10 @@ const SingleReminder = (props) => {
   const [deleteContent, { data: message }] = useMutation(DELETE_CONTENT, {
     variables: {
       id: reminderId,
-    },
-
-    // update(proxy, result) {
-    //   const data = proxy.readQuery({
-    //     query: USER_CONTENTS,
-    //   });
-
-    //   data. = [
-        
-    //     ...data.userSubscriptions,
-    //   ];
-    //   proxy.writeQuery({ query: CURRENT_USER_SUBSCRIPTIONS, data });
-    // },
-
-
+    }
   });
 
-  
+
 
   if (message) {
     openNotificationWithIcon(
@@ -107,7 +93,7 @@ const SingleReminder = (props) => {
     });
   };
 
-  
+
 
   const validateEntry = () => {
     if (values.data === "" && values.file === null)
@@ -225,35 +211,35 @@ const SingleReminder = (props) => {
 
       {isEditing ? (
         <div className="reminder__container">
-          <SubmitButton onClick={() => setIsEditing(!isEditing)} pad="5" text="Go back"/>
+          <SubmitButton onClick={() => setIsEditing(!isEditing)} pad="5" text="Go back" />
 
           <form onSubmit={updateReminder} className="edit_form">
             <input
-                className="reminder_title"
-                type="text"
-                name="title"
-                required
-                placeholder={data.content.title}
-                onChange={handleChange}
-                
-              />
-              <textarea
-                className="reminder_textarea"
-                placeholder={data.content.data}
-                name="data"
-                rows="15"
-                onChange={handleChange}
-              ></textarea>
-              <input
-                className="reminder__image-upload"
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept="image/png, image/jpeg"
-                onChange={onFileChange}
-              />
+              className="reminder_title"
+              type="text"
+              name="title"
+              required
+              placeholder={data.content.title}
+              onChange={handleChange}
 
-              <SubmitButton pad="5"  text=" Save and Continue  "/>
+            />
+            <textarea
+              className="reminder_textarea"
+              placeholder={data.content.data}
+              name="data"
+              rows="15"
+              onChange={handleChange}
+            ></textarea>
+            <input
+              className="reminder__image-upload"
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              onChange={onFileChange}
+            />
+
+            <SubmitButton pad="5" text=" Save and Continue  " />
 
           </form>
         </div>
@@ -283,7 +269,7 @@ const SingleReminder = (props) => {
                   <img
                     className="single__reminder-image"
                     src={data.content.contentImage}
-                    alt="Reminder Image"
+                    alt="Reminder"
                   />
                 </div>
               ) : (
