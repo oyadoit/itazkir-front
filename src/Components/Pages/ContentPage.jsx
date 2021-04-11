@@ -61,10 +61,10 @@ console.log(id);
               <br />
               <div className="reminder__footer">
                 <Link to={lastLocation}>back</Link>
-                {/* <p className="created__by">
+                <p className="created__by">
                   by:{data.content.reminder.owner.firstName}{" "}
                   {data.content.reminder.owner.lastName}
-                </p> */}
+                </p>
                 <p className="tag">tag:{data.content.reminder.name}</p>
               </div>
             </>
