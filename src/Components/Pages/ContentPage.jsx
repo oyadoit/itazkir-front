@@ -15,8 +15,6 @@ const ContentPage = (props) => {
   });
   const lastLocation = useLastLocation();
 
-  console.log(loading, data);
-
   if (loading) {
     return (
       <div

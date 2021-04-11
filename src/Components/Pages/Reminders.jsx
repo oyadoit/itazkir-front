@@ -8,7 +8,6 @@ import { ALL_REMINDERS } from '../../graphql/query';
 
 const Reminders = (props) => {
   const { loading, data } = useQuery(ALL_REMINDERS);
-  console.log(loading, data);
 
     if (loading) {
       return (

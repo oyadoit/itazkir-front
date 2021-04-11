@@ -14,7 +14,6 @@ const Content = (props) => {
       reminderId: id.reminderName
     }
   });
-  console.log(loading, data);
 
   if (loading) {
     return (

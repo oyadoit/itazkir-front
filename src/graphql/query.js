@@ -101,6 +101,7 @@ export const SINGLE_REMINDER_CONTENT = gql`
       data
       contentImage
       reminder {
+        id
         name
         owner {
           id
