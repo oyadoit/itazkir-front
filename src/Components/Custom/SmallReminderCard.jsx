@@ -9,6 +9,7 @@ import {initialGetters} from '../../utils/helpers';
 import {Link} from 'react-router-dom';
 import {DeleteFilled} from '@ant-design/icons';
 import {Avatar} from 'antd';
+import { AUTH_TOKEN } from '../../utils/constants';
 
 const SmallReminderCard = ({
   bgColor,
@@ -19,6 +20,7 @@ const SmallReminderCard = ({
   by,
   content,
   ownerId,
+  to,
 }) => {
   // console.log(ownerId + "owner");
   return Style.it(
@@ -80,6 +82,8 @@ const SmallReminderCard = ({
           {initialGetters(by)}
         </Avatar>
       </div>
+      {localStorage.getItem(AUTH_TOKEN) ? 
+
       <Link to={`/dashboard/reminders/${ownerId}/${id}/${title}`}>
         <div className="card__content--right">
           <h2 className="card__title">{textContentReducer(title, 20)}</h2>
@@ -91,7 +95,19 @@ const SmallReminderCard = ({
           </div>
           {/* <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span> */}
         </div>
+      </Link> : <Link to={to}>
+        <div className="card__content--right">
+          <h2 className="card__title">{textContentReducer(title, 20)}</h2>
+          <p className="card__text">{textContentReducer(content, 50)}</p>
+
+          <div className="reminder__details-container">
+            <p className="reminder__name">Tag: {textContentReducer(tag, 20)}</p>
+            <p className="reminder__owner">By: {textContentReducer(by, 20)}</p>
+          </div>
+          {/* <span><DeleteFilled style={{color: "red", position: "absolute", bottom: "10px", right:5, }}/></span> */}
+        </div>
       </Link>
+      }
     </div>
   );
 };

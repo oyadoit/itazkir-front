@@ -1,93 +1,74 @@
+import { useQuery } from '@apollo/react-hooks';
+import { Spin } from 'antd';
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useLastLocation } from 'react-router-last-location';
 import styled from 'styled-components';
-import Header from '../Custom/Header';
-import SmallReminderCard from '../Custom/SmallReminderCard';
+import {  SINGLE_REMINDER_CONTENT } from '../../graphql/query';
 
 const ContentPage = (props) => {
-  return (
-    <div className="content__page--container">
-      <Header />
-      <Heading>Daily Reminder</Heading>
-      <Container>
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-        <SmallReminderCard
-          title="New title"
-          content="This is part of the content for the reminder"
-          bgColor="#fff"
-          tag="Islamic Reminder"
-          //   by={`${eachContent.reminder.owner.firstName}  ${eachContent.reminder.owner.lastName}`}
-          by="I R"
-          key="1"
-          id="1"
-          ownerId="21"
-        />
-      </Container>
+const id = useParams('id')
+console.log(id);
+  const { loading, data } = useQuery(SINGLE_REMINDER_CONTENT, {
+    variables: {
+      id: id.id
+    }
+  });
+  const lastLocation = useLastLocation();
+
+  console.log(loading, data);
+
+  if (loading) {
+    console.log(data);
+    return (
+    <div
+      style={{
+        margin: "Auto",
+        marginTop: "60px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Spin size="large" />
     </div>
+     ) 
+    }
+   
+
+  return (
+    <div className="reminder__container">
+            <>
+              {data.content && data.content.contentImage ? (
+                <div className="single__reminder-image-container">
+                  <img
+                    className="single__reminder-image"
+                    src={data.content.contentImage}
+                    alt="Reminder Image"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div className="single__reminder--content-container">
+                <h1 className="single__reminder-heading">
+                  {data.content.title}
+                </h1>
+                <p className="single__reminder-content">{data.content.data}</p>
+              </div>
+
+              <br />
+              <div className="reminder__footer">
+                <Link to={lastLocation}>back</Link>
+                {/* <p className="created__by">
+                  by:{data.content.reminder.owner.firstName}{" "}
+                  {data.content.reminder.owner.lastName}
+                </p> */}
+                <p className="tag">tag:{data.content.reminder.name}</p>
+              </div>
+            </>
+        </div>
   );
 };
 

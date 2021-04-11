@@ -4,6 +4,7 @@ import {initialGetters} from '../../utils/helpers';
 import {Link} from 'react-router-dom';
 import {Avatar} from 'antd';
 import styled from 'styled-components';
+import { AUTH_TOKEN } from '../../utils/constants';
 
 const RemindersCard = ({title, id, by, to, contentNo, ownerId}) => {
   return (
@@ -23,12 +24,23 @@ const RemindersCard = ({title, id, by, to, contentNo, ownerId}) => {
             {initialGetters(by)}
           </Avatar>
         </div>
-        <Link to={`/dashboard/reminders/${ownerId}/${id}/${title}`}>
+        {
+          localStorage.getItem(AUTH_TOKEN) ? (
+            <Link to={`/dashboard/reminders/${ownerId}/${id}/${title}`}>
+            <div className="card__content--right">
+              <h2 className="card__title">{textContentReducer(title, 23)}</h2>
+              <p>contents: {contentNo}</p>
+            </div>
+          </Link>
+        ) : <Link to={to}>
           <div className="card__content--right">
-            <h2 className="card__title">{textContentReducer(title, 23)}</h2>
-            <p>contents: {contentNo}</p>
-          </div>
-        </Link>
+              <h2 className="card__title">{textContentReducer(title, 23)}</h2>
+              <p>contents: {contentNo}</p>
+            </div>
+          </Link>
+
+        }
+        
       </a>
     </Container>
   );

@@ -1,81 +1,50 @@
+import { useQuery } from '@apollo/react-hooks';
+import { Spin } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../../Components/Custom/Header';
 import RemindersCard from '../../Components/Custom/RemindersCard';
+import { ALL_REMINDERS } from '../../graphql/query';
 
 const Reminders = (props) => {
-  return (
+  const { loading, data } = useQuery(ALL_REMINDERS);
+  console.log(loading, data);
+
+    if (loading) {
+      return (
+      <div
+        style={{
+          margin: "Auto",
+          marginTop: "60px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Spin size="large" />
+      </div>
+       ) 
+      }
+     
+    return (
     <div className="single__reminder-container">
       <Header />
       <Heading>All Reminders</Heading>
       <Container>
-        <RemindersCard
-          title="this is the title"
+        {data.allReminders && data.allReminders.map(reminder => (
+          <RemindersCard
+          title={`${reminder.name}`}
           contentNo="12"
           bgColor="#fff"
           by="A M"
-          to="/amin"
+          to={`/reminders/${reminder.name}`}
         />
-        <RemindersCard
-          title="this is the second title"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />
-        <RemindersCard
-          title="this is the second title"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />
-        <RemindersCard
-          title="this is the second title"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />
-        <RemindersCard
-          title="this is the second title"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />
-        <RemindersCard
-          title="Islamic Reminders"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />
-        <RemindersCard
-          title="Daily reminders"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />{' '}
-        <RemindersCard
-          title="this is the second title"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />{' '}
-        <RemindersCard
-          title="this is the second title"
-          contentNo="12"
-          bgColor="#fff"
-          by="A M"
-          id={1}
-        />
+        ))}
+
       </Container>
     </div>
   );
-};
+}
 
 export default Reminders;
 

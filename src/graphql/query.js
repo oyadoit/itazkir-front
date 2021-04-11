@@ -93,6 +93,24 @@ export const SINGLE_REMINDER = gql`
   }
 `;
 
+export const SINGLE_REMINDER_CONTENT = gql`
+  query content($id: Int!) {
+    content(id: $id) {
+      id
+      title
+      data
+      contentImage
+      reminder {
+        name
+        owner {
+          id
+          firstName
+        }
+      }
+    }
+  }
+`;
+
 export const USER_CURRENT_REMINDER = gql`
   query {
     userReminders {

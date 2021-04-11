@@ -21,7 +21,8 @@ import CreatorRoute from "./Components/Custom/CreatorRoute";
 import NewContent from "./Components/Custom/NewContent";
 import NotFound from "./Components/NotFound";
 import Reminders from "./Components/Pages/Reminders";
-import Content from "./Components/Pages/ContentPage";
+import Content from "./Components/Pages/Content";
+import ContentPage from "./Components/Pages/ContentPage";
 
 function App() {
   return (
@@ -46,6 +47,11 @@ function App() {
               exact
               path="/reminders/:reminderName"
               component={Content}
+            />
+            <Route
+              exact
+              path="/reminders/:reminderName/content/:id"
+              component={ContentPage}
             />
             <AuthenticatedRoute
               exact
