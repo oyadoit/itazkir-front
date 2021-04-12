@@ -34,7 +34,7 @@ const Reminders = (props) => {
         {data.allReminders && data.allReminders.map(reminder => (
           <RemindersCard
             title={`${reminder.name}`}
-            contentNo="12"
+            contentNo={`${reminder.count}`}
             bgColor="#fff"
             by={`${reminder?.name}`}
             to={`/reminders/${reminder.id}`}

@@ -36,6 +36,7 @@ export const ALL_REMINDERS = gql`
     allReminders {
       name
       id
+      count
     }
   }
 `;
