@@ -16,7 +16,8 @@ const MainContent = props => {
         <div className="main__content--left">
             <h1 className='main__content--large-text'>And remind, for indeed,  the reminder benefits the believers.</h1>
             <h5 className='main__content--small-text'>Quran 51:55</h5>
-            <GetStartedButton to='/signup' className='button__green'>Get Started Now</GetStartedButton>
+            <GetStartedButton to='/reminders' className='button__green'>View Reminders</GetStartedButton>            
+            {/* <GetStartedButton to='/signup' className='button__green'>Get Started Now</GetStartedButton> */}
             <div className='download__container'>
                 <DownloadFromStore 
                     imageUrl='https://res.cloudinary.com/dg7n6i9e1/image/upload/v1584607070/iTazkir/get_google_play_lmo8uc.png'

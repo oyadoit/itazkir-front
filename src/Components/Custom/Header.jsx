@@ -100,12 +100,7 @@ const Header = (props) => {
                 </li>
               </>
             ) : (
-              <>
-                <li>
-                  <Link to="/reminders" className="nav__container--link">
-                    Reminders
-                  </Link>
-                </li>
+              <>                
                 <li>
                   <Link to="/login" className="nav__container--link">
                     Login
