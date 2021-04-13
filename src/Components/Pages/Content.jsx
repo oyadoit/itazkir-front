@@ -14,7 +14,7 @@ const Content = (props) => {
       reminderId: id.reminderName
     }
   });
-
+console.log(data);
   if (loading) {
     return (
       <div
@@ -35,7 +35,7 @@ const Content = (props) => {
   return (
     <div className="content__page--container">
       <Header />
-      <Heading>Daily Reminder</Heading>
+      <Heading>{data.reminderContent && data.reminderContent[0].reminder.name}</Heading>
       <Container>
         {data.reminderContent && data.reminderContent.map(content =>
           <SmallReminderCard
